@@ -1,0 +1,483 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>内存管理 | CheeseburgerIM</title><meta name="keywords" content="OS"><meta name="author" content="Tony Pan"><meta name="copyright" content="Tony Pan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="一、内存管理1.内存的基础知识逻辑地址与物理地址Eg：编译时只需确定变量x存放的相对地址是100(也就是说相对于进程在内存中的起始地址的地址)。CPU想要找到x在内存中的实际存放位置，只需要用进程的起始地址+100即可； 相对地址又称逻辑地址，绝对地址又称物理地址。 装入内存的三种方式 绝对装入：在编译时，如果知道程序将放到内存中的哪个位置，编译程序将产生绝对地址的目标代码。装入程序按照装入模块中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内存管理">
+<meta property="og:url" content="http://example.com/2020/12/29/OSChapter2/index.html">
+<meta property="og:site_name" content="CheeseburgerIM">
+<meta property="og:description" content="一、内存管理1.内存的基础知识逻辑地址与物理地址Eg：编译时只需确定变量x存放的相对地址是100(也就是说相对于进程在内存中的起始地址的地址)。CPU想要找到x在内存中的实际存放位置，只需要用进程的起始地址+100即可； 相对地址又称逻辑地址，绝对地址又称物理地址。 装入内存的三种方式 绝对装入：在编译时，如果知道程序将放到内存中的哪个位置，编译程序将产生绝对地址的目标代码。装入程序按照装入模块中">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.downk.cc/item/5feb0dda3ffa7d37b3a369c0.jpg">
+<meta property="article:published_time" content="2020-12-29T11:04:51.000Z">
+<meta property="article:modified_time" content="2021-01-02T07:22:26.555Z">
+<meta property="article:author" content="Tony Pan">
+<meta property="article:tag" content="OS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.downk.cc/item/5feb0dda3ffa7d37b3a369c0.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/12/29/OSChapter2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-01-02 15:22:26'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/IM.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_2260265_yn4j21lmjpj.css"><meta name="generator" content="Hexo 5.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://pic.downk.cc/item/5fd07a0e3ffa7d37b3e705e5.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">20</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/english/"><i class="fa-fw iconfont icon-english-input"></i><span> English</span></a></li><li><a class="site-page" href="/DetectiveConan/"><i class="fa-fw fa fa-question"></i><span> Conan</span></a></li><li><a class="site-page" href="/picture/"><i class="fa-fw far fa-image"></i><span> Pictures</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/fort/"><i class="fa-fw fab fa-fort-awesome"></i><span> Fort</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://pic.downk.cc/item/5feb0dda3ffa7d37b3a369c0.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">CheeseburgerIM</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/english/"><i class="fa-fw iconfont icon-english-input"></i><span> English</span></a></li><li><a class="site-page" href="/DetectiveConan/"><i class="fa-fw fa fa-question"></i><span> Conan</span></a></li><li><a class="site-page" href="/picture/"><i class="fa-fw far fa-image"></i><span> Pictures</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/fort/"><i class="fa-fw fab fa-fort-awesome"></i><span> Fort</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">内存管理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-12-29T11:04:51.000Z" title="Created 2020-12-29 19:04:51">2020-12-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-01-02T07:22:26.555Z" title="Updated 2021-01-02 15:22:26">2021-01-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/OS/">OS</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="一、内存管理"><a href="#一、内存管理" class="headerlink" title="一、内存管理"></a>一、内存管理</h2><h3 id="1-内存的基础知识"><a href="#1-内存的基础知识" class="headerlink" title="1.内存的基础知识"></a>1.内存的基础知识</h3><h4 id="逻辑地址与物理地址"><a href="#逻辑地址与物理地址" class="headerlink" title="逻辑地址与物理地址"></a>逻辑地址与物理地址</h4><p>Eg：编译时只需确定变量x存放的相对地址是100(也就是说相对于进程在内存中的起始地址的地址)。CPU想要找到x在内存中的实际存放位置，只需要用进程的起始地址+100即可；</p>
+<p><strong>相对地址又称逻辑地址，绝对地址又称物理地址。</strong></p>
+<h4 id="装入内存的三种方式"><a href="#装入内存的三种方式" class="headerlink" title="装入内存的三种方式"></a>装入内存的三种方式</h4><ol>
+<li><p>绝对装入：在编译时，如果知道程序将放到内存中的哪个位置，编译程序将产生绝对地址的目标代码。装入程序按照装入模块中的地址，将程序和数据装入内存。</p>
+<p>绝对装入由于逻辑与实际内存地址相同，故不需要对程序的数据的地址进行修改。</p>
+<p><strong>绝对装入只适用于弹道程序环境</strong>，绝对地址可由程序员在编译或者汇编时赋予。</p>
+</li>
+<li><p>可重定位装入：<strong>在多道程序环境下</strong>，多个目标模块的起始地址通常都是从0开始，程序中的其他地址都是相对于起始地址的，此时采用可重定位装入方式，根据内存的目前情况，将装入模块装入到内存的适当位置。装入时对目标程序中指令和数据的修改称为重定位，地址变换通常是在装入时一次完成的，所以又称<strong>静态重定位</strong>。</p>
+</li>
+<li><p>动态运行时装入：也称为<strong>动态重定位</strong>。程序在内存中如果发生移动，就素要采用动态的装入方式。编译，链接后的装入模块的地址都是从0开始的。装入程序在把装入模块装入内存后，并不立即把装入模块中的相对地址转换成绝对地址，而是<strong>把这种地址转换推迟到程序真正要执行时才进行</strong>。因此，装入内存后的所有地址均为相对地址。这种方式需要<strong>一个重定位寄存器的支持</strong>。动态重定位的特点是<strong>可以将程序分配到不连续的存储区中，在程序运行之前可以只装入它的部分代码即可投入运行</strong>，然后在程序运行期间，根据需要动态申请分配的内存，便于程序段的共享，可以向用户提供一个比存储空间大得多的地址空间。<strong>用于现代操作系统</strong>。</p>
+</li>
+</ol>
+<h3 id="2-内存管理的概念"><a href="#2-内存管理的概念" class="headerlink" title="2.内存管理的概念"></a>2.内存管理的概念</h3><p>操作系统作为系统资源的管理者，当然也需要对内存进行管理</p>
+<ol>
+<li>操作系统负责内存空间的分配与回收；</li>
+<li>操作系统需要提供某种技术从逻辑上对内存空间进行扩充；</li>
+<li>操作系统需要提供地址转换功能，负责程序的<strong>逻辑地址与物理地址的转换</strong>；</li>
+<li>操作系统需要提供内存保护功能，保证各进程在各自存储空间内运行，互不干扰。</li>
+</ol>
+<h4 id="内存空间的扩展"><a href="#内存空间的扩展" class="headerlink" title="内存空间的扩展"></a>内存空间的扩展</h4><p>内存空间的扩充：利用虚拟存储技术或者自动覆盖技术，从逻辑上扩充内存。</p>
+<p>Eg：游戏GTA5的大小约100G，按理来说运行这个游戏需要把100G的数据全部放入内存。然而，我的电脑实际内存只有8G(虚拟技术-操作系统的虚拟性)。</p>
+<h4 id="内存保护"><a href="#内存保护" class="headerlink" title="内存保护"></a>内存保护</h4><p>保证各道作业在各自的存储空间内运行，互不干扰，有以下两种方式：</p>
+<ol>
+<li>CPU中设置一对上，下限寄存器，存放用户作业在主存中的上限和下限，每当CPU要访问一个地址时，分别和两个寄存器的值相比，判断是否越界；</li>
+<li>通过采用重定位寄存器(或基址寄存器)和界地址寄存器(又称限长寄存器)来实现这种保护。重定位寄存器含最小的物理地址值，界地址寄存器含逻辑地址的最大值，每个逻辑地址值必须小于界地址寄存器，内存管理结构动态得将逻辑地址与界地址寄存器进行比较，如果未发生地址越界。则加上重定位寄存器的值后映射成物理地址，再送交内存单元。</li>
+</ol>
+<h4 id="内存的覆盖与交换"><a href="#内存的覆盖与交换" class="headerlink" title="内存的覆盖与交换"></a>内存的覆盖与交换</h4><h5 id="覆盖技术"><a href="#覆盖技术" class="headerlink" title="覆盖技术"></a>覆盖技术</h5><ul>
+<li>由于程序运行时并非任何时候都要访问程序及数据的各个部分(尤其是大程序)，因此可以把用户空间分成一个固定区和若干个覆盖区。将经尝活跃的部分放在固定区，其余部分按照调用关系分段，首先将那些即将要访问的段放入覆盖区，其他段放在外存中，在需要调用前，系统将其调入覆盖区，替换覆盖区中原有的段；</li>
+<li>特点：打破了必将一个进程的全部信息装入内存后才能运行的限制，但当同时运行程序的代码量大于主存时仍不能运行，再而需要注意到，内存中能够更新的地方只有覆盖区的段，不在覆盖区的段会常驻保存。</li>
+</ul>
+<h5 id="交换技术"><a href="#交换技术" class="headerlink" title="交换技术"></a>交换技术</h5><ul>
+<li>交换技术的设计思想：内存空间紧张时，系统将内存中某些进程暂时换出外存，把外存中某些已具备运行条件的进程换入内存(进程在内存与磁盘间的动态调度)；</li>
+<li>换入：把准备好竞争CPU运行的程序从辅存移到内存；</li>
+<li>换出：把处于等待状态(或CPU调度原则下被剥夺运行权力)的程序从内存移到辅存，把内存空间腾出来；</li>
+<li>暂时换出外存等待的进程状态为<strong>挂起状态(suspend)</strong>，挂起态又可以进一步细分为<strong>就绪挂起，阻塞挂起</strong>两种状态；</li>
+</ul>
+<h3 id="3-连续分配管理方式"><a href="#3-连续分配管理方式" class="headerlink" title="3.连续分配管理方式"></a>3.连续分配管理方式</h3><p><strong>内部碎片：分配给某进程的内存区域中，没有用上的部分；</strong></p>
+<p><strong>外部碎片：内存中的某些空闲分区由于太小而难以利用。</strong></p>
+<h4 id="单一连续分配"><a href="#单一连续分配" class="headerlink" title="单一连续分配"></a>单一连续分配</h4><ul>
+<li><strong>内存在此方式下分为系统区和用户区；</strong></li>
+<li>系统区仅提供给操作系统使用，通常在低地址部分；</li>
+<li>用户区是为用户提供的，除系统区外的内存空间，我们平常运行的软件都在用户区里分配空间；</li>
+<li>优点：无外部碎片，可以采用覆盖技术，不需要额外技术支持；</li>
+<li>缺点：只能用于单用户，单任务操作系统中，有内部碎片，存储器利用率极低。</li>
+</ul>
+<h4 id="固定分区分配"><a href="#固定分区分配" class="headerlink" title="固定分区分配"></a>固定分区分配</h4><ul>
+<li>固定分区分配是最简单的一种多道程序存储管理方式，它将用户内存空间划分为若干个固定大小的区域，每个分区只装入一道作业。当有空闲分区时，便可以再从外存的后背作业队列中，选择适当大小的作业装入该分区，如此循环；</li>
+<li>优点：实现简单，无外部碎片；</li>
+<li>缺点：程序可能太大而放不进任何一个分区中，这是用户不得不使用覆盖技术来使用内存空间。</li>
+</ul>
+<h4 id="动态分区分配"><a href="#动态分区分配" class="headerlink" title="动态分区分配"></a>动态分区分配</h4><ul>
+<li>又称<strong>可变分区分配</strong>，是一种动态划分内存的分区方法；</li>
+<li>这种分配方式不会预先划分内存分区，而是在进程装入内存时，根据进程的大小动态建立分区，并使分区的大小正好适合进程的需要；</li>
+<li>因此系统分区的大小和数目是可变的；</li>
+<li>缺点：外部碎片很多(通过紧凑消除，就是操作系统不时地对进程进行移动和整理。但是这是要动态重定位寄存器的支持，且相对费时。紧凑的过程实际上类似于Windows系统中的磁盘整理程序，只不过后者是对外存空间的紧凑)。</li>
+</ul>
+<h3 id="4-动态分区分配算法"><a href="#4-动态分区分配算法" class="headerlink" title="4.动态分区分配算法"></a>4.动态分区分配算法</h3><h4 id="首次适应算法"><a href="#首次适应算法" class="headerlink" title="首次适应算法"></a>首次适应算法</h4><ul>
+<li>算法思想：每次都从低地址开始查找，找到一个能满足大小的空闲分区；</li>
+<li>实现：空闲分区以地址递增的次序排列。每次分配内存时顺序查找空闲分区链(或空闲分区表)，找到大小能满足要求的第一个空闲分区。</li>
+</ul>
+<h4 id="最佳适应算法"><a href="#最佳适应算法" class="headerlink" title="最佳适应算法"></a>最佳适应算法</h4><ul>
+<li>算法思想：由于动态分区是一种连续分配方式，为各进程分配的空间必须是连续的一整片区域。因此为了保证当“大进程”到来时能有连续的大片空间，可以尽可能多地留下大片地空闲区，即优先使用更小的空闲区；</li>
+<li>实现：空闲区按容量递增地次序链接。每次分配内存时顺序查找空闲分区链(或空闲分区表)，找到大小能满足要求的第一个空闲分区。</li>
+</ul>
+<h4 id="最坏适应算法"><a href="#最坏适应算法" class="headerlink" title="最坏适应算法"></a>最坏适应算法</h4><ul>
+<li>又称最大适应算法</li>
+<li>算法思想：为了解决最佳适应算法问题——留下太多难以利用的小碎片，可以在每次分配时优先使用最大的连续空闲区，这样分配后剩余的空闲区就不会太小，更方便使用；</li>
+<li>实现：空闲区按容量递减地次序链接。每次分配内存时顺序查找空闲分区链(或空闲分区表)，找到大小能满足要求的第一个空闲分区。</li>
+</ul>
+<h4 id="邻近适应算法"><a href="#邻近适应算法" class="headerlink" title="邻近适应算法"></a>邻近适应算法</h4><ul>
+<li>算法思想：首次适应算法每次都从链头开始查找的。这可能会导致低地址部分出现很多小的空闲分区，而每次分配查找时，都要经过这些分区，因此也增加了查找的开销。如果每次都从上次查找结束地位置开始检索，就能解决上述问题；</li>
+<li>实现：空闲分区以地址递增地顺序排列(可排成一个循环链表)。每次分配内存时从上次查找结束地位置开始查找空闲分区链(或空闲分区表)，找到大小能满足要求的第一个空闲分区。</li>
+</ul>
+<h3 id="5-存储管理"><a href="#5-存储管理" class="headerlink" title="5.存储管理"></a>5.存储管理</h3><h4 id="分页式存储管理"><a href="#分页式存储管理" class="headerlink" title="分页式存储管理"></a>分页式存储管理</h4><ul>
+<li><p>如果允许将一个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/进程/382503">进程</a>直接分散地装入到许多不相邻的分区中，则无须再进行“紧凑”。基于这一思想而产生了<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/离散/858263">离散</a>分配方式。如果离散分配的基本单位是页，则称为分页存储管理方式。在分页存储管理方式中，如果不具备<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/页面/5544813">页面</a><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/对换/2817180">对换</a>功能，则称为基本分页存储管理方式，或称为纯分页存储管理方式，它不具有支持实现<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/虚拟存储器/944209">虚拟存储器</a>的功能，它要求把每个作业全部装入内存后方能运行。</p>
+</li>
+<li><p><strong>逻辑地址结构：页号+页内偏移量；</strong></p>
+</li>
+<li><p>一个进程对应一张页表；</p>
+<p>进程的每一页对应一个页表项；</p>
+<p>每个页表项由页号和块号组成；</p>
+<p>页表记录进程页面和实际存放的内块之间的对应关系；</p>
+<p>每个页表项的长度是相同的，页号是隐含的。</p>
+</li>
+</ul>
+<h4 id="分段式存储管理"><a href="#分段式存储管理" class="headerlink" title="分段式存储管理"></a>分段式存储管理</h4><ul>
+<li><p>引入分段存储管理方式，主要是为了满足用户和程序员地一系列需要</p>
+<p>方便编程，信息共享，信息保护，动态增长，动态链接</p>
+</li>
+<li><p>原理：在分段存储管理方式中，作业的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/地址空间">地址空间</a>被划分为若干个段，每个段定义了一组逻辑信息。例如，有主程序段MAIN、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/子程序">子程序</a>段X、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/数据段">数据段</a>D及栈段S等，如图4-17所示。每个段都有自己的名字。为了实现简单起见，通常可用一个段号来代替段名，每个段都从0开始<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/编址">编址</a>，并采用一段连续的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/地址空间">地址空间</a>。段的长度由相应的逻辑信息组的长度决定，因而各段长度不等。整个作业的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/地址空间">地址空间</a>由于是分成多个段，因而是二维的，亦即，其<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/逻辑地址">逻辑地址</a>由段号(段名)和段内地址所组成。</p>
+</li>
+<li><p><strong>逻辑地址结构：段号+段内地址；</strong></p>
+</li>
+</ul>
+<h4 id="段页式存储管理"><a href="#段页式存储管理" class="headerlink" title="段页式存储管理"></a>段页式存储管理</h4><ul>
+<li>段页式存储管理方式即先将用户程序分成若干个段，再把每个段分成若干个页，并为每一个段赋予一个段名。</li>
+<li>在段页式系统中，一作业地址结构由段号、段内页号及页内地址三部分所组成。</li>
+<li>段页式存储的实现结合了页式和段式管理的基本思想，即<strong>用分段方法来分配和管理用户地址空间，用分页方法来管理物理存储空间</strong>。</li>
+<li><strong>逻辑地址结构：段号+页号+页内偏移量。</strong></li>
+</ul>
+<h4 id="分段，分页管理对比"><a href="#分段，分页管理对比" class="headerlink" title="分段，分页管理对比"></a>分段，分页管理对比</h4><ul>
+<li>页是信息的物理单位。分页的主要目的是为了实现离散分配，提高内存利用率。分页仅仅是系统管理.上的需要，完全是系统行为，对用户是不可见的。段是信息的逻辑单位。分段的主要目的是更好地满足用户需求。-一个段通常包含着一-组属于一个逻辑模块的信息。分段对用户是可见的，用户编程时需要显式地给出段名。</li>
+<li>页的大小固定且由系统决定。段的长度却不固定，决定于用户编写的程序。</li>
+<li>在分段的方法中，每次程序运行时总是把程序全部装入内存，而分页的方法则有所不同。分页的思想是程序运行时用到哪页就为哪页分配内存，没用到的页暂时保留在硬盘上。当用到这些页时再在物理地址空间中为这些页分配内存，然后建立虚拟地址空间中的页和刚分配的物理内存页间的映射。</li>
+<li>分页的用户进程地址空间是一维的，程序员只需给出一个记忆符即可表示一个地址。分段的用户进程地址空间是二维的，程序员在标识一个地址时，既要给出段名，也要给出段内地址。</li>
+<li>分段比分页更容易实现信息的共享和保护。不能被修改的代码称为纯代码或可重入代码(不属于临界资源)，这样的代码是可以共享的。可修改的代码是不能共享的。</li>
+</ul>
+<h3 id="6-多级页表"><a href="#6-多级页表" class="headerlink" title="6.多级页表"></a>6.多级页表</h3><p>根据局部性原理可知，很多时候，进程在一段时间内只需要访问某几个页面也可以正常运行了，因此没有必要让整个页表都常驻内存。</p>
+<p>单级页表问题</p>
+<ul>
+<li>页表必须连续存放，因此当页表很大时，需要占用很多个连续的页框；</li>
+<li>没有必要让整个页表常驻内存，因为进程在一段时间内可能只需访问某几个特定的页面；</li>
+<li><strong>减少页表所占的内存空间。</strong></li>
+</ul>
+<h3 id="7-快表"><a href="#7-快表" class="headerlink" title="7.快表"></a>7.快表</h3><ul>
+<li>又称<strong>联想寄存器(TLB)</strong>，是一种访问速度比内存快很多的高速缓冲寄存器，用来存放当前访问的若干页表项，<strong>以加速地址变换的过程</strong>；</li>
+<li>与此对应，内存中的页表称为慢表。</li>
+</ul>
+<h3 id="8-倒排页表"><a href="#8-倒排页表" class="headerlink" title="8.倒排页表"></a>8.倒排页表</h3><ul>
+<li>优点：减少占用的内存空间；</li>
+<li>缺点：更长的查询时间；进程间共享内存实现更困难。</li>
+<li>存储的时有关每个物理页框的信息，所以倒排页表项与物理内存页框有一一对应关系，它所包含的页表项数量较少。</li>
+<li><strong>Eample：物理地址空间4GB，页面长4KB，页表项大小为4B。故倒排页表共有4GB/4KB=1M个页表项，倒排页表大小为1M×4B=4MB</strong>。</li>
+<li><strong>系统维护一张倒排页表；</strong></li>
+<li><strong>使用Hash散列，可以解决倒排页表不便于逻辑地址向物理地址转换的问题</strong>。</li>
+</ul>
+<h2 id="二、虚拟内存"><a href="#二、虚拟内存" class="headerlink" title="二、虚拟内存"></a>二、虚拟内存</h2><h3 id="1-虚拟内存的基本概念"><a href="#1-虚拟内存的基本概念" class="headerlink" title="1.虚拟内存的基本概念"></a>1.虚拟内存的基本概念</h3><p><strong>虚拟内存只能基于非连续分配技术；</strong></p>
+<h4 id="传统存储管理方式的特征，缺点"><a href="#传统存储管理方式的特征，缺点" class="headerlink" title="传统存储管理方式的特征，缺点"></a>传统存储管理方式的特征，缺点</h4><ul>
+<li><p>一次性(可用虚拟存储技术解决问题)：作业必须一次性全部装入内存后才能开始运行。这会造成两个问题：</p>
+<p>1.作业很大时，不能全部装入内存，导致大作业无法运行；</p>
+<p>2.当大量作业要求运行时，由于内存无法容纳所有作业，因此只有少量作业能运行，导致多道程序并发度下降。</p>
+</li>
+<li><p>驻留性：一旦作业被装入内存，就会一直驻留在内存中，直至作业运行结束。事实上，在一个时间段内，只需要访问作业的一小部分数据即可正常运行，这就导致了内存中会驻留大量的，暂时用不到的数据，浪费了宝贵的内存资源。</p>
+</li>
+</ul>
+<h4 id="局部性原理"><a href="#局部性原理" class="headerlink" title="局部性原理"></a>局部性原理</h4><ul>
+<li>时间局部性：如果执行力程序中的某条指令，那么不久后这条指令很有可能再次执行；如果某个数据被访问过，不久之后该数据很可能再次被访问。(因为程序中存在大量的循环)</li>
+<li>空间局部性：一旦程序访问量某个存储单元，在不久之后，其附近的存储单元也很有可能被访问。(因为很多数据在内存中是连续存放的，并且程序的指令页式顺序的在内存中存放的)</li>
+</ul>
+<h4 id="虚拟地址的定义和特征"><a href="#虚拟地址的定义和特征" class="headerlink" title="虚拟地址的定义和特征"></a>虚拟地址的定义和特征</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p>在操作系统的管理下，用户看到似乎有一个比实际内存大得多的内存，就是虚拟内存。</p>
+<h5 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h5><ul>
+<li>多次性：无需在作业运行时一次性全部装入内存，而是运行被分成多次调入内存；</li>
+<li>对换性：在作业运行时无需一直常驻内存，而是允许在作业运行的过程中，将作业换出，换入；</li>
+<li>虚拟性：从逻辑上扩充了内存的容量，使用户看到的内存容量远大于实际的容量。</li>
+</ul>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>请求分页存储管理；</li>
+<li>请求分段式存储管理；</li>
+<li>请求段页式存储管理。</li>
+</ul>
+<p>请求分页系统建立在基本分页系统的基础上，为了支持虚拟存储器功能而增加了请求调页功能和页面置换功能。请求分页是目前最常用的一种虚拟存储器方法。</p>
+<p>在程序执行过程中，当所访问的信息不在内存时，由操作系统负责将所需信息从外存调入内存(操作系统要提供请求调页或请求调段功能)，然后继续执行程序。</p>
+<p>若内存空间不够，由操作系统负责将内存中暂时用不到的信息换出到外存(操作系统要提供页面置换或段置换的功能)。</p>
+<h3 id="2-请求分页管理方式"><a href="#2-请求分页管理方式" class="headerlink" title="2.请求分页管理方式"></a>2.请求分页管理方式</h3><h4 id="缺页中断"><a href="#缺页中断" class="headerlink" title="缺页中断"></a>缺页中断</h4><p>定义：缺页中断就是要访问的页不在主存，需要操作系统将其调入主存后再进行访问。在这个时候，被内存映射的文件实际上成了一个分页交换文件。</p>
+<h3 id="3-页面置换算法"><a href="#3-页面置换算法" class="headerlink" title="3.页面置换算法"></a>3.页面置换算法</h3><h4 id="最佳置换法-OPT"><a href="#最佳置换法-OPT" class="headerlink" title="最佳置换法(OPT)"></a>最佳置换法(OPT)</h4><h4 id="先进先出置换算法-FIFO"><a href="#先进先出置换算法-FIFO" class="headerlink" title="先进先出置换算法(FIFO)"></a>先进先出置换算法(FIFO)</h4><h4 id="最近最久未使用置换算法-LRU"><a href="#最近最久未使用置换算法-LRU" class="headerlink" title="最近最久未使用置换算法(LRU)"></a>最近最久未使用置换算法(LRU)</h4><h4 id="时钟置换算法-CLOCK-NRU-最近未使用"><a href="#时钟置换算法-CLOCK-NRU-最近未使用" class="headerlink" title="时钟置换算法(CLOCK)(NRU:最近未使用)"></a>时钟置换算法(CLOCK)(NRU:最近未使用)</h4><h4 id="改进型的时钟置换算法"><a href="#改进型的时钟置换算法" class="headerlink" title="改进型的时钟置换算法"></a>改进型的时钟置换算法</h4><h4 id="老化算法"><a href="#老化算法" class="headerlink" title="老化算法"></a>老化算法</h4><ul>
+<li>修改：第一是计数器在R位被加进来之前右移一位；</li>
+<li>第二是将R位加到计数器的最左端；</li>
+<li><strong>LRU的近似实现</strong>。</li>
+</ul>
+<h4 id="工作集置换算法"><a href="#工作集置换算法" class="headerlink" title="工作集置换算法"></a>工作集置换算法</h4><ul>
+<li><p>一个进程当前正在使用的页面集合称为它的工作集；</p>
+</li>
+<li><p>如果整个工作集都被装入到了内存中，那么进程在运行到下一运行阶段之前，不会产生很多缺页中断；</p>
+</li>
+<li><p>如果内存太小而无法容纳下整个工作集，那么进程的运行过程会产生大量的缺页中断，导致运行速度变得很缓慢；</p>
+</li>
+<li><p>原理：</p>
+<p>进程设置一个虚拟时钟，执行一个时钟周期就加 1，不执行就不增加。 </p>
+<p>每个页面被访问时，记录最后访问的虚拟时间，R 位置 1。R 位定期 清除。</p>
+<p>如果 R=1,则保留，将当前时间记录下来。</p>
+<p>如果 R=0 对 比当前虚拟时间与页面最后访问时间差 age 与阈值 τ，如 age&gt;τ 则淘汰。如果 age &lt;= τ，则记录其访问时间，必要时淘汰其中最旧的。</p>
+</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>算法规则</th>
+<th>优缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OPT</td>
+<td>优先淘汰最长时间内不会被访问的页面</td>
+<td>缺页率最小，性能最好；但无法实现</td>
+</tr>
+<tr>
+<td>FIFO</td>
+<td>优先淘汰最先进入内存的页面</td>
+<td>实现简单；但性能很差，可能出现Belady现象</td>
+</tr>
+<tr>
+<td>LRU</td>
+<td>优先淘汰最近最久没访问过的页面</td>
+<td>性能很好；但需要硬件支持，算法开销大</td>
+</tr>
+<tr>
+<td>CLOCK</td>
+<td>循环扫描各页面，第一轮淘汰访问位=0的，并将扫描过的访问位改为1；若第一轮没选中，则进行第二轮扫描</td>
+<td>实现简单，算法开销小；但未考虑页面是否被修改过</td>
+</tr>
+<tr>
+<td>Improved CLOCK</td>
+<td>若用(访问位，修改位)的形式表述，则第一轮淘汰(0,0)；第二轮淘汰(0,1)，并将扫描过的页面的访问位都置为0；第三轮淘汰(0,0)；第四轮淘汰(0,1)</td>
+<td>算法开销较小，性能也不错</td>
+</tr>
+<tr>
+<td>老化算法</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="4-页面分配"><a href="#4-页面分配" class="headerlink" title="4.页面分配"></a>4.页面分配</h3><h4 id="页面分配，置换策略"><a href="#页面分配，置换策略" class="headerlink" title="页面分配，置换策略"></a>页面分配，置换策略</h4><h2 id="Points"><a href="#Points" class="headerlink" title="Points"></a>Points</h2><ul>
+<li><p><strong>增大块表(TLB)，让页表常驻内存</strong>能够加快虚实地址转换；</p>
+</li>
+<li><p>TLB：转译后备缓冲区</p>
+</li>
+<li><p>段页式存储的实现结合了页式和段式管理的基本思想，即<strong>用分段方法来分配和管理用户地址空间，用分页方法来管理物理存储空间</strong>；</p>
+</li>
+<li><p>交换区：存在于数据服务器上的一个共享文件夹。它的作用是为前台与后台数据交换提供一个场所；</p>
+<p>当系统内存不足，特殊应用程序(如oracle，lotus notes等)有需求时，将挂载交换区空间；</p>
+</li>
+<li><p>主存==内存；</p>
+</li>
+<li><p><strong>Belady现象：采用FIFO算法</strong>时，如果对一个进程未分配它所要求的全部页面，有时就会出现分配的页面数增多但缺页率反而提高的异常现象；</p>
+</li>
+<li><p>系统抖动：</p>
+<p>- 解释为在请求分页存储管理中，从主存(DRAM)中刚刚患处某一页面后，根据请求马上又换入该页，这种反复换出换入的现象；<br>- 主存与辅存间频繁的页面置换现象；<br>- 产生该现象的主要原因是置换算法选择不当；</p>
+</li>
+<li><p><strong>虚拟存储器只能基于非连续分配技术</strong>；</p>
+</li>
+<li><p><strong>物理地址至少是：页表大小×物理存储区块数</strong></p>
+<p>Example：设有8页的逻辑空间，每页有1024B，它们被映射到32块的物理存储区中。</p>
+<p>逻辑地址有效位：1024×8=2^3×2^10=2^13，即13位；</p>
+<p>物理地址至少位数：1024×32=2^10×2^5=2^15，即15位；</p>
+</li>
+<li><p><strong>无论用什么算法，缺页次数不会少于页面引用串中不同的页号的个数</strong>；</p>
+</li>
+<li><p>有些程序并不适合于按需调页，例如：二分法搜索；</p>
+</li>
+<li><p>可以被多个进程在任意时刻共享的代码必须是<strong>不能自身修改的代码</strong>；</p>
+</li>
+<li><p>若用户进程访问内存时产生缺页，则操作系统可能执行的操作是置换页或分配内存；</p>
+</li>
+<li><p>变址寄存器：至寄存器ESI,EDI,SI和DI的寄存器，它们主要用于存放存储单元在段内的偏移量；</p>
+</li>
+<li><p>变址寻址：把变址寄存器中的内容(通常是位移量)与指令地址码部分给出的地址(通常是首地址)之和作业操作数的地址来获得所需要的操作数；</p>
+</li>
+<li><p>Example：假设变址寄存器 R 的内容为 1000H，指令中的形式地址为 2000 H；地址 1000H 中的内容为2000H，地址2000H中的内容为3000H，地址3000 H中的内容为4000H， 则变址寻址方式下访问到的操作数是： 4000H</p>
+<p>解析：变址寻址方式下有效地址EA=R+A=1000H+2000H=3000H，操作数S=地址3000H中的内容，即4000H；</p>
+</li>
+<li><p>在请求分页系统中，页表中的辅存始地址是供<strong>页面调入</strong>参考的；</p>
+</li>
+<li><p><strong>页表项中最多可以保存的标志位位数=页表项最大位数-页框号位数</strong>；</p>
+<p>Example：页表项大小为4B，页面大小为1KB，逻辑地址空间为32位，物理地址空间为4GB。</p>
+<p>解：页表项共有4×8=32位；物理地址空间共32位；页内偏移量10位；页框号22位；</p>
+<p>∴标志位位数=32-22=10位；</p>
+</li>
+<li><p><strong>逻辑地址访问时间</strong>：设对主存的一次存取需要100ns，对TLB表查找的时间为10ns，缺页中断处理时间为10^8ns</p>
+<p>逻辑地址对应的页号在内存中且在TLB表中：100+10=110ns；</p>
+<p>逻辑地址对应的页号在内存中但不在TLB表中：10+100+100=210ns；</p>
+<p>逻辑地址页号不在内存中：10^8+220ns。</p>
+</li>
+<li><p><strong>页表项中有效位为0时，即不在内存中，缺页</strong>；</p>
+</li>
+<li><p>分段式内存管理解决了分页式内存管理中划分页时仅根据大小划分，这样可能将无关的内容分到一页中，此页不便设置权限与保护，也不利于共享。也有可能把密切相关的内容分到不同页中，当页面置换算法不当时，内存紧张时容易形成抖动现象。分段式内存管理带来的问题是段往往过大，多次分配释放后可能形成大量外部碎片，内存利用率不高；</p>
+</li>
+<li><p><strong>Intel IA32 的保护模式下内存管理方法不是段页式内存管理方法</strong>。因为段页式内存管理是分段时段内再分页，整个是一件事。而保护模式是通过分段将逻辑地址转换成线性地址，第二步通过分页将线性地址转成物理地址，这是两件事。</p>
+</li>
+<li><p>LRU 需求记录所有页面长期运行中被使用的时间和次数，需要大量的快速存 储空间，而且比较复杂，不容易实现。替代方案可以采用老化（aging）算法， 每个页面有一个长度有限的记数器，记录每个 tick 内 页面使用情况，记录信 息的权重逐次递减。这种算法与 LRU 相比，不能记录每个 tick 中内存使用情 况，而且记录的位数有限，但是实现方案较易实现。</p>
+</li>
+<li><p>分页式：逻辑地址空间划分只简单依靠页面大小，缺乏内在逻辑性，导致一方 面相关内容被分散 到多页上，页面置换不当时容易造成内存抖动，另一方面 不同性质的内容被分到同一页中，使得页面 权限保护设置困难。 分段式：段 体积大，在内存中无法不连续存储，易形成内存外碎片，降低内存利用率。 段页式：先分段再分页，以段为单位调入调出，以页为单位在内存中不连续存 储，既保证了相关内容 同时进出内存，便于设置权限保护，又可以充分利用 内存空间。 段页式结构复杂，实现起来效率低，所以没有被广泛采用。</p>
+</li>
+<li><p>最差适应分配最大空间的分区给进程使用，以期剩余外碎片空间较大，再 次利用的可能性较大。固定分区无外碎片，故不应采用这种算法。 交换技术交换的单位是进程，请求式分段技术交换的单位是段。 请求式分段是操作系统进行段调入调出，此过程对程序员透明，而覆盖技术需 要程序员自己完成调入调出。</p>
+</li>
+<li><p>页面置换应该在内存空余空间小于一个固定的下限阈值时开始，并在达到 另一个上限阈值时停止。 OPT 最理想但不可能实现。 LRU 要求比较最近最少 使用的页面，条件多，要存储的数据量大，比较的时间长，很难实现。 Belady 异常指的时当增加页框时缺页中断发生的数量反而升高的现象。 FIFO 存在 Belady 异常。</p>
+</li>
+<li><p>分段比分页更有逻辑性，将同类的或相关的内容放在一个段内，这样不会 由于页面置换算法选择不当而形成“抖动”现象。同类内容划分在一个 段内，可以实现段的保护，如代码段设置为只读，数据段设置为读写。公共代码段可以通过映射共享到多个进程。段页式既按照相关性划分 段，继承了分段的优势，又有分页管理可以不连续存储，能够充分利 用空间的好处。</p>
+</li>
+<li><p>缓存主要用于解决 CPU 和内存之间存在的速度差。一般来说，CPU 中寄 存器的速度要远快于内存，将 CPU 要用到的数据预先从内存中读到缓存，这 样 CPU 使用时就可以快速得到数据，写回内存的过程也类似。TLB 就是使用 缓存的一个典型例子。</p>
+</li>
+<li><p>在 64 位系统中，由于虚拟地址太大，普通页表会非常大，无法存储。另一方 面，实际内存 相对较小，所以建立一张从物理地址索引得到相对地址的倒排 页表。 最大的问题的难于从相对地址查找到绝对地址。可以采用 hash 表ᨀ高 查找效率，并使用 TLB 加速查找。</p>
+</li>
+<li><p>老化算法与 LRU 相比，主要有两点区别：（1）老化算法记录使用情况的 寄存器只有有限位， 比如 8 位，无法记录所有使用情况。（2）同一时间间隔 内只使用 0/1 区分页面使用情况，无法详 细区别间隔内的具体时间</p>
+</li>
+<li><p>内存分区管理中的交换技术与请求式分段技术的相同点与不同点：相同点都是为了在内存不足的情况下装入更多的进程，都是会产生外碎片。 不同点为交换 技术交换的对象是整个进程而请求式分段交换的进程中的一个段。</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Tony Pan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2020/12/29/OSChapter2/">http://example.com/2020/12/29/OSChapter2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/OS/">OS</a></div><div class="post_share"><div class="social-share" data-image="https://pic.downk.cc/item/5feb0dda3ffa7d37b3a369c0.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/12/31/OSChapter3/"><img class="prev-cover" src="https://pic.downk.cc/item/5fed864e3ffa7d37b33d1b61.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">文件管理</div></div></a></div><div class="next-post pull-right"><a href="/2020/12/27/GTAV/"><img class="next-cover" src="https://pic.downk.cc/item/5fe8776b3ffa7d37b3ddb34a.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">GTAV</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/12/22/LabOfOS1/" title="LabOfOS1"><img class="cover" src="https://pic.downk.cc/item/5fe15c2e3ffa7d37b307a8b7.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-22</div><div class="title">LabOfOS1</div></div></a></div><div><a href="/2020/12/22/OSChapter1/" title="进程管理"><img class="cover" src="https://pic.downk.cc/item/5fe1c3563ffa7d37b3652b64.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-22</div><div class="title">进程管理</div></div></a></div><div><a href="/2020/12/31/OSChapter3/" title="文件管理"><img class="cover" src="https://pic.downk.cc/item/5fed864e3ffa7d37b33d1b61.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-31</div><div class="title">文件管理</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://pic.downk.cc/item/5fd07a0e3ffa7d37b3e705e5.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Tony Pan</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">20</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">I'd like a cheeseburger.</div></div></div><div class="sticky_layout"></div><div class="card-widget card-calendar"><div class="card-content"><div class="item-headline"><i class="far fa-calendar-alt" aria-hidden="true"></i><span>日历</span></div><div class="widget-wrap"></div><div class="widget" id="calendar"></div></div></div><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">一、内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%86%85%E5%AD%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.1.</span> <span class="toc-text">1.内存的基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80%E4%B8%8E%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80"><span class="toc-number">1.1.1.</span> <span class="toc-text">逻辑地址与物理地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A3%85%E5%85%A5%E5%86%85%E5%AD%98%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">1.1.2.</span> <span class="toc-text">装入内存的三种方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.</span> <span class="toc-text">2.内存管理的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E7%9A%84%E6%89%A9%E5%B1%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">内存空间的扩展</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text">内存保护</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%9A%84%E8%A6%86%E7%9B%96%E4%B8%8E%E4%BA%A4%E6%8D%A2"><span class="toc-number">1.2.3.</span> <span class="toc-text">内存的覆盖与交换</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A6%86%E7%9B%96%E6%8A%80%E6%9C%AF"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">覆盖技术</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E6%8A%80%E6%9C%AF"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">交换技术</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BF%9E%E7%BB%AD%E5%88%86%E9%85%8D%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">3.连续分配管理方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E8%BF%9E%E7%BB%AD%E5%88%86%E9%85%8D"><span class="toc-number">1.3.1.</span> <span class="toc-text">单一连续分配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D"><span class="toc-number">1.3.2.</span> <span class="toc-text">固定分区分配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D"><span class="toc-number">1.3.3.</span> <span class="toc-text">动态分区分配</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8A%A8%E6%80%81%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">4.动态分区分配算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A6%96%E6%AC%A1%E9%80%82%E5%BA%94%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.1.</span> <span class="toc-text">首次适应算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E9%80%82%E5%BA%94%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.2.</span> <span class="toc-text">最佳适应算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%9D%8F%E9%80%82%E5%BA%94%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.3.</span> <span class="toc-text">最坏适应算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%82%BB%E8%BF%91%E9%80%82%E5%BA%94%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.4.</span> <span class="toc-text">邻近适应算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="toc-number">1.5.</span> <span class="toc-text">5.存储管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="toc-number">1.5.1.</span> <span class="toc-text">分页式存储管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="toc-number">1.5.2.</span> <span class="toc-text">分段式存储管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AE%B5%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="toc-number">1.5.3.</span> <span class="toc-text">段页式存储管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%EF%BC%8C%E5%88%86%E9%A1%B5%E7%AE%A1%E7%90%86%E5%AF%B9%E6%AF%94"><span class="toc-number">1.5.4.</span> <span class="toc-text">分段，分页管理对比</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%A4%9A%E7%BA%A7%E9%A1%B5%E8%A1%A8"><span class="toc-number">1.6.</span> <span class="toc-text">6.多级页表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%BF%AB%E8%A1%A8"><span class="toc-number">1.7.</span> <span class="toc-text">7.快表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%80%92%E6%8E%92%E9%A1%B5%E8%A1%A8"><span class="toc-number">1.8.</span> <span class="toc-text">8.倒排页表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98"><span class="toc-number">2.</span> <span class="toc-text">二、虚拟内存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text">1.虚拟内存的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F%E7%9A%84%E7%89%B9%E5%BE%81%EF%BC%8C%E7%BC%BA%E7%82%B9"><span class="toc-number">2.1.1.</span> <span class="toc-text">传统存储管理方式的特征，缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86"><span class="toc-number">2.1.2.</span> <span class="toc-text">局部性原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E7%89%B9%E5%BE%81"><span class="toc-number">2.1.3.</span> <span class="toc-text">虚拟地址的定义和特征</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E5%BE%81"><span class="toc-number">2.1.3.2.</span> <span class="toc-text">特征</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.1.4.</span> <span class="toc-text">实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%AF%B7%E6%B1%82%E5%88%86%E9%A1%B5%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.</span> <span class="toc-text">2.请求分页管理方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E9%A1%B5%E4%B8%AD%E6%96%AD"><span class="toc-number">2.2.1.</span> <span class="toc-text">缺页中断</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text">3.页面置换算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E7%BD%AE%E6%8D%A2%E6%B3%95-OPT"><span class="toc-number">2.3.1.</span> <span class="toc-text">最佳置换法(OPT)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BA%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95-FIFO"><span class="toc-number">2.3.2.</span> <span class="toc-text">先进先出置换算法(FIFO)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E8%BF%91%E6%9C%80%E4%B9%85%E6%9C%AA%E4%BD%BF%E7%94%A8%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95-LRU"><span class="toc-number">2.3.3.</span> <span class="toc-text">最近最久未使用置换算法(LRU)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E9%92%9F%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95-CLOCK-NRU-%E6%9C%80%E8%BF%91%E6%9C%AA%E4%BD%BF%E7%94%A8"><span class="toc-number">2.3.4.</span> <span class="toc-text">时钟置换算法(CLOCK)(NRU:最近未使用)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B%E5%9E%8B%E7%9A%84%E6%97%B6%E9%92%9F%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.5.</span> <span class="toc-text">改进型的时钟置换算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%81%E5%8C%96%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.6.</span> <span class="toc-text">老化算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E9%9B%86%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.7.</span> <span class="toc-text">工作集置换算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.3.8.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%A1%B5%E9%9D%A2%E5%88%86%E9%85%8D"><span class="toc-number">2.4.</span> <span class="toc-text">4.页面分配</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E5%88%86%E9%85%8D%EF%BC%8C%E7%BD%AE%E6%8D%A2%E7%AD%96%E7%95%A5"><span class="toc-number">2.4.1.</span> <span class="toc-text">页面分配，置换策略</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Points"><span class="toc-number">3.</span> <span class="toc-text">Points</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/01/06/NEMU-PA3/" title="NEMU-PA3"><img src="https://pic.downk.cc/item/5ff532be3ffa7d37b36a7fa6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NEMU-PA3"/></a><div class="content"><a class="title" href="/2021/01/06/NEMU-PA3/" title="NEMU-PA3">NEMU-PA3</a><time datetime="2021-01-06T03:40:53.000Z" title="Created 2021-01-06 11:40:53">2021-01-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/01/05/PhysicsChapter1/" title="Physics"><img src="https://pic.downk.cc/item/5ff422453ffa7d37b3c03a97.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Physics"/></a><div class="content"><a class="title" href="/2021/01/05/PhysicsChapter1/" title="Physics">Physics</a><time datetime="2021-01-05T08:18:38.000Z" title="Created 2021-01-05 16:18:38">2021-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/31/OSChapter3/" title="文件管理"><img src="https://pic.downk.cc/item/5fed864e3ffa7d37b33d1b61.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="文件管理"/></a><div class="content"><a class="title" href="/2020/12/31/OSChapter3/" title="文件管理">文件管理</a><time datetime="2020-12-31T08:04:00.000Z" title="Created 2020-12-31 16:04:00">2020-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/29/OSChapter2/" title="内存管理"><img src="https://pic.downk.cc/item/5feb0dda3ffa7d37b3a369c0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="内存管理"/></a><div class="content"><a class="title" href="/2020/12/29/OSChapter2/" title="内存管理">内存管理</a><time datetime="2020-12-29T11:04:51.000Z" title="Created 2020-12-29 19:04:51">2020-12-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/27/GTAV/" title="GTAV"><img src="https://pic.downk.cc/item/5fe8776b3ffa7d37b3ddb34a.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GTAV"/></a><div class="content"><a class="title" href="/2020/12/27/GTAV/" title="GTAV">GTAV</a><time datetime="2020-12-27T01:52:24.000Z" title="Created 2020-12-27 09:52:24">2020-12-27</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Tony Pan</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script></div></body></html>
