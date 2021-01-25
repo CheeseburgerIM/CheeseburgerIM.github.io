@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>C&amp;C++</title>
+      <link href="2021/01/25/LanguageC/"/>
+      <url>2021/01/25/LanguageC/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h1 id="cc"><a class="markdownIt-Anchor" href="#cc"></a> <strong>C&amp;C++</strong></h1><h1 id="points"><a class="markdownIt-Anchor" href="#points"></a> Points</h1><ol><li><p>简易进制转换</p><p>C</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%05o\n&quot;</span>,<span class="number">35</span>);    <span class="comment">//按八进制格式输出，保留5位高位补零</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%03d\n&quot;</span>,<span class="number">35</span>);    <span class="comment">//按十进制格式输出，保留3位高位补零</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%05x\n&quot;</span>,<span class="number">35</span>);    <span class="comment">//按十六进制格式输出，保留5位高位补零</span></span><br></pre></td></tr></table></figure><p>C++</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bitset&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;35的8进制:&quot;</span> &lt;&lt; <span class="built_in">std</span>::oct &lt;&lt; <span class="number">35</span>&lt;&lt; <span class="built_in">endl</span>;  </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;35的10进制&quot;</span> &lt;&lt; <span class="built_in">std</span>::dec &lt;&lt; <span class="number">35</span> &lt;&lt; <span class="built_in">endl</span>;  </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;35的16进制:&quot;</span> &lt;&lt; <span class="built_in">std</span>::hex &lt;&lt; <span class="number">35</span> &lt;&lt; <span class="built_in">endl</span>;  </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;35的2进制: &quot;</span> &lt;&lt; <span class="built_in">bitset</span>&lt;8&gt;(<span class="number">35</span>) &lt;&lt; <span class="built_in">endl</span>;      <span class="comment">//&lt;8&gt;：表示保留8位输出</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>保留X位小数/有效数字</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//C++</span></span><br><span class="line"><span class="comment">//X位小数</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> a;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;setprecision(x)&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;fixed&lt;&lt;setprecision(x)&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//X位有效数字</span></span><br></pre></td></tr></table></figure></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Language </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Code </tag>
+            
+            <tag> Programme </tag>
+            
+            <tag> Study </tag>
+            
+            <tag> Language </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>英雄联盟</title>
       <link href="2021/01/21/LeagueOfLegends/"/>
       <url>2021/01/21/LeagueOfLegends/</url>
