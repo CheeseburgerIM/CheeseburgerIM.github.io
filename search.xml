@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>计算机系统漫游</title>
+      <link href="2021/02/03/DUOCS-Chapter1/"/>
+      <url>2021/02/03/DUOCS-Chapter1/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Study </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Study </tag>
+            
+            <tag> OS </tag>
+            
+            <tag> Postgraduate </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PTA</title>
       <link href="2021/02/02/PTA/"/>
       <url>2021/02/02/PTA/</url>
@@ -53,9 +82,9 @@
             
             <tag> Study </tag>
             
-            <tag> Marxism </tag>
-            
             <tag> Postgraduate </tag>
+            
+            <tag> Marxism </tag>
             
         </tags>
       
@@ -80,11 +109,11 @@
       
         <tags>
             
+            <tag> Study </tag>
+            
             <tag> Git </tag>
             
             <tag> Introduction </tag>
-            
-            <tag> Study </tag>
             
             <tag> Code </tag>
             
@@ -455,11 +484,11 @@
       
         <tags>
             
+            <tag> OS </tag>
+            
             <tag> Code </tag>
             
             <tag> Lab </tag>
-            
-            <tag> OS </tag>
             
         </tags>
       
