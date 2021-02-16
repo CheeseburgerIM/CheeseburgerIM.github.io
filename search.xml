@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Chapter4 处理器体系结构</title>
+      <link href="2021/02/16/DUOCS-Chapter4/"/>
+      <url>2021/02/16/DUOCS-Chapter4/</url>
+      
+        <content type="html"><![CDATA[<h2 id="y86指令集体系结构"><a class="markdownIt-Anchor" href="#y86指令集体系结构"></a> Y86指令集体系结构</h2><h2 id="逻辑设计和硬件控制语言hcl"><a class="markdownIt-Anchor" href="#逻辑设计和硬件控制语言hcl"></a> 逻辑设计和硬件控制语言HCL</h2><h2 id="y86的顺序sequential实现"><a class="markdownIt-Anchor" href="#y86的顺序sequential实现"></a> Y86的顺序(sequential)实现</h2><h2 id="流水线的通用原理"><a class="markdownIt-Anchor" href="#流水线的通用原理"></a> 流水线的通用原理</h2><h2 id="y86的流水线实现"><a class="markdownIt-Anchor" href="#y86的流水线实现"></a> Y86的流水线实现</h2><h2 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> Study </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Study </tag>
+            
+            <tag> OS </tag>
+            
+            <tag> postgraduate </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hexo博客添加自定义HTML页面</title>
       <link href="2021/02/12/BUPWBP/"/>
       <url>2021/02/12/BUPWBP/</url>
@@ -37,7 +66,7 @@
       <link href="2021/02/11/DUOCS-Chapter3/"/>
       <url>2021/02/11/DUOCS-Chapter3/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h2 id="历史观点"><a class="markdownIt-Anchor" href="#历史观点"></a> 历史观点</h2><h2 id="程序编码"><a class="markdownIt-Anchor" href="#程序编码"></a> 程序编码</h2><h2 id="数据格式"><a class="markdownIt-Anchor" href="#数据格式"></a> 数据格式</h2><h2 id="访问信息"><a class="markdownIt-Anchor" href="#访问信息"></a> 访问信息</h2><h2 id="算术和逻辑操作"><a class="markdownIt-Anchor" href="#算术和逻辑操作"></a> 算术和逻辑操作</h2><h2 id="控制"><a class="markdownIt-Anchor" href="#控制"></a> 控制</h2><h2 id="过程"><a class="markdownIt-Anchor" href="#过程"></a> 过程</h2><h2 id="数组分配和访问"><a class="markdownIt-Anchor" href="#数组分配和访问"></a> 数组分配和访问</h2><h2 id="异类的数据结构"><a class="markdownIt-Anchor" href="#异类的数据结构"></a> 异类的数据结构</h2><h2 id="对齐alignment"><a class="markdownIt-Anchor" href="#对齐alignment"></a> 对齐(alignment)</h2><h2 id="综合理解指针"><a class="markdownIt-Anchor" href="#综合理解指针"></a> 综合：理解指针</h2><h2 id="实现生活使用gdb调试器"><a class="markdownIt-Anchor" href="#实现生活使用gdb调试器"></a> 实现生活：使用GDB调试器</h2><h2 id="存储器的越界引用和缓冲区溢出"><a class="markdownIt-Anchor" href="#存储器的越界引用和缓冲区溢出"></a> 存储器的越界引用和缓冲区溢出</h2><h2 id="浮点代码"><a class="markdownIt-Anchor" href="#浮点代码"></a> 浮点代码</h2><h2 id="在c程序中嵌入汇编代码"><a class="markdownIt-Anchor" href="#在c程序中嵌入汇编代码"></a> 在C程序中嵌入汇编代码</h2><h2 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h2>]]></content>
       
       
       <categories>
