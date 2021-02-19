@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Chapter5 优化程序性能</title>
+      <link href="2021/02/19/DUOCS-Chapter5/"/>
+      <url>2021/02/19/DUOCS-Chapter5/</url>
+      
+        <content type="html"><![CDATA[<h2 id="优化编译器的能力和局限性"><a class="markdownIt-Anchor" href="#优化编译器的能力和局限性"></a> 优化编译器的能力和局限性</h2><h2 id="表示程序性能"><a class="markdownIt-Anchor" href="#表示程序性能"></a> 表示程序性能</h2><h2 id="程序示例"><a class="markdownIt-Anchor" href="#程序示例"></a> 程序示例</h2><h2 id="消除循环的低效率"><a class="markdownIt-Anchor" href="#消除循环的低效率"></a> 消除循环的低效率</h2><h2 id="减少过程调用"><a class="markdownIt-Anchor" href="#减少过程调用"></a> 减少过程调用</h2><h2 id="消除不必要的存储器引用"><a class="markdownIt-Anchor" href="#消除不必要的存储器引用"></a> 消除不必要的存储器引用</h2><h2 id="理解现代处理器"><a class="markdownIt-Anchor" href="#理解现代处理器"></a> 理解现代处理器</h2><h2 id="降低循环开销"><a class="markdownIt-Anchor" href="#降低循环开销"></a> 降低循环开销</h2><h2 id="转换到指针代码"><a class="markdownIt-Anchor" href="#转换到指针代码"></a> 转换到指针代码</h2><h2 id="提高并行性"><a class="markdownIt-Anchor" href="#提高并行性"></a> 提高并行性</h2><h2 id="综合优化合并combing代码的效果小结"><a class="markdownIt-Anchor" href="#综合优化合并combing代码的效果小结"></a> 综合：优化合并(Combing)代码的效果小结</h2><h2 id="分支预测和预测错误处罚"><a class="markdownIt-Anchor" href="#分支预测和预测错误处罚"></a> 分支预测和预测错误处罚</h2><h2 id="理解存储器性能"><a class="markdownIt-Anchor" href="#理解存储器性能"></a> 理解存储器性能</h2><h2 id="现实生活性能提高技术"><a class="markdownIt-Anchor" href="#现实生活性能提高技术"></a> 现实生活：性能提高技术</h2><h2 id="确认和消除性能瓶颈"><a class="markdownIt-Anchor" href="#确认和消除性能瓶颈"></a> 确认和消除性能瓶颈</h2><h2 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> Study </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Study </tag>
+            
+            <tag> OS </tag>
+            
+            <tag> Postgraduate </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Course for HTML</title>
       <link href="2021/02/17/Course-html/"/>
       <url>2021/02/17/Course-html/</url>
