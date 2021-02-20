@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter2 信息的表示和处理 | CheeseburgerIM</title><meta name="keywords" content="Study,OS,Postgraduate"><meta name="author" content="Tony Pan"><meta name="copyright" content="Tony Pan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Deeply understanding of computer system">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter2 信息的表示和处理">
+<meta property="og:url" content="http://example.com/2021/02/09/DUOCS-Chapter2/index.html">
+<meta property="og:site_name" content="CheeseburgerIM">
+<meta property="og:description" content="Deeply understanding of computer system">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.imgdb.cn/item/6021fac13ffa7d37b3f96377.jpg">
+<meta property="article:published_time" content="2021-02-09T02:58:18.000Z">
+<meta property="article:modified_time" content="2021-02-18T12:25:10.985Z">
+<meta property="article:author" content="Tony Pan">
+<meta property="article:tag" content="Study">
+<meta property="article:tag" content="OS">
+<meta property="article:tag" content="Postgraduate">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.imgdb.cn/item/6021fac13ffa7d37b3f96377.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/02/09/DUOCS-Chapter2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-02-18 20:25:10'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/IM.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_2260265_yn4j21lmjpj.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@master/hexo/css/GalMenu.css"><link rel="stylesheet" href="css/cover.css"><link rel="stylesheet" href="/clock/css/clock.css"/><meta name="generator" content="Hexo 5.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://pic.downk.cc/item/5fd07a0e3ffa7d37b3e705e5.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">37</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">36</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> Articles</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page" href="/Motto/"><i class="fa-fw fas fa-pencil-alt"></i><span> Motto</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/Movie/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/english/"><i class="fa-fw iconfont icon-english-input"></i><span> English</span></a></li><li><a class="site-page" href="/DetectiveConan/"><i class="fa-fw fa fa-question"></i><span> Conan</span></a></li><li><a class="site-page" href="/picture/"><i class="fa-fw far fa-image"></i><span> Pictures</span></a></li><li><a class="site-page" href="/Accounts/"><i class="fa-fw fas fa-user-circle"></i><span> Accounts</span></a></li><li><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-tv"></i><span> Animation</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-gamepad"></i><span> Fun</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/IronMan/"><i class="fa-fw fas fa-robot"></i><span> IronMan</span></a></li><li><a class="site-page" href="/Ghost/"><i class="fa-fw fas fa-ghost"></i><span> Ghost</span></a></li><li><a class="site-page" href="/LogIn/"><i class="fa-fw fas fa-sign-in-alt"></i><span> Login</span></a></li><li><a class="site-page" href="/Alternately/"><i class="fa-fw fa fa-adjust"></i><span> Alternately</span></a></li><li><a class="site-page" href="/NewLink/"><i class="fa-fw fas fa-external-link-alt"></i><span> NewLink</span></a></li><li><a class="site-page" href="/Planet/"><i class="fa-fw fa fa-globe"></i><span> Planet</span></a></li><li><a class="site-page" href="/Support/"><i class="fa-fw fas fa-coins"></i><span> Support</span></a></li><li><a class="site-page" href="/NewLink1/"><i class="fa-fw fas fa-external-link-alt"></i><span> NewLink1</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/fort/"><i class="fa-fw fab fa-fort-awesome"></i><span> Fort</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://img.imgdb.cn/item/6021fac13ffa7d37b3f96377.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">CheeseburgerIM</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> Articles</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page" href="/Motto/"><i class="fa-fw fas fa-pencil-alt"></i><span> Motto</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/Movie/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/english/"><i class="fa-fw iconfont icon-english-input"></i><span> English</span></a></li><li><a class="site-page" href="/DetectiveConan/"><i class="fa-fw fa fa-question"></i><span> Conan</span></a></li><li><a class="site-page" href="/picture/"><i class="fa-fw far fa-image"></i><span> Pictures</span></a></li><li><a class="site-page" href="/Accounts/"><i class="fa-fw fas fa-user-circle"></i><span> Accounts</span></a></li><li><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-tv"></i><span> Animation</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-gamepad"></i><span> Fun</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/IronMan/"><i class="fa-fw fas fa-robot"></i><span> IronMan</span></a></li><li><a class="site-page" href="/Ghost/"><i class="fa-fw fas fa-ghost"></i><span> Ghost</span></a></li><li><a class="site-page" href="/LogIn/"><i class="fa-fw fas fa-sign-in-alt"></i><span> Login</span></a></li><li><a class="site-page" href="/Alternately/"><i class="fa-fw fa fa-adjust"></i><span> Alternately</span></a></li><li><a class="site-page" href="/NewLink/"><i class="fa-fw fas fa-external-link-alt"></i><span> NewLink</span></a></li><li><a class="site-page" href="/Planet/"><i class="fa-fw fa fa-globe"></i><span> Planet</span></a></li><li><a class="site-page" href="/Support/"><i class="fa-fw fas fa-coins"></i><span> Support</span></a></li><li><a class="site-page" href="/NewLink1/"><i class="fa-fw fas fa-external-link-alt"></i><span> NewLink1</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/fort/"><i class="fa-fw fab fa-fort-awesome"></i><span> Fort</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">Chapter2 信息的表示和处理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-02-09T02:58:18.000Z" title="Created 2021-02-09 10:58:18">2021-02-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-02-18T12:25:10.985Z" title="Updated 2021-02-18 20:25:10">2021-02-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Study/">Study</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>4min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
+<li>现代计算机存储和处理以二值信号表示的信息。这些普通的二进制数字，或者位(bit)，形成了数字革命的基础。大家熟悉地使用了1000多年的十进制(以10为基数，base-10)起源于印度，在12世纪被阿拉伯数学家所改进，并在13世纪被意大利数学家Leonardo Pisano(更有名的叫法是Fibonacci)带到西方。使用十进制表示法对于有十个手指头的人类来说是很自然的事情，但是当构造存储和处理信息的机器时，二进制值工作得更好。二值信号能够很容易地表示、存储和传输，例如，可以表示为穿孔卡片上有洞或无洞、导线上的高电压或低电压，或者磁场引起的顺时针或逆时针。基于二值信号的存储和执行计算的电子电路非常简单和可靠，使得制造商能够在一个单独的硅片上集成百万个这样的电路；</li>
+<li>单独地来说，单个的位不是非常有用。然而，当我们把位组合在一起，再加上某种解释(interpretation)，即给予不同的可能位模式以含义，我们就能够表示任何有限集合的元素。比如，使用一个二进制数字系统，我们能够用位组来编码非负数。通过使用标准的字符码，我们能够对一份文档中的字母和符号进行编码；</li>
+<li>我们考虑三中最重要的数字编码。无符号(unsigned)编码是基于传统的二进制表示法的，表示大于或等于零的数字。二进制编码(two’s-complement)编码是表示有符号整数的最常见的方式，有符号整数就是为正或者为负的数字。浮点数(floating-point)编码是表示实数的科学计数法的以二为基数的版本。计算机用这些不同的表示方法实现算术运算，例如加法和乘法，类似于相应的整数和实数运算；</li>
+<li>计算机的表示法用有限的位数来对一个数字编码，因此，当结果太大以至不能表示时，某些运算就会溢出(overflow)。这会导致某些令人吃惊的后果。例如，在大多数今天的计算机上，计算表达式200×300×400×500会得出-884,901,888。这违背了整数运算的属性——计算一组正数的乘积产生了一个为负的结果；</li>
+<li>另一方面，整数的计算机运算满足了真正整数运算的许多普通的属性。例如，乘法是可结合的和可交换的，这样一来计算下面任何一个C表达式，都会得出884,901,888
+<ul>
+<li>(500×400)×(300×200)</li>
+<li>((500×400)×300)×200</li>
+<li>((200×500)×300)×400</li>
+<li>400×(200×(300×500))</li>
+<li>计算机可能没有产生这个预期的结果，但至少它是一致的！</li>
+</ul>
+</li>
+<li>浮点运算有完全不同的数学属性。但是溢出会产生特殊的值+∞，但是一组正数的乘积总是正的。另一方面，由于表示的精度有限，浮点运算时不可结合的。例如，在大多数机器上，C表达式(3.14+1e20)-1e20求得的值会是0.0，而3.14+(1e20-1e20)求得的值会是3.14；</li>
+<li>通过研究实际数字的表示，我们能够了解可以表示的值得范围和不同运算的属性。对于编写在全部数值范围内都能正常工作，而且可以跨越不同机器、操作系统和编译器组合的可移植的程序来说，这种了解是非常重要的；</li>
+<li>计算机用几种不同的二进制表示来编码数值；</li>
+<li>通过直接操作位级的数字表示，我们得到了几种进行算术运算的方式。理解这些技术对于理解编译算术表达式时产生的机器级代码是很重要的；</li>
+<li>对这些内容的处理是非常精确的。我们从编码的基本定义开始，然后得出一些属性，例如可表示的数字的范围、它们的位级表示以及算术运算的属性。从这样一个抽象的观点来分析这些内容是很重要的，因为程序员需要对计算机运算和更为人熟悉的整数和实数运算之间的关系有牢固的理解。尽管这看起来很吓人，但精确的处理只需要了解基本的代数知识；</li>
+<li>C<ins>编程语言建立在C之上，使用完全相同的数字表示和运算。以下关于C的所有内容对C</ins>都有效。另一方面，Java语言创造了一套新的数字表示和运算标准。C标准被设计为允许多种实现方式，而Java标准在数据的格式和编码上是详细而精确的。</li>
+</ul>
+<h2 id="信息存储"><a class="markdownIt-Anchor" href="#信息存储"></a> 信息存储</h2>
+<ul>
+<li>大多数计算机使用8位的块，或叫做字节(byte)，来作为最小的可寻址的存储器单位，而不是访问存储器中单独的位。机器级程序将存储器视为一个非常大的字节数组，称为虚拟存储器(virtual memory)。存储器的每个字节都由一个唯一的数字来标识，称为它的地址(address)，所有可能地址的集合就称为虚拟地址空间(virtual address space)。正如它的名字表明的，这个虚拟地址空间只是一个展现给机器程序的概念性映像(image)。实际的实现使用的是随机访问存储器RAM、磁盘存储、特殊硬件和操作系统软件的结合，来为程序提供一个看上去统一的字节数组；</li>
+</ul>
+<h2 id="整数表示"><a class="markdownIt-Anchor" href="#整数表示"></a> 整数表示</h2>
+<h2 id="整数运算"><a class="markdownIt-Anchor" href="#整数运算"></a> 整数运算</h2>
+<h2 id="浮点"><a class="markdownIt-Anchor" href="#浮点"></a> 浮点</h2>
+<h2 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h2>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Tony Pan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2021/02/09/DUOCS-Chapter2/">http://example.com/2021/02/09/DUOCS-Chapter2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Study/">Study</a><a class="post-meta__tags" href="/tags/OS/">OS</a><a class="post-meta__tags" href="/tags/Postgraduate/">Postgraduate</a></div><div class="post_share"><div class="social-share" data-image="https://img.imgdb.cn/item/6021fac13ffa7d37b3f96377.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/11/DUOCS-Chapter3/"><img class="prev-cover" src="https://img.imgdb.cn/item/6024f0ee3ffa7d37b3397dfd.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Chapter3 程序的机器级表示</div></div></a></div><div class="next-post pull-right"><a href="/2021/02/03/DUOCS-Chapter1/"><img class="next-cover" src="https://img.imgdb.cn/item/601a5fcd3ffa7d37b3e44916.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Chapter1 计算机系统漫游</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2021/02/11/DUOCS-Chapter3/" title="Chapter3 程序的机器级表示"><img class="cover" src="https://img.imgdb.cn/item/6024f0ee3ffa7d37b3397dfd.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-11</div><div class="title">Chapter3 程序的机器级表示</div></div></a></div><div><a href="/2021/02/19/DUOCS-Chapter5/" title="Chapter5 优化程序性能"><img class="cover" src="https://img.imgdb.cn/item/602f1f61e7e43a13c641a20b.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-19</div><div class="title">Chapter5 优化程序性能</div></div></a></div><div><a href="/2021/02/03/DUOCS-Chapter1/" title="Chapter1 计算机系统漫游"><img class="cover" src="https://img.imgdb.cn/item/601a5fcd3ffa7d37b3e44916.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-03</div><div class="title">Chapter1 计算机系统漫游</div></div></a></div><div><a href="/2021/02/16/DUOCS-Chapter4/" title="Chapter4 处理器体系结构"><img class="cover" src="https://img.imgdb.cn/item/602b29a13ffa7d37b398a0bd.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-16</div><div class="title">Chapter4 处理器体系结构</div></div></a></div><div><a href="/2021/01/30/Marxism/" title="Marxism"><img class="cover" src="https://img.imgdb.cn/item/60160d623ffa7d37b3257be8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-30</div><div class="title">Marxism</div></div></a></div><div><a href="/2021/02/17/Course-html/" title="Course for HTML"><img class="cover" src="https://img.imgdb.cn/item/602d16933ffa7d37b3745a6c.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-17</div><div class="title">Course for HTML</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://pic.downk.cc/item/5fd07a0e3ffa7d37b3e705e5.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Tony Pan</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">37</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">36</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/CheeseburgerIM"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/CheeseburgerIM" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/13051172893@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">Sometimes you gotta run before you can walk.</div></div></div><div class="sticky_layout"></div><!--if theme.aside.card_clock.enable--><!--!=partial('includes/widget/card_clock', {}, {cache:theme.fragment_cache})--><div class="card-widget card-calendar"><div class="card-content"><div class="item-headline"><i class="far fa-calendar-alt" aria-hidden="true"></i><span>日历</span></div><div class="widget-wrap"></div><div class="widget" id="calendar"></div></div></div><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E5%AD%98%E5%82%A8"><span class="toc-number">1.</span> <span class="toc-text"> 信息存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.</span> <span class="toc-text"> 整数表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97"><span class="toc-number">3.</span> <span class="toc-text"> 整数运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9"><span class="toc-number">4.</span> <span class="toc-text"> 浮点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text"> 小结</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/20/ExternalTag/" title="Markdown技巧——标签外挂"><img src="https://img.imgdb.cn/item/6030e4745f4313ce25902b22.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Markdown技巧——标签外挂"/></a><div class="content"><a class="title" href="/2021/02/20/ExternalTag/" title="Markdown技巧——标签外挂">Markdown技巧——标签外挂</a><time datetime="2021-02-20T10:24:39.000Z" title="Created 2021-02-20 18:24:39">2021-02-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/19/DUOCS-Chapter5/" title="Chapter5 优化程序性能"><img src="https://img.imgdb.cn/item/602f1f61e7e43a13c641a20b.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chapter5 优化程序性能"/></a><div class="content"><a class="title" href="/2021/02/19/DUOCS-Chapter5/" title="Chapter5 优化程序性能">Chapter5 优化程序性能</a><time datetime="2021-02-19T02:09:23.000Z" title="Created 2021-02-19 10:09:23">2021-02-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/17/Course-html/" title="Course for HTML"><img src="https://img.imgdb.cn/item/602d16933ffa7d37b3745a6c.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Course for HTML"/></a><div class="content"><a class="title" href="/2021/02/17/Course-html/" title="Course for HTML">Course for HTML</a><time datetime="2021-02-17T13:10:46.000Z" title="Created 2021-02-17 21:10:46">2021-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/16/DUOCS-Chapter4/" title="Chapter4 处理器体系结构"><img src="https://img.imgdb.cn/item/602b29a13ffa7d37b398a0bd.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chapter4 处理器体系结构"/></a><div class="content"><a class="title" href="/2021/02/16/DUOCS-Chapter4/" title="Chapter4 处理器体系结构">Chapter4 处理器体系结构</a><time datetime="2021-02-16T02:06:09.000Z" title="Created 2021-02-16 10:06:09">2021-02-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/12/BUPWBP/" title="Hexo博客添加自定义HTML页面"><img src="https://img.imgdb.cn/item/602678f33ffa7d37b3bd0398.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo博客添加自定义HTML页面"/></a><div class="content"><a class="title" href="/2021/02/12/BUPWBP/" title="Hexo博客添加自定义HTML页面">Hexo博客添加自定义HTML页面</a><time datetime="2021-02-12T12:43:04.000Z" title="Created 2021-02-12 20:43:04">2021-02-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Tony Pan</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script src="/js/IM.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/clock/js/clock.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script></div>
+    <div class="GalMenu GalDropDown">
+       <div class="circle" id="gal">
+         <div class="ring">
+           <a href="/" class="menuItem">首页</a>
+           <a href="javascript:history.go(1);" class="menuItem">前进</a>
+           <a href="javascript:$('html,body').animate({scrollTop:0},500);" class="menuItem">顶部</a>
+           <a href="javascript:location.reload();" class="menuItem">刷新</a>
+           <a href="/Message/" class="menuItem">留言</a>
+           <a href="javascript:history.go(-1);" class="menuItem">后退</a>
+         </div>
+         
+       </div>
+ </div>
+ <script type="text/javascript">
+ var items = document.querySelectorAll('.menuItem'); 
+ for (var i = 0, l = items.length; i < l; i++) {
+     items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+     items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+   }
+ </script>
+ <script>window.jQuery || document.write('<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@master/hexo/js/jquery-2.1.1.min.js"></script>')</script>    
+ 
+<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@master/hexo/js/GalMenu.js"></script>
+
+ <script type="text/javascript">
+     $(document).ready(function() {
+     $('body').GalMenu({
+       'menu': 'GalDropDown'
+     })
+   });
+ </script>
+</body></html>
