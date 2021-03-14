@@ -8,7 +8,7 @@
       <link href="2021/03/13/MLAMS-Part2/"/>
       <url>2021/03/13/MLAMS-Part2/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<center><font size=10>Chapter2 组合逻辑设计</font></center><h2 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h2><h3 id="数字逻辑电路"><a class="markdownIt-Anchor" href="#数字逻辑电路"></a> 数字逻辑电路</h3><ul><li>数字逻辑电路(logic circuit)是一个可以处理<font color=red>离散值</font>变量的网络；</li><li>其中包括：<ul><li>一个或多个离散值<font color=red>输入端</font>；</li><li>一个或多个离散值<font color=red>输出端</font>；</li><li>描述输入和输出关系的<font color=red>功能规范</font>；</li><li>描述当输入改变时输出响应延迟的<font color=red>时序规范</font>。</li></ul></li></ul><h3 id="结点node和模块element"><a class="markdownIt-Anchor" href="#结点node和模块element"></a> 结点(node)和模块(element)</h3><ul><li>电路由节点和模块组成；</li><li>结点是一段导线，通过电压传递离散值变量；<ul><li>输入结点：接收外部的值(图中的A,B,C)；</li><li>输出结点：</li></ul></li></ul><h2 id="布尔代数"><a class="markdownIt-Anchor" href="#布尔代数"></a> 布尔代数</h2><h2 id="从逻辑到门"><a class="markdownIt-Anchor" href="#从逻辑到门"></a> 从逻辑到门</h2><h2 id="多级组合逻辑"><a class="markdownIt-Anchor" href="#多级组合逻辑"></a> 多级组合逻辑</h2><h2 id="x和z"><a class="markdownIt-Anchor" href="#x和z"></a> X和Z</h2><h2 id="卡诺图"><a class="markdownIt-Anchor" href="#卡诺图"></a> 卡诺图</h2><h2 id="组合逻辑电路设计方法"><a class="markdownIt-Anchor" href="#组合逻辑电路设计方法"></a> 组合逻辑电路设计方法</h2><h2 id="组合逻辑模块"><a class="markdownIt-Anchor" href="#组合逻辑模块"></a> 组合逻辑模块</h2><h2 id="组合逻辑中的时序问题"><a class="markdownIt-Anchor" href="#组合逻辑中的时序问题"></a> 组合逻辑中的时序问题</h2>]]></content>
       
       
       <categories>
