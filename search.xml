@@ -8,7 +8,7 @@
       <link href="2021/03/19/MLAMS-Part3/"/>
       <url>2021/03/19/MLAMS-Part3/</url>
       
-        <content type="html"><![CDATA[<h1 id="systemverilog硬件描述语言基础"><a class="markdownIt-Anchor" href="#systemverilog硬件描述语言基础"></a> SystemVerilog硬件描述语言基础</h1><h1 id="基于systemverilog的数字逻辑电路建模方法"><a class="markdownIt-Anchor" href="#基于systemverilog的数字逻辑电路建模方法"></a> 基于SystemVerilog的数字逻辑电路建模方法</h1><h1 id="基于systemverilog的测试程序"><a class="markdownIt-Anchor" href="#基于systemverilog的测试程序"></a> 基于SystemVerilog的测试程序</h1><h1 id="常见组合逻辑电路模块的设计"><a class="markdownIt-Anchor" href="#常见组合逻辑电路模块的设计"></a> 常见组合逻辑电路模块的设计</h1><h1 id="逻辑阵列"><a class="markdownIt-Anchor" href="#逻辑阵列"></a> 逻辑阵列</h1>]]></content>
+        <content type="html"><![CDATA[<center><font size=8>Chapter3</font></center><h1 id="systemverilog硬件描述语言基础"><a class="markdownIt-Anchor" href="#systemverilog硬件描述语言基础"></a> SystemVerilog硬件描述语言基础</h1><h1 id="基于systemverilog的数字逻辑电路建模方法"><a class="markdownIt-Anchor" href="#基于systemverilog的数字逻辑电路建模方法"></a> 基于SystemVerilog的数字逻辑电路建模方法</h1><h1 id="基于systemverilog的测试程序"><a class="markdownIt-Anchor" href="#基于systemverilog的测试程序"></a> 基于SystemVerilog的测试程序</h1><h1 id="常见组合逻辑电路模块的设计"><a class="markdownIt-Anchor" href="#常见组合逻辑电路模块的设计"></a> 常见组合逻辑电路模块的设计</h1><h1 id="逻辑阵列"><a class="markdownIt-Anchor" href="#逻辑阵列"></a> 逻辑阵列</h1>]]></content>
       
       
       <categories>
