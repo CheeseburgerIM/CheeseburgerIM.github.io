@@ -27,12 +27,12 @@ setInterval(() => {
       time[4] = nol(second);
     }//秒
     //早上7点到晚上10点营业
-    if ((Number(time[2])<22) && (Number(time[2])>7)){
+    if ((Number(time[2])<23) && (Number(time[2])>7)){
       currentTimeHtml ="<img class='boardsign' src='https://img.shields.io/badge/TongPan-Working-red' title='Stay Hungry, Stay Foolish~'><div id='runtime'>" + time[0] + ' YEAR ' + time[1] + ' DAYS ' + time[2] + ' : ' + time[3] + ' : ' + time[4] + '</div>';
     } //徽标内容参考站内教程
     //其余时间打烊
     else{
-      currentTimeHtml ="<img class='boardsign' src='https://img.shields.io/badge/IM__Fort-Sleeping-blue' title='Time to go to bed~'><div id='runtime'>" + time[0] + ' YEAR ' + time[1] + ' DAYS ' + time[2] + ' : ' + time[3] + ' : ' + time[4] + '</div>'; //徽标内容参考站内教程
+      currentTimeHtml ="<img class='boardsign' src='https://img.shields.io/badge/Jarvis-Sleeping-blue' title='Time to go to bed~'><div id='runtime'>" + time[0] + ' YEAR ' + time[1] + ' DAYS ' + time[2] + ' : ' + time[3] + ' : ' + time[4] + '</div>'; //徽标内容参考站内教程
     }
     //覆写挂载标签的内容
     document.getElementById("workboard").innerHTML = currentTimeHtml;
