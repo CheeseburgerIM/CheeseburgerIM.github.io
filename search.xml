@@ -460,8 +460,6 @@
             
             <tag> Study </tag>
             
-            <tag> css </tag>
-            
             <tag> Code </tag>
             
             <tag> Website </tag>
@@ -469,6 +467,8 @@
             <tag> Design </tag>
             
             <tag> Course </tag>
+            
+            <tag> css </tag>
             
         </tags>
       
@@ -561,6 +561,8 @@
             
             <tag> Study </tag>
             
+            <tag> html </tag>
+            
             <tag> Code </tag>
             
             <tag> Website </tag>
@@ -568,8 +570,6 @@
             <tag> Design </tag>
             
             <tag> Course </tag>
-            
-            <tag> html </tag>
             
         </tags>
       
