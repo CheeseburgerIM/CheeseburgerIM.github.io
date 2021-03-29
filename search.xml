@@ -355,6 +355,8 @@
             
             <tag> Study </tag>
             
+            <tag> CodeExercise </tag>
+            
             <tag> NOWCODER </tag>
             
             <tag> Exercise </tag>
@@ -362,8 +364,6 @@
             <tag> Daily </tag>
             
             <tag> Practice </tag>
-            
-            <tag> CodeExercise </tag>
             
         </tags>
       
@@ -429,6 +429,8 @@
             
             <tag> Study </tag>
             
+            <tag> CodeExercise </tag>
+            
             <tag> NOWCODER </tag>
             
             <tag> Exercise </tag>
@@ -436,8 +438,6 @@
             <tag> Daily </tag>
             
             <tag> Practice </tag>
-            
-            <tag> CodeExercise </tag>
             
         </tags>
       
