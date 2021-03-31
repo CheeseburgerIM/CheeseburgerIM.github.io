@@ -3604,6 +3604,9 @@ _:future,
   -o-transition: all 0.5s;
   -ms-transition: all 0.5s;
   transition: all 0.5s;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  backdrop-filter: blur(20px) saturate(120%) !important;
 }
 @media screen and (max-width: 768px) {
   #nav {
@@ -3645,7 +3648,7 @@ _:future,
   position: fixed;
   top: -60px;
   z-index: 91;
-  background: rgba(255,255,255,0.8);
+  background: rgba(45,53,67,0.89);
   -webkit-box-shadow: 0 5px 6px -5px rgba(133,133,133,0.6);
   box-shadow: 0 5px 6px -5px rgba(133,133,133,0.6);
   -webkit-transition: -webkit-transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
@@ -3653,11 +3656,12 @@ _:future,
   -o-transition: -o-transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
   -ms-transition: -ms-transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  backdrop-filter: blur(20px) saturate(120%) !important;
+  height: 55px;
 }
 #nav.fixed a,
 #nav.fixed #site-name,
 #nav.fixed #toggle-menu {
-  color: var(--font-color);
   text-shadow: none;
 }
 #nav.fixed a:hover,

@@ -20,9 +20,9 @@
       
         <tags>
             
-            <tag> Code </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Code </tag>
             
             <tag> Programme </tag>
             
@@ -41,7 +41,7 @@
       <link href="2021/03/27/Java-Part4/"/>
       <url>2021/03/27/Java-Part4/</url>
       
-        <content type="html"><![CDATA[<center><b><font size=8>异常</font></b></center><h1 id="异常"><a class="markdownIt-Anchor" href="#异常"></a> 异常</h1><blockquote><p><strong>常见的一些潜在风险</strong></p><ul><li>用户不存在？</li><li>用户名口令错误？</li><li>余额不足？</li><li>网络不通？</li><li>磁盘空间不足？</li><li>…</li></ul></blockquote><p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/Java-Part4/1.png" alt="异常" /></p><h1 id="异常处理基本模式"><a class="markdownIt-Anchor" href="#异常处理基本模式"></a> 异常处理基本模式</h1><h2 id="method1"><a class="markdownIt-Anchor" href="#method1"></a> Method1</h2><ul><li>在Java编程语言中，用try和catch语句来处理异常</li><li>格式如下</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.ExceptionDemo</span></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">//可能发生异常的语句</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">    <span class="comment">//发生异常了 执行这里的代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="method2"><a class="markdownIt-Anchor" href="#method2"></a> Method2</h2><ul><li>与方法1大致相同，增加finally语句</li><li>格式如下</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.ExceptionDemo2</span></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">//可能发生异常的语句</span></span><br><span class="line">    <span class="comment">//如果前面发生了异常 就不会执行这里</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">    <span class="comment">//发生异常了 执行这里的代码</span></span><br><span class="line">    <span class="comment">//如果没有发生异常 不会执行这里</span></span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">    <span class="comment">//不管是否发生异常都会执行这里</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li><strong>注意finally</strong>：不管如何(是否发生异常)，都会执行这里的代码。</li></ul><h1 id="异常的产生"><a class="markdownIt-Anchor" href="#异常的产生"></a> 异常的产生</h1><blockquote><p>所有的异常都是通过throw创建出来的</p></blockquote><ul><li>创建方法</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> 异常的构造函数()...</span><br><span class="line"><span class="comment">//例如:throw new Exception(&quot;用户不存在!&quot;);</span></span><br></pre></td></tr></table></figure><ul><li>需要注意的是，不可以随便抛出一个东西</li><li>例如如下代码就是错误的</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> String(<span class="string">&quot;用户不存在!&quot;</span>);</span><br><span class="line"><span class="comment">//ch06.ExceptionDemo3</span></span><br></pre></td></tr></table></figure><ul><li>抛出的内容必须是Throwable的子类。</li><li>只要是Throwable的子类，都可以使用throw/catch进行操作；</li><li>反之，不是Throwable的子类，都不能使用throw/catch进行操作。</li><li><strong>可抛出Throwable的几个类型</strong><ul><li>Error</li><li>Exception</li><li>RuntimeException</li></ul></li></ul><h1 id="异常类型"><a class="markdownIt-Anchor" href="#异常类型"></a> 异常类型</h1><h2 id="error及其子类"><a class="markdownIt-Anchor" href="#error及其子类"></a> Error及其子类</h2><ul><li>Error类表示Java运行时产生的系统内部错误或资源耗尽等严重错误；</li><li>这种错误通常是程序无法控制和解决的，如果发生这种错误，通常的做法是通知用户并中止程序的执行；</li><li>这种异常超出了程序员能力范围，没解决办法，建议程序直接退出。编译器检查、必须处理。</li></ul><blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.ErrorDemo</span></span><br></pre></td></tr></table></figure><p>例：NoClassDefFoundError, OutOfMemoryError, VirtualMachineError, InternalError and so on.</p></blockquote><h2 id="exception及其子类"><a class="markdownIt-Anchor" href="#exception及其子类"></a> Exception及其子类</h2><ul><li>Exception又称为”可检异常“，”非运行时异常“；</li><li>程序能处理的异常；</li><li>这种错误的出现完全在程序员意料之中，有对应的解决办法。编译器检查、必须处理。</li></ul><blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.ExceptionDemo2</span></span><br></pre></td></tr></table></figure><p>例：IOException, SQLException and so on.</p><p>此外，还有很多用户自定义的：口令错误、余额不足…</p></blockquote><h2 id="runtimeexception及其子类"><a class="markdownIt-Anchor" href="#runtimeexception及其子类"></a> RuntimeException及其子类</h2><ul><li>RuntimeException类及其子类被称为”运行时异常“<ul><li>一般发生在JRE内部；</li><li>也称”非必检异常“；</li><li>如NullPointerException。</li></ul></li><li>RuntimeException类及其子类都成为运行时异常，这种异常的特点是Java编译器不会检查它。也就是说，当程序中可能出现这类异常，即使没有用try-catch语句，出现异常时也会抛出这个错误；</li><li>RuntimeException表示无法让程序恢复运行的异常，导致这种异常的原因通常是由于执行力错误操作，建议直接显示错误，因此Java编译器不检查这种异常；</li><li>也有一种说法认为Exception之所以不检测，是因为不应该替别人背黑锅！</li></ul><blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.RuntimeExceptionDemo</span></span><br></pre></td></tr></table></figure></blockquote><h2 id="example"><a class="markdownIt-Anchor" href="#example"></a> Example</h2><ul><li>ArithmaticException</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">12</span>/<span class="number">0</span>;<span class="comment">//Wrong</span></span><br><span class="line"><span class="comment">//Exception</span></span><br></pre></td></tr></table></figure><ul><li>NullPointerException</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Date d=<span class="keyword">null</span>;</span><br><span class="line">System.out.println(d.toString());<span class="comment">//Wrong</span></span><br><span class="line"><span class="comment">//RuntimeException</span></span><br></pre></td></tr></table></figure><ul><li>ArrayIndexOutOfBoundException</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> [] array=<span class="keyword">new</span> <span class="keyword">int</span> [<span class="number">4</span>];</span><br><span class="line">array[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">array[<span class="number">4</span>]=<span class="number">1</span>;<span class="comment">//Wrong</span></span><br><span class="line"><span class="comment">//RuntimeException</span></span><br></pre></td></tr></table></figure><ul><li>ClassCastException</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;&#125;</span><br><span class="line">Animal animal=<span class="keyword">new</span> Dog();</span><br><span class="line">Cat cat=(Cat)animal;<span class="comment">//Wrong</span></span><br><span class="line"><span class="comment">//RuntimeException</span></span><br></pre></td></tr></table></figure><h1 id="创建用户自定义异常类"><a class="markdownIt-Anchor" href="#创建用户自定义异常类"></a> 创建用户自定义异常类</h1><h2 id="步骤"><a class="markdownIt-Anchor" href="#步骤"></a> 步骤</h2><blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.UserDefineException</span></span><br></pre></td></tr></table></figure><p>创建用户自定义异常时，一般需要完成如下工作</p></blockquote><ol><li>声明一个新的异常类，使之以Exception类或其他某个已经存在的系统异常类或用户异常类为父类；</li><li>为新的异常类定义属性和方法，或重载父类的属性和方法，使这些属性和方法能够体现该类所对应的错误的信息。</li></ol><h2 id="异常的处理"><a class="markdownIt-Anchor" href="#异常的处理"></a> 异常的处理</h2><h3 id="自己处理"><a class="markdownIt-Anchor" href="#自己处理"></a> 自己处理</h3><blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.ExceptionDemo4</span></span><br></pre></td></tr></table></figure></blockquote><h3 id="自己不处理-继续throw"><a class="markdownIt-Anchor" href="#自己不处理-继续throw"></a> 自己不处理 继续throw</h3><blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.ExceptionDemo5</span></span><br></pre></td></tr></table></figure></blockquote><h1 id="文章源码"><a class="markdownIt-Anchor" href="#文章源码"></a> 文章源码</h1><a class="btn-beautify button--animated blue larger" href="https://github.com/CheeseburgerIM/VscodeOnPC/tree/main/JAVA/Class"   title="文章源码"><i class="far fa-hand-point-right fa-fw"></i><span>文章源码</span></a><a class="btn-beautify button--animated blue larger" href="https://gitee.com/CheeseburgerIM/VscodeOnPC/tree/main/JAVA/Class"   title="备用仓库"><i class="far fa-hand-point-right fa-fw"></i><span>备用仓库</span></a>]]></content>
+        <content type="html"><![CDATA[<center><b><font size=8>异常</font></b></center><h1 id="异常"><a class="markdownIt-Anchor" href="#异常"></a> 异常</h1><blockquote><p><strong>常见的一些潜在风险</strong></p><ul><li>用户不存在？</li><li>用户名口令错误？</li><li>余额不足？</li><li>网络不通？</li><li>磁盘空间不足？</li><li>…</li></ul></blockquote><p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/Java-Part4/1.png" alt="异常" /></p><h1 id="异常处理基本模式"><a class="markdownIt-Anchor" href="#异常处理基本模式"></a> 异常处理基本模式</h1><h2 id="method1"><a class="markdownIt-Anchor" href="#method1"></a> Method1</h2><ul><li>在Java编程语言中，用try和catch语句来处理异常</li><li>格式如下</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.ExceptionDemo</span></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">//可能发生异常的语句</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">    <span class="comment">//发生异常了 执行这里的代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="method2"><a class="markdownIt-Anchor" href="#method2"></a> Method2</h2><ul><li>与方法1大致相同，增加finally语句</li><li>格式如下</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.ExceptionDemo2</span></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">//可能发生异常的语句</span></span><br><span class="line">    <span class="comment">//如果前面发生了异常 就不会执行这里</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">    <span class="comment">//发生异常了 执行这里的代码</span></span><br><span class="line">    <span class="comment">//如果没有发生异常 不会执行这里</span></span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">    <span class="comment">//不管是否发生异常都会执行这里</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li><strong>注意finally</strong>：不管如何(是否发生异常)，都会执行这里的代码。</li></ul><h1 id="异常的产生"><a class="markdownIt-Anchor" href="#异常的产生"></a> 异常的产生</h1><blockquote><p>所有的异常都是通过throw创建出来的</p></blockquote><ul><li>创建方法</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> 异常的构造函数()...</span><br><span class="line"><span class="comment">//例如:throw new Exception(&quot;用户不存在!&quot;);</span></span><br></pre></td></tr></table></figure><ul><li>需要注意的是，不可以随便抛出一个东西</li><li>例如如下代码就是错误的</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> String(<span class="string">&quot;用户不存在!&quot;</span>);</span><br><span class="line"><span class="comment">//ch06.ExceptionDemo3</span></span><br></pre></td></tr></table></figure><ul><li>抛出的内容必须是Throwable的子类。</li><li>只要是Throwable的子类，都可以使用throw/catch进行操作；</li><li>反之，不是Throwable的子类，都不能使用throw/catch进行操作。</li><li><strong>可抛出Throwable的几个类型</strong><ul><li>Error</li><li>Exception</li><li>RuntimeException</li></ul></li></ul><h1 id="异常类型"><a class="markdownIt-Anchor" href="#异常类型"></a> 异常类型</h1><h2 id="error及其子类"><a class="markdownIt-Anchor" href="#error及其子类"></a> Error及其子类</h2><ul><li>Error类表示Java运行时产生的系统内部错误或资源耗尽等严重错误；</li><li>这种错误通常是程序无法控制和解决的，如果发生这种错误，通常的做法是通知用户并中止程序的执行；</li><li>这种异常超出了程序员能力范围，没解决办法，建议程序直接退出。编译器检查、必须处理。</li></ul><blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.ErrorDemo</span></span><br></pre></td></tr></table></figure><p>例：NoClassDefFoundError, OutOfMemoryError, VirtualMachineError, InternalError and so on.</p></blockquote><h2 id="exception及其子类"><a class="markdownIt-Anchor" href="#exception及其子类"></a> Exception及其子类</h2><ul><li>Exception又称为”可检异常“，”非运行时异常“；</li><li>程序能处理的异常；</li><li>这种错误的出现完全在程序员意料之中，有对应的解决办法。编译器检查、必须处理。</li></ul><blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.ExceptionDemo2</span></span><br></pre></td></tr></table></figure><p>例：IOException, SQLException and so on.</p><p>此外，还有很多用户自定义的：口令错误、余额不足…</p></blockquote><h2 id="runtimeexception及其子类"><a class="markdownIt-Anchor" href="#runtimeexception及其子类"></a> RuntimeException及其子类</h2><ul><li>RuntimeException类及其子类被称为”运行时异常“<ul><li>一般发生在JRE内部；</li><li>也称”非必检异常“；</li><li>如NullPointerException。</li></ul></li><li>RuntimeException类及其子类都成为运行时异常，这种异常的特点是Java编译器不会检查它。也就是说，当程序中可能出现这类异常，即使没有用try-catch语句，出现异常时也会抛出这个错误；</li><li>RuntimeException表示无法让程序恢复运行的异常，导致这种异常的原因通常是由于执行力错误操作，建议直接显示错误，因此Java编译器不检查这种异常；</li><li>也有一种说法认为Exception之所以不检测，是因为不应该替别人背黑锅！</li></ul><blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.RuntimeExceptionDemo</span></span><br></pre></td></tr></table></figure></blockquote><h2 id="example"><a class="markdownIt-Anchor" href="#example"></a> Example</h2><ul><li>ArithmaticException</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">12</span>/<span class="number">0</span>;<span class="comment">//Wrong</span></span><br><span class="line"><span class="comment">//Exception</span></span><br></pre></td></tr></table></figure><ul><li>NullPointerException</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Date d=<span class="keyword">null</span>;</span><br><span class="line">System.out.println(d.toString());<span class="comment">//Wrong</span></span><br><span class="line"><span class="comment">//RuntimeException</span></span><br></pre></td></tr></table></figure><ul><li>ArrayIndexOutOfBoundException</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> [] array=<span class="keyword">new</span> <span class="keyword">int</span> [<span class="number">4</span>];</span><br><span class="line">array[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">array[<span class="number">4</span>]=<span class="number">1</span>;<span class="comment">//Wrong</span></span><br><span class="line"><span class="comment">//RuntimeException</span></span><br></pre></td></tr></table></figure><ul><li>ClassCastException</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;&#125;</span><br><span class="line">Animal animal=<span class="keyword">new</span> Dog();</span><br><span class="line">Cat cat=(Cat)animal;<span class="comment">//Wrong</span></span><br><span class="line"><span class="comment">//RuntimeException</span></span><br></pre></td></tr></table></figure><h1 id="创建用户自定义异常类"><a class="markdownIt-Anchor" href="#创建用户自定义异常类"></a> 创建用户自定义异常类</h1><h2 id="步骤"><a class="markdownIt-Anchor" href="#步骤"></a> 步骤</h2><blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.UserDefineException</span></span><br></pre></td></tr></table></figure><p>创建用户自定义异常时，一般需要完成如下工作</p></blockquote><ol><li>声明一个新的异常类，使之以Exception类或其他某个已经存在的系统异常类或用户异常类为父类；</li><li>为新的异常类定义属性和方法，或重载父类的属性和方法，使这些属性和方法能够体现该类所对应的错误的信息。</li></ol><h2 id="异常的处理"><a class="markdownIt-Anchor" href="#异常的处理"></a> 异常的处理</h2><h3 id="自己处理"><a class="markdownIt-Anchor" href="#自己处理"></a> 自己处理</h3><blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.ExceptionDemo4</span></span><br><span class="line"><span class="comment">//自己处理</span></span><br></pre></td></tr></table></figure></blockquote><h3 id="自己不处理-继续throw"><a class="markdownIt-Anchor" href="#自己不处理-继续throw"></a> 自己不处理 继续throw</h3><blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.ExceptionDemo5</span></span><br><span class="line"><span class="comment">//等着别人处理</span></span><br></pre></td></tr></table></figure></blockquote><h2 id="分门类得处理异常"><a class="markdownIt-Anchor" href="#分门类得处理异常"></a> 分门类得处理异常</h2><blockquote><p>定义多种异常类(Throwable子类)，不同情况下，抛出不同异常类</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ch06.ExceptionDemo6</span></span><br></pre></td></tr></table></figure></blockquote><h1 id="文章源码"><a class="markdownIt-Anchor" href="#文章源码"></a> 文章源码</h1><a class="btn-beautify button--animated blue larger" href="https://github.com/CheeseburgerIM/VscodeOnPC/tree/main/JAVA/Class"   title="文章源码"><i class="far fa-hand-point-right fa-fw"></i><span>文章源码</span></a><a class="btn-beautify button--animated blue larger" href="https://gitee.com/CheeseburgerIM/VscodeOnPC/tree/main/JAVA/Class"   title="备用仓库"><i class="far fa-hand-point-right fa-fw"></i><span>备用仓库</span></a>]]></content>
       
       
       <categories>
@@ -53,9 +53,9 @@
       
         <tags>
             
-            <tag> Code </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Code </tag>
             
             <tag> Programme </tag>
             
@@ -144,9 +144,9 @@
       
         <tags>
             
-            <tag> Code </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Code </tag>
             
             <tag> Programme </tag>
             
@@ -204,9 +204,9 @@
       
         <tags>
             
-            <tag> Code </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Code </tag>
             
             <tag> Programme </tag>
             
@@ -239,9 +239,9 @@
             
             <tag> Introduction </tag>
             
-            <tag> Study </tag>
-            
             <tag> ComputerNetwork </tag>
+            
+            <tag> Study </tag>
             
         </tags>
       
@@ -266,9 +266,9 @@
       
         <tags>
             
-            <tag> Code </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Code </tag>
             
             <tag> DataBase </tag>
             
@@ -324,9 +324,9 @@
       
         <tags>
             
-            <tag> Code </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Code </tag>
             
             <tag> Programme </tag>
             
@@ -384,9 +384,9 @@
       
         <tags>
             
-            <tag> Code </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Code </tag>
             
             <tag> CodeExercise </tag>
             
@@ -423,17 +423,17 @@
             
             <tag> Introduction </tag>
             
-            <tag> Code </tag>
-            
             <tag> Study </tag>
+            
+            <tag> js </tag>
+            
+            <tag> Code </tag>
             
             <tag> Website </tag>
             
             <tag> Design </tag>
             
             <tag> Course </tag>
-            
-            <tag> js </tag>
             
         </tags>
       
@@ -458,9 +458,9 @@
       
         <tags>
             
-            <tag> Code </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Code </tag>
             
             <tag> CodeExercise </tag>
             
@@ -528,17 +528,17 @@
             
             <tag> Introduction </tag>
             
-            <tag> css </tag>
+            <tag> Study </tag>
             
             <tag> Code </tag>
-            
-            <tag> Study </tag>
             
             <tag> Website </tag>
             
             <tag> Design </tag>
             
             <tag> Course </tag>
+            
+            <tag> css </tag>
             
         </tags>
       
@@ -629,9 +629,9 @@
             
             <tag> Introduction </tag>
             
-            <tag> Code </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Code </tag>
             
             <tag> Website </tag>
             
@@ -809,9 +809,9 @@
       
         <tags>
             
-            <tag> Code </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Code </tag>
             
             <tag> Programme </tag>
             
@@ -873,9 +873,9 @@
             
             <tag> Introduction </tag>
             
-            <tag> Code </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Code </tag>
             
             <tag> Git </tag>
             
@@ -931,9 +931,9 @@
       
         <tags>
             
-            <tag> Code </tag>
-            
             <tag> Study </tag>
+            
+            <tag> Code </tag>
             
             <tag> Programme </tag>
             
