@@ -1,13 +1,16 @@
 /* NewLink1 */
-/* 由于是引入的连接第三方字体图标库  网络延迟比较大 所以刷新的时候就迟迟不能出来 */
+@import url('https://fonts.font.im/css?family=Dancing+Script|Playfair+Display');
 .container {
 	/* 这里的弹性布局 让元素能够水平排列 并且能够让a这个行内元素设置宽度和高度 */
 	display: flex;
     width: 100%;
     min-height:90px;
     margin:0 auto;
-	justify-content: center
+	justify-content: center;
     /* justify-content: space-between; */
+	box-shadow:0 1px 10px 5px rgba(0,0,0,0.1);
+	margin-bottom:15px;
+	border-radius:7px;
 }
 .container .btn {
 	/* 溢出隐藏 */
@@ -86,12 +89,41 @@
 	/* 鼠标移入 恢复到原来的大小 */
 	transform: scale(1);
 }
+
+/* Chart1 */
 #chart1 {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     min-height: 350px;
+	box-shadow:0 1px 10px 5px rgba(0,0,0,0.1);
+	margin-bottom:15px;
+	border-radius:7px;
+}
+
+/* Chart2 */
+#chart2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 350px;
+	box-shadow:0 1px 10px 5px rgba(0,0,0,0.1);
+	margin-bottom:15px;
+	border-radius:7px;
+}
+
+/* Chart3 */
+#chart3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 500px;
+	box-shadow:0 1px 10px 5px rgba(0,0,0,0.1);
+	margin-bottom:15px;
+	border-radius:7px;
 }
 
 /* Me */
@@ -101,38 +133,63 @@
 	padding:20px 15px;
 	min-height:200px;
 	display:flex;
-	justify-content:space-around;
-	align-items:center;
-	box-shadow:01px 10px 5px rgba(0,0,0,0.1);
+	justify-content: space-around;
+	align-items: center;
+	box-shadow:0 1px 10px 5px rgba(0,0,0,0.1);
 	margin-bottom:15px;
 }
-#me #hello-mashiro{
-	width:80%;
-}
 .item{
-	transition:3s ease-in-out;
-	position:relative;
+	transition:.3s ease-in-out;
+	position: relative;
 	width:120px;
 	height:120px;
-	border-radius:60px;
-	overflow:hidden;
+	border-radius: 60px;
+	overflow: hidden;
 }
-.itemhover{
+.item:hover{
 	width:320px;
-	background:url(https//:ae01.ali/cdn.com/kfH3342af90d24b4d62b9bbfec9688ccc25M.gif);
+	background:url("https://ae01.alicdn.com/kf/H3342af90d24b4d62b9bbfec9688ccc25M.gif");
 }
 .item span{
 	font-size:25px;
 	font-weight:600;
-	font-family:'Dancing Script';
+	font-family: 'Dancing Script';
 	margin-left:120px;
-	line-height:120px;
+	line-height: 120px;
 }
 .item img{
-	position:absolute;
+	position: absolute;
 	left:0px;
 	width:120px;
-	height:120px;
-	border-radius:50%;
+	height:120px;;
+	border-radius: 50%;
 	margin:0;
 }
+
+@media screen and (max-width:500px){
+	#skills{
+	  height:350px;
+	}
+	#calendar{
+	  height:230px;
+	}
+}
+
+/* gitcalendar */
+#about h4{
+	margin:0;
+}
+#gitcalendar{
+	display:flex;
+	flex-direction:column;
+	justify-content:space-around;
+	align-items:center;
+	height:350px;
+	border-radius:7px;
+	padding:20px 15px;
+	box-shadow:0 1px 10px 5px rgba(0,0,0,0.1);
+}
+#github_container{
+	width:100%;
+}
+	
