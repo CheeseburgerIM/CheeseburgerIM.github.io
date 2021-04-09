@@ -8,7 +8,7 @@
       <link href="2021/04/07/Java-Part7/"/>
       <url>2021/04/07/Java-Part7/</url>
       
-        <content type="html"><![CDATA[<h1 id="文章源码"><a class="markdownIt-Anchor" href="#文章源码"></a> 文章源码</h1><a class="btn-beautify button--animated red larger" href="https://github.com/CheeseburgerIM/VscodeOnPC/tree/main/JAVA/Class"   title="文章源码"><i class="far fa-hand-point-right fa-fw"></i><span>文章源码</span></a><a class="btn-beautify button--animated blue larger" href="https://gitee.com/CheeseburgerIM/VscodeOnPC/tree/main/JAVA/Class"   title="备用仓库"><i class="far fa-hand-point-right fa-fw"></i><span>备用仓库</span></a>]]></content>
+        <content type="html"><![CDATA[<center><b><font size=8>Java中的多线程</font></b></center><h1 id="java中的线程"><a class="markdownIt-Anchor" href="#java中的线程"></a> Java中的线程</h1><h2 id="定义"><a class="markdownIt-Anchor" href="#定义"></a> 定义</h2><ul><li>目前Java程序都是串行执行的，也就是每个语句依次执行；</li><li>有时候需要程序并行执行：<ol><li>有时系统有多个工作要同时完成：例如一边打字、一边听歌；一边开视频会议、一边看网页；</li><li>利用CPU多线程的特性。</li></ol></li><li>一个进程可以有多个线程在执行。</li></ul><h2 id="创建线程的方法"><a class="markdownIt-Anchor" href="#创建线程的方法"></a> 创建线程的方法</h2><h3 id="method1"><a class="markdownIt-Anchor" href="#method1"></a> Method1</h3><h1 id="文章源码"><a class="markdownIt-Anchor" href="#文章源码"></a> 文章源码</h1><a class="btn-beautify button--animated red larger" href="https://github.com/CheeseburgerIM/VscodeOnPC/tree/main/JAVA/Class"   title="文章源码"><i class="far fa-hand-point-right fa-fw"></i><span>文章源码</span></a><a class="btn-beautify button--animated blue larger" href="https://gitee.com/CheeseburgerIM/VscodeOnPC/tree/main/JAVA/Class"   title="备用仓库"><i class="far fa-hand-point-right fa-fw"></i><span>备用仓库</span></a>]]></content>
       
       
       <categories>
