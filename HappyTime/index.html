@@ -102,7 +102,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header always shadow blur "  >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -385,7 +385,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper page focus' style="display: ;">
+        <div id="full" class='cover-wrapper page focus' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Home/HomePage_Background.jpg"></div>
           
@@ -524,8 +524,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <iframe src="//player.bilibili.com/player.html?aid=626357031&bvid=BV1yt4y1Q7SS&cid=210738676&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="500" width="100%"> </iframe>
 <iframe src="//player.bilibili.com/player.html?aid=544247133&bvid=BV1Ti4y1T7ME&cid=296338182&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="500" width="100%"> </iframe>
 <iframe src="//player.bilibili.com/player.html?aid=50251899&bvid=BV15b411G7RK&cid=87982158&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="500" width="100%"> </iframe>
-<p>以上视频均转自<a class="btn-beautify button--animated outline blue larger" target="_blank" rel="noopener" href="https://space.bilibili.com/588552300/favlist?fid=1220759300&ftype=create" 
-  title="B站个人收藏"><i class="far fa-hand-point-right fa-fw"></i><span>B站个人收藏</span></a></p>
+<p>以上视频均转自<span class='btn https://space.bilibili.com/588552300/favlist?fid=1220759300&ftype=create'><a class="button" href='far fa-hand-point-right' title='B站个人收藏'><i class='outline blue larger'></i>B站个人收藏</a></span></p>
 
   
   
@@ -721,14 +720,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
   
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="half";
-    cover_wrapper.style.display="";
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
     
   
 </script>
@@ -1338,7 +1337,7 @@ var loadCSS = function( href, before, media, attributes ){
       path = defaultPath || decodeURI(window.location.pathname);
     }
     if (document.getElementById('gitalk-container') != null) {
-      var gitalk = new Gitalk(Object.assign({"clientID":"882cf11c162e7b9bd6a1","clientSecret":"fb60ca5fbe934bf0301c11f523718d89e6d8194e","repo":"repoForGitalk","owner":"CheeseburgerIM","admin":"CheeseburgerIM","path":null}, {
+      var gitalk = new Gitalk(Object.assign({"clientID":"882cf11c162e7b9bd6a1","clientSecret":"fb60ca5fbe934bf0301c11f523718d89e6d8194e","repo":"repoForGitalk","owner":"CheeseburgerIM","admin":["CheeseburgerIM"],"path":null}, {
 	  id: path,
 	  distractionFreeMode: false  // Facebook-like distraction free mode
     }));

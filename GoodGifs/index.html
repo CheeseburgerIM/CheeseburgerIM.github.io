@@ -102,7 +102,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header always shadow blur "  >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -385,7 +385,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper page focus' style="display: ;">
+        <div id="full" class='cover-wrapper page focus' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Home/HomePage_Background.jpg"></div>
           
@@ -521,8 +521,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   <p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Page/GoodGifs/IronMan_SuitUp.gif" class="lazyload" data-srcset="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Page/GoodGifs/IronMan_SuitUp.gif" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="IronMan_SuitUp" /></p>
 <p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Page/GoodGifs/1_MARVEL.gif" class="lazyload" data-srcset="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Page/GoodGifs/1_MARVEL.gif" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="MARVEL" /></p>
-<p>以上gif均存放在<a class="btn-beautify button--animated blue larger" target="_blank" rel="noopener" href="https://gitee.com/CheeseburgerIM/imagehosting/tree/master/Image/Page/GoodGifs" 
-  title="Gitee个人仓库"><i class="far fa-hand-point-right fa-fw"></i><span>Gitee个人仓库</span></a></p>
+<p>以上gif均存放在<span class='btn https://gitee.com/CheeseburgerIM/imagehosting/tree/master/Image/Page/GoodGifs'><a class="button" href='far fa-hand-point-right' title='Gitee个人仓库'><i class='blue larger'></i>Gitee个人仓库</a></span></p>
 
   
   
@@ -718,14 +717,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
   
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="half";
-    cover_wrapper.style.display="";
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
     
   
 </script>
@@ -1335,7 +1334,7 @@ var loadCSS = function( href, before, media, attributes ){
       path = defaultPath || decodeURI(window.location.pathname);
     }
     if (document.getElementById('gitalk-container') != null) {
-      var gitalk = new Gitalk(Object.assign({"clientID":"882cf11c162e7b9bd6a1","clientSecret":"fb60ca5fbe934bf0301c11f523718d89e6d8194e","repo":"repoForGitalk","owner":"CheeseburgerIM","admin":"CheeseburgerIM","path":null}, {
+      var gitalk = new Gitalk(Object.assign({"clientID":"882cf11c162e7b9bd6a1","clientSecret":"fb60ca5fbe934bf0301c11f523718d89e6d8194e","repo":"repoForGitalk","owner":"CheeseburgerIM","admin":["CheeseburgerIM"],"path":null}, {
 	  id: path,
 	  distractionFreeMode: false  // Facebook-like distraction free mode
     }));

@@ -1444,7 +1444,7 @@ var loadCSS = function( href, before, media, attributes ){
       path = defaultPath || decodeURI(window.location.pathname);
     }
     if (document.getElementById('gitalk-container') != null) {
-      var gitalk = new Gitalk(Object.assign({"clientID":"882cf11c162e7b9bd6a1","clientSecret":"fb60ca5fbe934bf0301c11f523718d89e6d8194e","repo":"repoForGitalk","owner":"CheeseburgerIM","admin":"CheeseburgerIM","path":null}, {
+      var gitalk = new Gitalk(Object.assign({"clientID":"882cf11c162e7b9bd6a1","clientSecret":"fb60ca5fbe934bf0301c11f523718d89e6d8194e","repo":"repoForGitalk","owner":"CheeseburgerIM","admin":["CheeseburgerIM"],"path":null}, {
 	  id: path,
 	  distractionFreeMode: false  // Facebook-like distraction free mode
     }));
