@@ -214,11 +214,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
             
               <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                <a class="menuitem flat-box faa-parent animated-hover" href=/link/
                   
                   
                   
-                    id="friends"
+                    id="link"
                   >
                   <i class='fas fa-link fa-fw'></i>友链
                 </a>
@@ -230,11 +230,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
             
               <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                <a class="menuitem flat-box faa-parent animated-hover" href=/About/
                   
                   
                   
-                    id="about"
+                    id="About"
                   >
                   <i class='fas fa-info-circle fa-fw'></i>关于
                 </a>
@@ -344,11 +344,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                <a class="menuitem flat-box faa-parent animated-hover" href=/link/
                   
                   
                   
-                    id="friends"
+                    id="link"
                   >
                   <i class='fas fa-link fa-fw'></i>友链
                 </a>
@@ -360,11 +360,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                <a class="menuitem flat-box faa-parent animated-hover" href=/About/
                   
                   
                   
-                    id="about"
+                    id="About"
                   >
                   <i class='fas fa-info-circle fa-fw'></i>关于
                 </a>
@@ -2553,9 +2553,7 @@ var size=pagenums[i].parentNode.siblings().length;pagenums[i].innerText="1 / "+(
   <article class="post white-box reveal shadow" id="comments">
     <p ct><i class='fas fa-comments'></i> 评论</p>
     
-    <div id="valine_container" class="valine_thread">
-  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-</div>
+    <div id="gitalk-container"></div>
 
   </article>
 
@@ -3275,52 +3273,27 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-  
-  
-<script src="/js/valine.js"></script>
-
-
-<script>
-  function emoji(path, idx, ext) {
-    return path + "/" + path + "-" + idx + "." + ext;
-  }
-  var emojiMaps = {};
-  for (var i = 1; i <= 54; i++) {
-    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
-  }
-  for (var i = 1; i <= 101; i++) {
-    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
-  }
-  for (var i = 1; i <= 116; i++) {
-    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
-  }
-  for (var i = 1; i <= 125; i++) {
-    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
-  }
-  for (var i = 1; i <= 4; i++) {
-    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
-  }
-  function pjax_valine() {
-    if(!document.querySelectorAll("#valine_container")[0])return;
-    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  function pjax_gitalk() {
+    if(!document.querySelectorAll("#gitalk-container")[0])return;
     let path = pdata.commentPath;
     if (path.length == 0) {
       let defaultPath = '';
       path = defaultPath || decodeURI(window.location.pathname);
     }
-    var valine = new Valine();
-    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
-      el: '#valine_container',
-      path: path,
-      placeholder: pagePlaceholder,
-      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
-      emojiMaps: emojiMaps,
-    }))
+    if (document.getElementById('gitalk-container') != null) {
+      var gitalk = new Gitalk(Object.assign({"clientID":"882cf11c162e7b9bd6a1","clientSecret":"fb60ca5fbe934bf0301c11f523718d89e6d8194e","repo":"repoForGitalk","owner":"CheeseburgerIM","admin":"CheeseburgerIM","path":null}, {
+	  id: path,
+	  distractionFreeMode: false  // Facebook-like distraction free mode
+    }));
+      gitalk.render('gitalk-container');
+    }
   }
   $(function () {
-    pjax_valine();
+    pjax_gitalk();
   });
-  volantis.pjax.push(pjax_valine);
+  volantis.pjax.push(pjax_gitalk);
 </script>
 
 

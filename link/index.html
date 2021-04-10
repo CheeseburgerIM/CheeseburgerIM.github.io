@@ -102,7 +102,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header always shadow blur "  >
+<header id="l_header" class="l_header always shadow blur show"  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -214,11 +214,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
             
               <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                <a class="menuitem flat-box faa-parent animated-hover" href=/link/
                   
                   
                   
-                    id="friends"
+                    id="link"
                   >
                   <i class='fas fa-link fa-fw'></i>友链
                 </a>
@@ -230,11 +230,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
             
               <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                <a class="menuitem flat-box faa-parent animated-hover" href=/About/
                   
                   
                   
-                    id="about"
+                    id="About"
                   >
                   <i class='fas fa-info-circle fa-fw'></i>关于
                 </a>
@@ -344,11 +344,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                <a class="menuitem flat-box faa-parent animated-hover" href=/link/
                   
                   
                   
-                    id="friends"
+                    id="link"
                   >
                   <i class='fas fa-link fa-fw'></i>友链
                 </a>
@@ -360,11 +360,11 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
               
             
               <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                <a class="menuitem flat-box faa-parent animated-hover" href=/About/
                   
                   
                   
-                    id="about"
+                    id="About"
                   >
                   <i class='fas fa-info-circle fa-fw'></i>关于
                 </a>
@@ -385,7 +385,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper page focus' style="display: none;">
+        <div id="full" class='cover-wrapper friends focus' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Home/HomePage_Background.jpg"></div>
           
@@ -456,8 +456,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-page" id="page" itemscope itemprop="blogPost">
-  
+  <article id="friends" class="md post article article-entry l_friends white-box reveal shadow article-type-friends" itemscope itemprop="blogPost">
+    
 
 
   
@@ -517,16 +517,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   </div>
 
 
-  
-  
-  <p>如果大佬想加友链，直接在下面评论即可</p>
+    
+    
+    <br><br>
+    <p>如果大佬想加友链，直接在下面评论即可</p>
 <blockquote>
 <p>这是我的友链信息</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">CheeseburgerIM</span></span><br><span class="line">  <span class="attr">link:</span> <span class="string">https://CheeseburgerIM.github.io/</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">https://img.imgdb.cn/item/5fd07a0e3ffa7d37b3e705e5.jpg</span></span><br><span class="line">  <span class="attr">descr:</span> <span class="string">IMF,I’ve</span> <span class="string">got</span> <span class="string">a</span> <span class="string">lot</span> <span class="string">to</span> <span class="string">learn.</span></span><br></pre></td></tr></table></figure></blockquote>
 
-  
-  
-  
     
 
 
@@ -534,7 +532,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-10T10:55:24+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-10T22:57:49+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Apr 10, 2021</p>
@@ -604,26 +602,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   </div>
 
 
-  
-  
-
-  
-</article>
-
+  </article>
 
   
 
   <article class="post white-box reveal shadow" id="comments">
     <p ct><i class='fas fa-comments'></i> 评论</p>
     
-    <div id="valine_container" class="valine_thread">
-  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-</div>
+    <div id="gitalk-container"></div>
 
   </article>
-
-
-
 
 
 
@@ -717,7 +705,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </aside>
 
 
-
 		  
 		  <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
@@ -731,14 +718,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
   
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="half";
-    cover_wrapper.style.display="";
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
     
   
 </script>
@@ -1338,52 +1325,27 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-  
-  
-<script src="/js/valine.js"></script>
-
-
-<script>
-  function emoji(path, idx, ext) {
-    return path + "/" + path + "-" + idx + "." + ext;
-  }
-  var emojiMaps = {};
-  for (var i = 1; i <= 54; i++) {
-    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
-  }
-  for (var i = 1; i <= 101; i++) {
-    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
-  }
-  for (var i = 1; i <= 116; i++) {
-    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
-  }
-  for (var i = 1; i <= 125; i++) {
-    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
-  }
-  for (var i = 1; i <= 4; i++) {
-    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
-  }
-  function pjax_valine() {
-    if(!document.querySelectorAll("#valine_container")[0])return;
-    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  function pjax_gitalk() {
+    if(!document.querySelectorAll("#gitalk-container")[0])return;
     let path = pdata.commentPath;
     if (path.length == 0) {
       let defaultPath = '';
       path = defaultPath || decodeURI(window.location.pathname);
     }
-    var valine = new Valine();
-    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
-      el: '#valine_container',
-      path: path,
-      placeholder: pagePlaceholder,
-      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
-      emojiMaps: emojiMaps,
-    }))
+    if (document.getElementById('gitalk-container') != null) {
+      var gitalk = new Gitalk(Object.assign({"clientID":"882cf11c162e7b9bd6a1","clientSecret":"fb60ca5fbe934bf0301c11f523718d89e6d8194e","repo":"repoForGitalk","owner":"CheeseburgerIM","admin":"CheeseburgerIM","path":null}, {
+	  id: path,
+	  distractionFreeMode: false  // Facebook-like distraction free mode
+    }));
+      gitalk.render('gitalk-container');
+    }
   }
   $(function () {
-    pjax_valine();
+    pjax_gitalk();
   });
-  volantis.pjax.push(pjax_valine);
+  volantis.pjax.push(pjax_gitalk);
 </script>
 
 
