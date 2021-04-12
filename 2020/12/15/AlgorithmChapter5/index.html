@@ -460,102 +460,23 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-https://img.imgdb.cn/item/5fd84ed33ffa7d37b3af0d56.jpg" id="https://img.imgdb.cn/item/5fd84ed33ffa7d37b3af0d56.jpg" itemscope itemprop="blogPost">
-  
-
-
-  
-  <div class="article-meta" id="top">
-    
-    
-    
-      <h1 class="title">
-        Divide and Conquer
-      </h1>
-      <div class='new-meta-box'>
-        
-          
-            
-<div class='new-meta-item author'>
-  <a class='author' href="" rel="nofollow">
-    <img no-lazy src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Home/Web_icon.jpg">
-    <p>Tony Pan</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>å‘å¸ƒäºŽï¼šDec 15, 2020</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class="new-meta-item browse leancloud">
-    <a class='notlink'>
-      
-      <div id="lc-pv" data-title="Divide and Conquer" data-path="/2020/12/15/AlgorithmChapter5/">
-        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
-        æ¬¡æµè§ˆ
-      </div>
-    </a>
-  </div>
-
-
-          
-        
-      </div>
-    
-  </div>
-
-
-  
-  
-  <h2 id="åˆ†æ²»æ³•"><a href="#åˆ†æ²»æ³•" class="headerlink" title="åˆ†æ²»æ³•"></a>åˆ†æ²»æ³•</h2><h3 id="åˆ†æ²»æ³•æ€æƒ³"><a href="#åˆ†æ²»æ³•æ€æƒ³" class="headerlink" title="åˆ†æ²»æ³•æ€æƒ³"></a>åˆ†æ²»æ³•æ€æƒ³</h3><ul>
-<li><p>åˆ†æ²»æ³•è®¾è®¡ç®—æ³•çš„æ€æƒ³æ˜¯ï¼š</p>
-<p>å°†é—®é¢˜åˆ†æˆ(divide)å¤šä¸ªå­é—®é¢˜ï¼›</p>
-<p>é€’å½’åœ°è§£å†³(conquer)æ¯ä¸ªå­é—®é¢˜ï¼›</p>
-<p>å°†å­é—®é¢˜çš„è§£åˆå¹¶(combine)æˆåŽŸé—®é¢˜çš„è§£ã€‚</p>
-</li>
-<li><p>åˆ†æ²»æ³•å¸¸å¸¸å¾—åˆ°é€’å½’ç®—æ³•ï¼›</p>
-</li>
-<li><p>Merge-Sortæ˜¯ç”¨åˆ†æ²»æ³•è®¾è®¡ç®—æ³•çš„èŒƒä¾‹</p>
-</li>
-<li><p>ç®—æ³•å¤æ‚æ€§åˆ†æž</p>
-<p>Master method</p>
-<p>Substitution method</p>
-</li>
-</ul>
-<h3 id="é€‚ç”¨æ¡ä»¶"><a href="#é€‚ç”¨æ¡ä»¶" class="headerlink" title="é€‚ç”¨æ¡ä»¶"></a>é€‚ç”¨æ¡ä»¶</h3><ul>
-<li><p>åˆ†æ²»æ³•æ‰€èƒ½è§£å†³çš„é—®é¢˜ä¸€èˆ¬å…·æœ‰ä»¥ä¸‹å‡ ä¸ªç‰¹å¾ï¼š</p>
-<p>è¯¥é—®é¢˜çš„è§„æ¨¡ç¼©å°åˆ°ä¸€å®šç¨‹åº¦å°±å¯ä»¥å®¹æ˜“åœ°è§£å†³ï¼›</p>
-<p>è¯¥é—®é¢˜å¯ä»¥åˆ†è§£ä¸ºè‹¥å¹²ä¸ªè§„æ¨¡è¾ƒå°çš„å­é—®é¢˜ï¼›</p>
-<p>åˆ©ç”¨è¯¥é—®é¢˜åˆ†è§£å‡ºçš„å­é—®é¢˜çš„è§£å¯ä»¥åˆå¹¶ä¸ºè¯¥é—®é¢˜çš„è§£ï¼›</p>
-<p>è¯¥é—®é¢˜æ‰€åˆ†è§£å‡ºçš„å„ä¸ªå­é—®é¢˜æ˜¯ç›¸äº’ç‹¬ç«‹çš„ï¼Œå³å­é—®é¢˜ä¹‹é—´ä¸åŒ…å«å…¬å…±çš„å­é—®é¢˜ã€‚</p>
-</li>
-<li><p>æœ€åŽä¸€æ¡ç‰¹å¾æ¶‰åŠåˆ°åˆ†æ²»æ³•çš„æ•ˆçŽ‡ï¼Œå¦‚æžœå„å­é—®é¢˜æ˜¯ä¸ç‹¬ç«‹çš„ï¼Œåˆ™åˆ†æ²»æ³•è¦åšè®¸å¤šä¸å¿…è¦çš„å·¥ä½œï¼Œé‡å¤åœ°è§£å…¬å…±çš„å­é—®é¢˜ï¼Œæ­¤æ—¶è™½ç„¶ä¹Ÿå¯ç”¨åˆ†æ²»æ³•ï¼Œä½†ä¸€èˆ¬ç”¨åŠ¨æ€è§„åˆ’è¾ƒå¥½ã€‚</p>
-</li>
-</ul>
-<h3 id="åŸºæœ¬æ­¥éª¤"><a href="#åŸºæœ¬æ­¥éª¤" class="headerlink" title="åŸºæœ¬æ­¥éª¤"></a>åŸºæœ¬æ­¥éª¤</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">divide-<span class="keyword">and</span>-<span class="built_in">conquer</span>(P)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(P&lt;=n0) <span class="built_in">adhoc</span>(P); <span class="comment">//è§£å†³å°è§„æ¨¡çš„é—®é¢˜</span></span><br><span class="line">    divide P into smaller subinstances P1,P2,...,Pk; <span class="comment">//åˆ†è§£é—®é¢˜</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=k;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        yi=divide-<span class="keyword">and</span>-<span class="built_in">conquer</span>(Pi); <span class="comment">//é€’å½’åœ°è§£å†³å„å­é—®é¢˜</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">merge</span>(y1,...,yk); <span class="comment">//å°†å„å­é—®é¢˜åœ°è§£åˆå¹¶æˆä¸ºåŽŸé—®é¢˜çš„è§£</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <article class="article post white-box reveal md shadow article-type-https://img.imgdb.cn/item/5fd84ed33ffa7d37b3af0d56.jpg" id="https://img.imgdb.cn/item/5fd84ed33ffa7d37b3af0d56.jpg$œ’m…Îmo“LÒDüÜ;˜%gÏ?wêÁÅ·øîùovH0õÉa‡5£Ú*î Ø’ÃÌlÍ››S iyä”rÕO7ª“ž%L]Ý×%±ºÇhk ¶«·÷>v1­HB£®±ßÞÚd\(eoIx¢>3´6BS%ÌØá“(
+œÛf$Ãhýé¿¶åeÔŽôÚèHœ‚`Ý¶f{Fo©Yò¿Ôó@00uMb’z-ëìXI$&ÂgfÖú¶7Ó´Þu|'K.ÌoP
+PÝÀùFË.Ðýoûò9B<~. ’ïÅË[’´˜Ë<Ù­„$¯•¢·ä{1¹A•.òbKxºL ¯Ý·'¯u8n5 ’ºe ,]ñH©–’ÆV¨ŒWwÃ$ùCƒel¹“|zys«™KŠi-ðqÊÝ¬bk,wnGÿâ;¥  ~ÖeÉrÍ’‰ÜÔ~'1`Vâ¦«¹-*[ÉñLÔKÄ'2@ŸÜþÐä»ª ²n‘Íß2¸Nß ˆÆ¶µG•¢ói/U¢µ'Eï@¦`Hæ¹˜;J•¼¼ÜŽÅ+Jén#»¼‚6Ú´—Ä¹G•ü¡NÒGð'—Z!öáí¸‰Wi»NJ @óàšAûÜZ|ª[¨ï$q}iÒ·µQbtTEC$œ’m…Îmo“LÒDüÜ;˜%gÏ?wêÁÅ·øîùovH0õÉa‡5£Ú*î Ø’ÃÌlÍ››S iyä”rÕO7ª“ž%L]Ý×%±ºÇhk ¶«·÷>v1­HB£®±ßÞÚd\(eoIx¢>3´6BS%ÌØá“(
+œÛf$Ãhýé¿¶åeÔŽôÚèHœ‚`Ý¶f{Fo©Yò¿Ôó@00uMb’z-ëìXI$&ÂgfÖú¶7Ó´Þu|'K.ÌoP
+PÝÀùFË.Ðýoûò9B<~. ’ïÅË[’´˜Ë<Ù­„$¯•¢·ä{1¹A•.òbKxºL ¯Ý·'¯u8n5 ’ºe ,]ñH©–’ÆV¨ŒWwÃ$ùCƒel¹“|zys«™KŠi-ðqÊÝ¬bk,wnGÿâ;¥  ~ÖeÉrÍ’‰ÜÔ~'1`Vâ¦«¹-*[ÉñLÔKÄ'2@ŸÜþÐä»ª ²n‘Íß2¸Nß ˆÆ¶µG•¢ói/U¢µ'Eï@¦`Hæ¹˜;J•¼¼ÜŽÅ+Jén#»¼‚6Ú´—Ä¹G•ü¡NÒGð'—Z!öáí¸‰Wi»NJ @óàšAûÜZ|ª[¨ï$q}iÒ·µQbtTEC$œ’m…Îmo“LÒDüÜ;˜%gÏ?wêÁÅ·øîùovH0õÉa‡5£Ú*î Ø’ÃÌlÍ››S iyä”rÕO7ª“ž%L]Ý×%±ºÇhk ¶«·÷>v1­HB£®±ßÞÚd\(eoIx¢>3´6BS%ÌØá“(
+œÛf$Ãhýé¿¶åeÔŽôÚèHœ‚`Ý¶f{Fo©Yò¿Ôó@00uMb’z-ëìXI$&ÂgfÖú¶7Ó´Þu|'K.ÌoP
+PÝÀùFË.Ðýoûò9B<~. ’ïÅË[’´˜Ë<Ù­„$¯•¢·ä{1¹A•.òbKxºL ¯Ý·'¯u8n5 ’ºe ,]ñH©–’ÆV¨ŒWwÃ$ùCƒel¹“|zys«™KŠi-ðqÊÝ¬bk,wnGÿâ;¥  ~ÖeÉrÍ’‰ÜÔ~'1`Vâ¦«¹-*[ÉñLÔKÄ'2@ŸÜþÐä»ª ²n‘Íß2¸Nß ˆÆ¶µG•¢ói/U¢µ'Eï@¦`Hæ¹˜;J•¼¼ÜŽÅ+Jén#»¼‚6Ú´—Ä¹G•ü¡NÒGð'—Z!öáí¸‰Wi»NJ @óàšAûÜZ|ª[¨ï$q}iÒ·µQbtTEC$œ’m…Îmo“LÒDüÜ;˜%gÏ?wêÁÅ·øîùovH0õÉa‡5£Ú*î Ø’ÃÌlÍ››S iyä”rÕO7ª“ž%L]Ý×%±ºÇhk ¶«·÷>v1­HB£®±ßÞÚd\(eoIx¢>3´6BS%ÌØá“(
+œÛf$Ãhýé¿¶åeÔŽôÚèHœ‚`Ý¶f{Fo©Yò¿Ôó@00uMb’z-ëìXI$&ÂgfÖú¶7Ó´Þu|'K.ÌoP
+PÝÀùFË.Ðýoûò9B<~. ’ïÅË[’´˜Ë<Ù­„$¯•¢·ä{1¹A•.òbKxºL ¯Ý·'¯u8n5 ’ºe ,]ñH©–’ÆV¨ŒWwÃ$ùCƒel¹“|zys«™KŠi-ðqÊÝ¬bk,wnGÿâ;¥  ~ÖeÉrÍ’‰ÜÔ~'1`Vâ¦«¹-*[ÉñLÔKÄ'2@ŸÜþÐä»ª ²n‘Íß2¸Nß ˆÆ¶µG•¢ói/U¢µ'Eï@¦`Hæ¹˜;J•¼¼ÜŽÅ+Jén#»¼‚6Ú´—Ä¹G•ü¡NÒGð'—Z!öáí¸‰Wi»NJ @óàšAûÜZ|ª[¨ï$q}iÒ·µQbtTEC$œ’m…Îmo“LÒDüÜ;˜%gÏ?wêÁÅ·øîùovH0õÉa‡5£Ú*î Ø’ÃÌlÍ››S iyä”rÕO7ª“ž%L]Ý×%±ºÇhk ¶«·÷>v1­HB£®±ßÞÚd\(eoIx¢>3´6BS%ÌØá“(
+œÛf$Ãhýé¿¶åeÔŽôÚèHœ‚`Ý¶f{Fo©Yò¿Ôó@00uMb’z-ëìXI$&ÂgfÖú¶7Ó´Þu|'K.ÌoP
+PÝÀùFË.Ðýoûò9B<~. ’ïÅË[’´˜Ë<Ù­„$¯•¢·ä{1¹A•.òbKxºL ¯Ý·'¯u8n5 ’ºe ,]ñH©–’ÆV¨ŒWwÃ$ùCƒel¹“|zys«™KŠi-ðqÊÝ¬bk,wnGÿâ;¥  ~ÖeÉrÍ’‰ÜÔ~'1`Vâ¦«¹-*[ÉñLÔKÄ'2@ŸÜþÐä»ª ²n‘Íß2¸Nß ˆÆ¶µG•¢ói/U¢µ'Eï@¦`Hæ¹˜;J•¼¼ÜŽÅ+Jén#»¼‚6Ú´—Ä¹G•ü¡NÒGð'—Z!öáí¸‰Wi»NJ @óàšAûÜZ|ª[¨ï$q}iÒ·µQbtTEC$œ’m…Îmo“LÒDüÜ;˜%gÏ?wêÁÅ·øîùovH0õÉa‡5£Ú*î Ø’ÃÌlÍ››S iyä”rÕO7ª“ž%L]Ý×%±ºÇhk ¶«·÷>v1­HB£®±ßÞÚd\(eoIx¢>3´6BS%ÌØá“(
+œÛf$Ãhýé¿¶åeÔŽôÚèHœ‚`Ý¶f{Fo©Yò¿Ôó@00uMb’z-ëìXI$&ÂgfÖú¶7Ó´Þu|'K.ÌoP
+PÝÀùFË.Ðýoûò9B<~. ’ïÅË[’´˜Ë<Ù­„$¯•¢·ä{1¹A•.òbKxºL ¯Ý·'¯u8n5 ’ºe ,]ñH©–’ÆV¨ŒWwÃ$ùCƒel¹“|zys«™KŠi-ðqÊÝ¬bk,wnGÿâ;¥  ~ÖeÉrÍ’‰ÜÔ~'1`Vâ¦«¹-*[ÉñLÔKÄ'2@ŸÜþÐä»ª ²n‘Íß2¸Nß ˆÆ¶µG•¢ói/U¢µ'Eï@¦`Hæ¹˜;J•¼¼ÜŽÅ+Jén#»¼‚6Ú´—Ä¹G•ü¡NÒGð'—Z!öáí¸‰Wi»NJ @óàšAûÜZ|ª[¨ï$q}iÒ·µQbtTEC$œ’m…Îmo“LÒDüÜ;˜%gÏ?wêÁÅ·øîùovH0õÉa‡5£Ú*î Ø’ÃÌlÍ››S iyä”rÕO7ª“ž%L]Ý×%±ºÇhk ¶«·÷>v1­HB£®±ßÞÚd\(eoIx¢>3´6BS%ÌØá“(
+œÛf$Ãhýé¿¶åeÔŽôÚèHœ‚`Ý¶f{Fo©Yò¿Ôó@00uMb’z-ëìXI$&ÂgfÖú¶7Ó´Þu|'K.ÌoP
+PÝÀùFË.Ðýoûò9B<~. ’ïÅË[’´˜Ë<Ù­„$¯•¢·ä{1¹A•.òbKxºL ¯Ý·'¯u8n5 ’ºe ,]ñH©–’ÆV¨ŒWwÃ$ùCƒel¹“|zys«™KŠi-ðqÊÝ¬bk,wnGÿâ;¥  ~ÖeÉrÍ’‰ÜÔ~'1`Vâ¦«¹-*[ÉñLÔKÄ'2@ŸÜþÐä»ª ²n‘Íß2¸Nß ˆÆ¶µG•¢ói/U¢µ'Eï@¦`Hæ¹˜;J•¼¼ÜŽÅ+Jén#»¼‚6Ú´—Ä¹G•ü¡NÒGð'—Z!öáí¸‰Wi»NJ @óàšAûÜZ|ª[¨ï$q}iÒ·µQbtTEC$œ’m…Îmo“LÒDüÜ;˜%gÏ?wêÁÅ·øîùovH0õÉa‡5£Ú*î Ø’ÃÌlÍ››S iyä”rÕO7ª“ž%L]Ý×%±ºÇhk ¶«·÷>v1­HB£®±ßÞÚd\(eoIx¢>3´6BS%ÌØá“(
+œÛf$Ãhýé¿¶åeÔŽôÚèHœ‚`Ý¶f{Fo©Yò¿Ôó@00uMb’z-ëìXI$&ÂgfÖú¶7Ó´Þu|'K.ÌoP
+PÝÀùFË.Ðýoûò9B<~. ’ïÅË[’´˜Ë<Ù­„$¯•¢·ä{1¹A•.òbKxºL ¯Ý·'¯u8n5 ’ºe ,]ñH©–’ÆV¨ŒWwÃ$ùCƒel¹“|zys«™KŠi-ðqÊÝ¬bk,wnGÿâ;¥  ~ÖeÉrÍ’‰ÜÔ~'1`Vâ¦«¹-*[ÉñLÔKÄ'2@ŸÜþÐä»ª ²n‘Íß2¸Nß ˆÆ¶µG•¢ói/U¢µ'Eï@¦`Hæ¹˜;J•¼¼ÜŽÅ+Jén#»¼‚6Ú´—Ä¹G•ü¡NÒGð'—Z!öáí¸‰Wi»NJ @óàšAûÜZ|ª[¨ï$q}iÒ·µQbtTEC(Pi); <span class="comment">//é€’å½’åœ°è§£å†³å„å­é—®é¢˜</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">merge</span>(y1,...,yk); <span class="comment">//å°†å„å­é—®é¢˜åœ°è§£åˆå¹¶æˆä¸ºåŽŸé—®é¢˜çš„è§£</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>äººä»¬ä»Žå¤§é‡å®žè·µä¸­å‘çŽ°ï¼Œåœ¨ç”¨åˆ†æ²»æ³•è®¾è®¡ç®—æ³•æ—¶ï¼Œæœ€å¥½ä½¿å­é—®é¢˜çš„è§„æ¨¡å¤§è‡´ç›¸åŒã€‚å³å°†ä¸€ä¸ªå­—é—®é¢˜åˆ†æˆå¤§å°ç›¸ç­‰çš„kä¸ªå­é—®é¢˜çš„å¤„ç†æ–¹æ³•æ˜¯è¡Œä¹‹æœ‰æ•ˆçš„ã€‚è¿™ç§ä½¿å­é—®é¢˜è§„æ¨¡å¤§è‡´ç›¸ç­‰çš„åšæ³•å¥½æ˜¯å‡ºè‡ªä¸€ç§å¹³è¡¡å­é—®é¢˜çš„æ€æƒ³ï¼Œå®ƒå‡ ä¹Žæ€»æ˜¯æ¯”å­é—®é¢˜è§„æ¨¡ä¸ç­‰çš„åšæ³•è¦å¥½ã€‚</p>
 <h3 id="åº”ç”¨"><a href="#åº”ç”¨" class="headerlink" title="åº”ç”¨"></a>åº”ç”¨</h3><h4 id="1-Defective-Chessboard"><a href="#1-Defective-Chessboard" class="headerlink" title="1.Defective Chessboard"></a>1.Defective Chessboard</h4><p><img src="https://img.imgdb.cn/item/5fd8244f3ffa7d37b3812772.jpg" class="lazyload" data-srcset="https://img.imgdb.cn/item/5fd8244f3ffa7d37b3812772.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="å®žä¾‹"></p>
