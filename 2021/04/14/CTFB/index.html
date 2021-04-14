@@ -108,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header always shadow blur show"  >
+<header id="l_header" class="l_header always shadow blur "  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -391,7 +391,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper https://img.imgdb.cn/item/6076d08a8322e6675cb359d6.png focus' style="display: none;">
+        <div id="half" class='cover-wrapper post focus' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Home/HomePage_Background.jpg"></div>
           
@@ -462,7 +462,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-https://img.imgdb.cn/item/6076d08a8322e6675cb359d6.png" id="https://img.imgdb.cn/item/6076d08a8322e6675cb359d6.png" itemscope itemprop="blogPost">
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
 
 
@@ -532,9 +532,126 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h1 id="Volantis"><a href="#Volantis" class="headerlink" title="Volantis"></a>Volantis</h1>
+  <h1 id="Volantis"><a href="#Volantis" class="headerlink" title="Volantis"></a>Volantis</h1><h2 id="Github改动"><a href="#Github改动" class="headerlink" title="Github改动"></a>Github改动</h2><ul>
+<li>在博客仓库创建一个新的分支volantis；</li>
+<li>并在设置中，改为将volantis分支部署为页面。</li>
+</ul>
+<h2 id="本地博客文件夹改动"><a href="#本地博客文件夹改动" class="headerlink" title="本地博客文件夹改动"></a>本地博客文件夹改动</h2><ul>
+<li>创建一个新文件夹；</li>
+<li>git bash→hexo init；</li>
+<li>克隆volantis主题源码到themes文件夹下；</li>
+<li>修改站点配置文件，在提交中设置提交至git分支volantis；</li>
+<li>将原butterfly主题博客文件夹下的文章复制到现在volantis主题博客文件夹下；</li>
+<li>用vscode或其他编译器，进入到source/_post/文件夹下，搜索所有的cover:，均改为layout(这里是因为front-matter中属性cover在butterfly主题和volantis主题中起不同作用)；</li>
+<li>一键三连，可以开始使用volantis主题了。</li>
+</ul>
+
   
   
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://cheeseburgerim.github.io/2021/04/14/CTFB/>https://cheeseburgerim.github.io/2021/04/14/CTFB/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-14T21:36:05+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Apr 14, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Hexo/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Hexo</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Course/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Course</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Theme/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Theme</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Blog/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Blog</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/PersonalPage/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>PersonalPage</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/ChangeTheme/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>ChangeTheme</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Butterfly/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Butterfly</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cheeseburgerim.github.io/2021/04/14/CTFB/&title=蝴蝶主题修改为其他主体 - CheeseburgerIM&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cheeseburgerim.github.io/2021/04/14/CTFB/&title=蝴蝶主题修改为其他主体 - CheeseburgerIM&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cheeseburgerim.github.io/2021/04/14/CTFB/&title=蝴蝶主题修改为其他主体 - CheeseburgerIM&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
   
   
 
@@ -661,7 +778,7 @@ SSHkey一般在C盘用户下的个人用户文件夹中
 
 
     <div class='content'>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Github%E6%94%B9%E5%8A%A8"><span class="toc-text">Github改动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%8D%9A%E5%AE%A2%E6%96%87%E4%BB%B6%E5%A4%B9%E6%94%B9%E5%8A%A8"><span class="toc-text">本地博客文件夹改动</span></a></li></ol>
     </div>
   </section>
 
@@ -679,21 +796,21 @@ SSHkey一般在C盘用户下的个人用户文件夹中
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="蝴蝶主题修改为其他主体";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.add("show");
+  l_header.classList.remove("show");
   
   
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="none";
-    cover_wrapper.style.display="none";
+    cover_wrapper.id="half";
+    cover_wrapper.style.display="";
     
   
 </script>
