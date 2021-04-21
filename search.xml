@@ -74,7 +74,7 @@
       <link href="2021/04/14/CTFB/"/>
       <url>2021/04/14/CTFB/</url>
       
-        <content type="html"><![CDATA[<h1 id="volantis"><a class="markdownIt-Anchor" href="#volantis"></a> Volantis</h1><h2 id="github改动"><a class="markdownIt-Anchor" href="#github改动"></a> Github改动</h2><ul><li>在博客仓库创建一个新的分支volantis；</li><li>并在设置中，改为将volantis分支部署为页面。</li></ul><h2 id="本地博客文件夹改动"><a class="markdownIt-Anchor" href="#本地博客文件夹改动"></a> 本地博客文件夹改动</h2><ul><li>创建一个新文件夹；</li><li>git bash→hexo init；</li><li>克隆volantis主题源码到themes文件夹下；</li><li>修改站点配置文件，在提交中设置提交至git分支volantis；</li><li>将原butterfly主题博客文件夹下的文章复制到现在volantis主题博客文件夹下；</li><li>用vscode或其他编译器，进入到source/_post/文件夹下，搜索所有的cover:，均改为layout(这里是因为front-matter中属性cover在butterfly主题和volantis主题中起不同作用)；</li><li>一键三连，可以开始使用volantis主题了。</li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="volantis"><a class="markdownIt-Anchor" href="#volantis"></a> Volantis</h1><h2 id="github改动"><a class="markdownIt-Anchor" href="#github改动"></a> Github改动</h2><ul><li>在博客仓库创建一个新的分支volantis；</li><li>并在设置中，改为将volantis分支部署为页面。</li></ul><h2 id="本地博客文件夹改动"><a class="markdownIt-Anchor" href="#本地博客文件夹改动"></a> 本地博客文件夹改动</h2><ul><li>创建一个新文件夹；</li><li>git bash→hexo init；</li><li>克隆volantis主题源码到themes文件夹下；</li><li>修改站点配置文件，在提交中设置提交至git分支volantis；</li><li>将原butterfly主题博客文件夹下的文章复制到现在volantis主题博客文件夹下；</li><li>用vscode或其他编译器，进入到source/_post/文件夹下，搜索所有的&quot;cover:&quot;，均改为&quot;layout:&quot;(这里是因为front-matter中属性cover在butterfly主题和volantis主题中起不同作用)；</li><li>一键三连，可以开始使用volantis主题了。</li></ul>]]></content>
       
       
       <categories>
