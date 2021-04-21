@@ -106,7 +106,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header always shadow blur show"  >
+<header id="l_header" class="l_header always shadow blur "  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -389,7 +389,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper https://img.imgdb.cn/item/5fd84e3a3ffa7d37b3ae62c1.jpg focus' style="display: none;">
+        <div id="half" class='cover-wrapper post focus' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Home/HomePage_Background.jpg"></div>
           
@@ -460,7 +460,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
 
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-https://img.imgdb.cn/item/5fd84e3a3ffa7d37b3ae62c1.jpg" id="https://img.imgdb.cn/item/5fd84e3a3ffa7d37b3ae62c1.jpg" itemscope itemprop="blogPost">
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
 
 
@@ -530,10 +530,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
-  <h2 id="Pseudocode（伪代码）"><a href="#Pseudocode（伪代码）" class="headerlink" title="Pseudocode（伪代码）"></a>Pseudocode（伪代码）</h2><h2 id="Soving-Recurrences（解递归）"><a href="#Soving-Recurrences（解递归）" class="headerlink" title="Soving Recurrences（解递归）"></a>Soving Recurrences（解递归）</h2><h3 id="1-Recursion-tree"><a href="#1-Recursion-tree" class="headerlink" title="1.Recursion tree"></a>1.Recursion tree</h3><p><img src="https://img.imgdb.cn/item/5fd202493ffa7d37b3765357.jpg" class="lazyload" data-srcset="https://img.imgdb.cn/item/5fd202493ffa7d37b3765357.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="解递归树"></p>
+  <h2 id="Pseudocode（伪代码）"><a href="#Pseudocode（伪代码）" class="headerlink" title="Pseudocode（伪代码）"></a>Pseudocode（伪代码）</h2><h2 id="Soving-Recurrences（解递归）"><a href="#Soving-Recurrences（解递归）" class="headerlink" title="Soving Recurrences（解递归）"></a>Soving Recurrences（解递归）</h2><h3 id="1-Recursion-tree"><a href="#1-Recursion-tree" class="headerlink" title="1.Recursion tree"></a>1.Recursion tree</h3><p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/AlgorithmChapter/AlgorithmChapter3/1.jpg" class="lazyload" data-srcset="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/AlgorithmChapter/AlgorithmChapter3/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="解递归树"></p>
 <p>解T(n)=2T(n/2)+cn，其中c&gt;0为常数。递归展开到T(n0)，会导致推导的麻烦。所以解递归展开到T(1)，然后再从前n0个T(n)的值确定渐进分析的常数。</p>
 <p>继续展开得到</p>
-<p><img src="https://img.imgdb.cn/item/5fd2034e3ffa7d37b377516a.jpg" class="lazyload" data-srcset="https://img.imgdb.cn/item/5fd2034e3ffa7d37b377516a.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="完全展开"></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/AlgorithmChapter/AlgorithmChapter3/2.jpg" class="lazyload" data-srcset="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/AlgorithmChapter/AlgorithmChapter3/2.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="完全展开"></p>
 <p>Total=Θ(nlgn)。</p>
 <p>很多递归式用递归树解不出来，但递归树能提供直觉，帮助我们用归纳法求解(Guess归纳假设)</p>
 <p>较一般的递归式：T(n)=aT(n/b)+cn</p>
@@ -556,6 +556,110 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   
   
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://cheeseburgerim.github.io/2020/12/10/AlgorithmChapter3/>https://cheeseburgerim.github.io/2020/12/10/AlgorithmChapter3/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-21T11:15:45+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Apr 21, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Algorithm</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cheeseburgerim.github.io/2020/12/10/AlgorithmChapter3/&title=Analysis of Algorithms - CheeseburgerIM&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cheeseburgerim.github.io/2020/12/10/AlgorithmChapter3/&title=Analysis of Algorithms - CheeseburgerIM&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cheeseburgerim.github.io/2020/12/10/AlgorithmChapter3/&title=Analysis of Algorithms - CheeseburgerIM&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
   
   
 
@@ -705,21 +809,21 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="Analysis of Algorithms";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.add("show");
+  l_header.classList.remove("show");
   
   
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="none";
-    cover_wrapper.style.display="none";
+    cover_wrapper.id="half";
+    cover_wrapper.style.display="";
     
   
 </script>
