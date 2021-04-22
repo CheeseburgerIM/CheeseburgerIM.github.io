@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -24,9 +22,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>Tag: Course - CheeseburgerIM</title>
+  <title>数字逻辑与数字系统-Lab1 - CheeseburgerIM</title>
+  
+    <meta name="keywords" content="Study,Lab,MLAMS">
   
 
+  
+    <meta name="description" content="Math logic and math system<br>Lab1 多数表决器">
   
 
   <!-- feed -->
@@ -106,7 +108,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <body>
     
 
-<header id="l_header" class="l_header always shadow blur show"  >
+<header id="l_header" class="l_header always shadow blur "  >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -389,7 +391,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  focus' style="display: none;">
+        <div id="half" class='cover-wrapper post focus' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Home/HomePage_Background.jpg"></div>
           
@@ -459,306 +461,286 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper" id="pjax-container">
           
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
+
+
+  
+  <div class="article-meta" id="top">
     
-      
-  <section class="post-list">
     
-      
+    
+      <h1 class="title">
+        数字逻辑与数字系统-Lab1
+      </h1>
+      <div class='new-meta-box'>
         
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="" rel="nofollow">
+    <img no-lazy src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Home/Web_icon.jpg">
+    <p>Tony Pan</p>
+  </a>
+</div>
+
           
         
           
-        
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Lab/">Lab</a>
+    </a>
+  </div>
+
+
           
         
           
-        
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Apr 22, 2021</p>
+  </a>
+</div>
+
           
         
           
-        
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
       
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/14/CTFB/">
-        蝴蝶主题修改为其他主体
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>Change Theme From Butterfly.</p>
-    
+      <div id="lc-pv" data-title="数字逻辑与数字系统-Lab1" data-path="/2021/04/22/MLAMS-Lab1/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-14</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Course/">Course</a>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  
+  <center><font size=6>实验一 多数表决器的设计与实现</font></center>
+
+<span class='btn https://gitee.com/CheeseburgerIM/files/tree/master/Study/Lab/MLAMS/Lab1'><a class="button" href='far fa-hand-point-right' title='实验资料'><i class='blue larger'></i>实验资料</a></span>
+
+<span class='btn https://gitee.com/CheeseburgerIM/VscodeOnPC/tree/main/Verilog/LAB/LAB1'><a class="button" href='far fa-hand-point-right' title='实验源码'><i class='red larger'></i>实验源码</a></span>
+
+<h1 id="Phase1-基于集成电路模块"><a href="#Phase1-基于集成电路模块" class="headerlink" title="Phase1(基于集成电路模块)"></a>Phase1(基于集成电路模块)</h1><h2 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h2><blockquote>
+<p>采用 SystemVerilog HDL 的行为建模方法，完成 74LS138 和 74LS139 两种译码器的设计。</p>
+<p>基于 SystemVerilog HDL 的结构化建模方法，调用 74LS138 和 74LS139 两种译码器，以及若干基本逻辑门，完成 5 输入多数表 决器电路的设计（类似搭积木），并基于 Vivado 完成行为仿真、综合、实现、 生成比特流文件等操作，最终在远程 FPGA 硬件云平台上完成功能验证。</p>
+</blockquote>
+<h2 id="实验思路"><a href="#实验思路" class="headerlink" title="实验思路"></a>实验思路</h2><p>5输入多路表决器由1个2-4译码器和4个3-8译码器组成。5路输入的其中两路首先连到2-4译码器上，使能端始终为0，即2-4译码器输出均为有效输出。2-4译码器共有4个输出，每个输出为一位2进制数，每个输出均连接到一个3-8译码器的其中一个使能端，将另外两个使能端设置为有效值。5输入多数表决器应有2的5次方即32种结果，2-4译码器的输出有4种结果，3-8译码器的输出有8种结果，将每个2-4译码器的一个输出连接到3-8译码器使能端时，刚好4×8=32种输出。</p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/1.jpg" class="lazyload" data-srcset="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="1"></p>
+<h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><ol>
+<li> 打开 Vivado 2018.2 集成开发环境，创建一个名字为“voter_ic”的新工程；</li>
+<li> 添加第 1 个 SystemVerilog 设计源文件“dec_74LS138.sv”。根据表 1-1(在实验指导书中)， 采用行为建模方法，完成 3:8 译码器 74LS138 的设计；</li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns / 1ps</span></span><br><span class="line"><span class="keyword">module</span> dec_74LS138(</span><br><span class="line"><span class="keyword">input</span> [<span class="number">2</span>:<span class="number">0</span>]D,</span><br><span class="line"><span class="keyword">input</span> G,</span><br><span class="line"><span class="keyword">input</span> G2A,</span><br><span class="line"><span class="keyword">input</span> G2B,</span><br><span class="line"><span class="keyword">output</span> <span class="keyword">logic</span> [<span class="number">7</span>:<span class="number">0</span>]Y</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">logic</span> valid;</span><br><span class="line">        <span class="keyword">assign</span> valid=G&amp;(~G2A)&amp;(~G2B);</span><br><span class="line">        <span class="keyword">assign</span> Y[<span class="number">0</span>]=~(valid&amp;~D[<span class="number">2</span>]&amp;~D[<span class="number">1</span>]&amp;~D[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">assign</span> Y[<span class="number">1</span>]=~(valid&amp;~D[<span class="number">2</span>]&amp;~D[<span class="number">1</span>]&amp;D[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">assign</span> Y[<span class="number">2</span>]=~(valid&amp;~D[<span class="number">2</span>]&amp;D[<span class="number">1</span>]&amp;~D[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">assign</span> Y[<span class="number">3</span>]=~(valid&amp;~D[<span class="number">2</span>]&amp;D[<span class="number">1</span>]&amp;D[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">assign</span> Y[<span class="number">4</span>]=~(valid&amp;D[<span class="number">2</span>]&amp;~D[<span class="number">1</span>]&amp;~D[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">assign</span> Y[<span class="number">5</span>]=~(valid&amp;D[<span class="number">2</span>]&amp;~D[<span class="number">1</span>]&amp;D[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">assign</span> Y[<span class="number">6</span>]=~(valid&amp;D[<span class="number">2</span>]&amp;D[<span class="number">1</span>]&amp;~D[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">assign</span> Y[<span class="number">7</span>]=~(valid&amp;D[<span class="number">2</span>]&amp;D[<span class="number">1</span>]&amp;D[<span class="number">0</span>]);</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>添加第 2 个 SystemVerilog 设计源文件“dec_74LS139.sv”。根据表 1-2(在实验指导书中)， 采用行为建模方法，完成 2:4 译码器 74LS139 的设计；</li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns / 1ps</span></span><br><span class="line"><span class="keyword">module</span> dec_74LS139(</span><br><span class="line"><span class="keyword">input</span> S,</span><br><span class="line"><span class="keyword">input</span> [<span class="number">1</span>:<span class="number">0</span>]D,</span><br><span class="line"><span class="keyword">output</span> <span class="keyword">logic</span> [<span class="number">3</span>:<span class="number">0</span>]Y</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">assign</span> Y[<span class="number">0</span>]=~(~S&amp;~D[<span class="number">1</span>]&amp;~D[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">assign</span> Y[<span class="number">1</span>]=~(~S&amp;~D[<span class="number">1</span>]&amp;D[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">assign</span> Y[<span class="number">2</span>]=~(~S&amp;D[<span class="number">1</span>]&amp;~D[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">assign</span> Y[<span class="number">3</span>]=~(~S&amp;D[<span class="number">1</span>]&amp;D[<span class="number">0</span>]);</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li> 根据表 1-4(在实验指导书中)，采用 4 个 74LS138 模块、1 个 74LS139 模块和基本逻辑门 电路实现 5 输入多数表决器（这步不是在 Vivado 中完成，而是给出设计方案）；</li>
+<li>继续在工程 voter_ic 中添加第3 个 SystemVerilog 设计源文件“voter5.sv”。 然后，根据第(4)步的设计方案，采用结构化建模方法，通过实例化 74LS138 模 块、74LS139 模块以及基本逻辑门完成 5 输入多数表决器的设计；</li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns / 1ps</span></span><br><span class="line"><span class="keyword">module</span> voter5(</span><br><span class="line"><span class="keyword">input</span> [<span class="number">4</span>:<span class="number">0</span>]l,</span><br><span class="line"><span class="keyword">output</span> <span class="keyword">logic</span> led</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">logic</span> [<span class="number">3</span>:<span class="number">0</span>]lt;</span><br><span class="line">        dec_74LS139 lastTwo(<span class="number">0</span>,l[<span class="number">1</span>:<span class="number">0</span>],lt);</span><br><span class="line">        <span class="keyword">logic</span> [<span class="number">7</span>:<span class="number">0</span>]ft1;</span><br><span class="line">        <span class="keyword">logic</span> [<span class="number">7</span>:<span class="number">0</span>]ft2;</span><br><span class="line">        <span class="keyword">logic</span> [<span class="number">7</span>:<span class="number">0</span>]ft3;</span><br><span class="line">        <span class="keyword">logic</span> [<span class="number">7</span>:<span class="number">0</span>]ft4;</span><br><span class="line">        dec_74LS138 firstThree1(l[<span class="number">4</span>:<span class="number">2</span>],<span class="number">1</span>,lt[<span class="number">0</span>],<span class="number">0</span>,ft1);<span class="comment">//0 00</span></span><br><span class="line">        dec_74LS138 firstThree2(l[<span class="number">4</span>:<span class="number">2</span>],<span class="number">1</span>,lt[<span class="number">1</span>],<span class="number">0</span>,ft2);<span class="comment">//1 01</span></span><br><span class="line">        dec_74LS138 firstThree3(l[<span class="number">4</span>:<span class="number">2</span>],<span class="number">1</span>,lt[<span class="number">2</span>],<span class="number">0</span>,ft3);<span class="comment">//1 10</span></span><br><span class="line">        dec_74LS138 firstThree4(l[<span class="number">4</span>:<span class="number">2</span>],<span class="number">1</span>,lt[<span class="number">3</span>],<span class="number">0</span>,ft4);<span class="comment">//2 11</span></span><br><span class="line">        <span class="keyword">assign</span> led=(~ft1[<span class="number">7</span>])</span><br><span class="line">        ||(~ft2[<span class="number">3</span>])||(~ft2[<span class="number">5</span>])||(~ft2[<span class="number">6</span>])||(~ft2[<span class="number">7</span>])</span><br><span class="line">        ||(~ft3[<span class="number">3</span>])||(~ft3[<span class="number">5</span>])||(~ft3[<span class="number">6</span>])||(~ft3[<span class="number">7</span>])</span><br><span class="line">        ||(~ft4[<span class="number">1</span>])||(~ft4[<span class="number">2</span>])||(~ft4[<span class="number">3</span>])||(~ft4[<span class="number">4</span>])||(~ft4[<span class="number">5</span>])||(~ft4[<span class="number">6</span>])||(~ft4[<span class="number">7</span>]);</span><br><span class="line">        <span class="comment">// &amp;&amp;(ft4[0]);</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>编写测试程序“voter5_tb.sv”，对 5 输入多数表决器进行行为仿真，验证 其逻辑功能是否正确；</li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns / 1ps</span></span><br><span class="line"><span class="keyword">module</span> voter5_tb(</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">logic</span> [<span class="number">4</span>:<span class="number">0</span>] I;</span><br><span class="line">    <span class="keyword">logic</span> led;</span><br><span class="line">    voter5 dut(<span class="variable">.l</span>(I),<span class="variable">.led</span>(led));</span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        I=<span class="number">5&#x27;b00000</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b00001</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b00010</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b10010</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b11000</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b11100</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b10110</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b10011</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b11110</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b11111</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b11011</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b01010</span>;#<span class="number">20</span>;</span><br><span class="line">        <span class="built_in">$finish</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="built_in">$monitor</span>(<span class="built_in">$time</span>,<span class="string">&quot;I=%b,led=%b&quot;</span>,I,led);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>如果仿真通过，则继续完成添加约束文件、综合、实现和生成比特流等 设计流程；</li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#Constraints of <span class="keyword">input</span> ports l</span><br><span class="line">set_property -dict &#123;PACKAGE_PIN B9  IOSTANDARD LVCMOS33&#125; [get_ports &#123;l[<span class="number">0</span>]&#125;];</span><br><span class="line">set_property -dict &#123;PACKAGE_PIN D11  IOSTANDARD LVCMOS33&#125; [get_ports &#123;l[<span class="number">1</span>]&#125;];</span><br><span class="line">set_property -dict &#123;PACKAGE_PIN B11  IOSTANDARD LVCMOS33&#125; [get_ports &#123;l[<span class="number">2</span>]&#125;];</span><br><span class="line">set_property -dict &#123;PACKAGE_PIN B12  IOSTANDARD LVCMOS33&#125; [get_ports &#123;l[<span class="number">3</span>]&#125;];</span><br><span class="line">set_property -dict &#123;PACKAGE_PIN A10  IOSTANDARD LVCMOS33&#125; [get_ports &#123;l[<span class="number">4</span>]&#125;];</span><br><span class="line"></span><br><span class="line">#Constraints of <span class="keyword">output</span> ports led</span><br><span class="line">set_property -dict &#123;PACKAGE_PIN K13  IOSTANDARD LVCMOS33&#125; [get_ports &#123;led&#125;];</span><br><span class="line"></span><br><span class="line">set_property BITSTREAM GENERAL<span class="variable">.COMPRESS</span> TRUE [current_design]</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>登录远程 FPGA 硬件云平台，参照“基于 Vivado 和远程硬件平台的数字 逻辑电路设计流程”一文，按照如图 1-4 (在实验指导书中)所示，在实验画纸搭建验证平台，然后， 将所生成的 bin 文件下载到远程 FPGA 之上完成功能验证。</li>
+</ol>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><h3 id="仿真结果"><a href="#仿真结果" class="headerlink" title="仿真结果"></a>仿真结果</h3><p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/3.png" class="lazyload" data-srcset="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="3"></p>
+<h3 id="波形图"><a href="#波形图" class="headerlink" title="波形图"></a>波形图</h3><p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/4.png" class="lazyload" data-srcset="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/4.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="4"></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/5.png" class="lazyload" data-srcset="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/5.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="5"></p>
+<h3 id="FPGA测试"><a href="#FPGA测试" class="headerlink" title="FPGA测试"></a>FPGA测试</h3><p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/6.png" class="lazyload" data-srcset="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/6.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="6"></p>
+<h1 id="Phase2-基于行为建模"><a href="#Phase2-基于行为建模" class="headerlink" title="Phase2(基于行为建模)"></a>Phase2(基于行为建模)</h1><h2 id="实验要求-1"><a href="#实验要求-1" class="headerlink" title="实验要求"></a>实验要求</h2><blockquote>
+<p> 不使用 74LS138 和 74LS139 芯片，直接使用行为建模的方法完成 5 输入多数 表决器电路的设计，并基于 Vivado 完成电路的行为仿真、综合、实现、生成 比特流文件等操作，最终在远程 FPGA 硬件云平台上完成功能验证。</p>
+</blockquote>
+<h2 id="实验步骤-1"><a href="#实验步骤-1" class="headerlink" title="实验步骤"></a>实验步骤</h2><ol>
+<li> 打开 Vivado 2018.2 集成开发环境，创建一个名为“voter_beh”的新工程；</li>
+<li>添加一个 SystemVerilog 设计源文件“voter5.sv”，采用行为建模的方式 完成 5 输入多数表决器电路的建模；</li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns / 1ps</span></span><br><span class="line"><span class="keyword">module</span> voter5(</span><br><span class="line">    <span class="keyword">input</span> [<span class="number">4</span>:<span class="number">0</span>]l,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">logic</span> led</span><br><span class="line">        );</span><br><span class="line">    <span class="keyword">assign</span> led=(l[<span class="number">0</span>]&amp;&amp;l[<span class="number">1</span>]&amp;&amp;l[<span class="number">2</span>])</span><br><span class="line">                ||(l[<span class="number">0</span>]&amp;&amp;l[<span class="number">1</span>]&amp;&amp;l[<span class="number">3</span>])</span><br><span class="line">                ||(l[<span class="number">0</span>]&amp;&amp;l[<span class="number">1</span>]&amp;&amp;l[<span class="number">4</span>])</span><br><span class="line">                ||(l[<span class="number">0</span>]&amp;&amp;l[<span class="number">2</span>]&amp;&amp;l[<span class="number">3</span>])</span><br><span class="line">                ||(l[<span class="number">0</span>]&amp;&amp;l[<span class="number">2</span>]&amp;&amp;l[<span class="number">4</span>])</span><br><span class="line">                ||(l[<span class="number">0</span>]&amp;&amp;l[<span class="number">3</span>]&amp;&amp;l[<span class="number">4</span>])</span><br><span class="line">                ||(l[<span class="number">1</span>]&amp;&amp;l[<span class="number">2</span>]&amp;&amp;l[<span class="number">3</span>])</span><br><span class="line">                ||(l[<span class="number">1</span>]&amp;&amp;l[<span class="number">2</span>]&amp;&amp;l[<span class="number">4</span>])</span><br><span class="line">                ||(l[<span class="number">1</span>]&amp;&amp;l[<span class="number">3</span>]&amp;&amp;l[<span class="number">4</span>])</span><br><span class="line">                ||(l[<span class="number">2</span>]&amp;&amp;l[<span class="number">3</span>]&amp;&amp;l[<span class="number">4</span>]);</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>编写测试程序“voter5_tb.sv”，对 5 输入多数表决器进行行为仿真，验证 其逻辑功能是否正确；</li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns / 1ps</span></span><br><span class="line"><span class="keyword">module</span> voter5_tb(</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">logic</span> [<span class="number">4</span>:<span class="number">0</span>] I;</span><br><span class="line">    <span class="keyword">logic</span> led;</span><br><span class="line">    voter5 dut(<span class="variable">.l</span>(I),<span class="variable">.led</span>(led));</span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        I=<span class="number">5&#x27;b11111</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b11110</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b11101</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b01101</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b00111</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b00011</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b01001</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b01100</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b00001</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b00000</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b00100</span>;#<span class="number">20</span>;</span><br><span class="line">        I=<span class="number">5&#x27;b10101</span>;#<span class="number">20</span>;</span><br><span class="line">        <span class="built_in">$finish</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="built_in">$monitor</span>(<span class="built_in">$time</span>,<span class="string">&quot;I=%b,led=%b&quot;</span>,I,led);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>如果仿真通过，则继续完成添加约束文件、综合、实现和生成比特流等 设计流程；</li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#Constraints of <span class="keyword">input</span> ports l</span><br><span class="line">set_property -dict &#123;PACKAGE_PIN B9  IOSTANDARD LVCMOS33&#125; [get_ports &#123;l[<span class="number">0</span>]&#125;];</span><br><span class="line">set_property -dict &#123;PACKAGE_PIN D11  IOSTANDARD LVCMOS33&#125; [get_ports &#123;l[<span class="number">1</span>]&#125;];</span><br><span class="line">set_property -dict &#123;PACKAGE_PIN B11  IOSTANDARD LVCMOS33&#125; [get_ports &#123;l[<span class="number">2</span>]&#125;];</span><br><span class="line">set_property -dict &#123;PACKAGE_PIN B12  IOSTANDARD LVCMOS33&#125; [get_ports &#123;l[<span class="number">3</span>]&#125;];</span><br><span class="line">set_property -dict &#123;PACKAGE_PIN A10  IOSTANDARD LVCMOS33&#125; [get_ports &#123;l[<span class="number">4</span>]&#125;];</span><br><span class="line"></span><br><span class="line">#Constraints of <span class="keyword">output</span> ports led</span><br><span class="line">set_property -dict &#123;PACKAGE_PIN K13  IOSTANDARD LVCMOS33&#125; [get_ports &#123;led&#125;];</span><br><span class="line"></span><br><span class="line">set_property BITSTREAM GENERAL<span class="variable">.COMPRESS</span> TRUE [current_design]</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>参照阶段 1，在远程 FPGA 硬件云平台上完成功能验证。</li>
+</ol>
+<h2 id="实验结果-1"><a href="#实验结果-1" class="headerlink" title="实验结果"></a>实验结果</h2><h3 id="仿真结果-1"><a href="#仿真结果-1" class="headerlink" title="仿真结果"></a>仿真结果</h3><p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/7.png" class="lazyload" data-srcset="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/7.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="3"></p>
+<h3 id="波形图-1"><a href="#波形图-1" class="headerlink" title="波形图"></a>波形图</h3><p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/8.png" class="lazyload" data-srcset="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/8.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="4"></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/9.png" class="lazyload" data-srcset="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/9.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="5"></p>
+<h3 id="FPGA测试-1"><a href="#FPGA测试-1" class="headerlink" title="FPGA测试"></a>FPGA测试</h3><p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/10.png" class="lazyload" data-srcset="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/10.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="6"></p>
+<h1 id="附加题"><a href="#附加题" class="headerlink" title="附加题"></a>附加题</h1><blockquote>
+<p>只采用74LS138译码器和一些基本逻辑门，是否也可以完成5输入多数表决器的设计？如果可以，请画出原理图。</p>
+</blockquote>
+<p>74LS139也就是2-4译码器，可以由一些基本逻辑门组成。所以只要三、实验原理与步骤中的原理图中的2-4译码器换成下图即可只采用74LS138译码器和一些基本逻辑门就可完成5输入多路表决器的设计。</p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/2.jpg" class="lazyload" data-srcset="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab1/2.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="2"></p>
+<h1 id="番外话"><a href="#番外话" class="headerlink" title="番外话"></a>番外话</h1><p>​        在本次实验中，我们学习了组合逻辑电路的设计方法，包括行为建模、结构 化建模。特别是我们讲解了基于集成电路模块的数字逻辑电路设计。在实际工程 设计中，搭建一个复杂的数字系统并不需要完全从零开始进行设计。通常采用的 方法就是选取一些已有的（开源或付费）、已经经过验证的集成电路模块，对其 进行集成从而完成最终设计。这种设计方法称为可重用设计方法学，而这些集成 电路模块称为 IP 核。 </p>
+<p>​        在现代数字集成电路设计中，可重用设计方法学至关重要，也就是说某个模 块会被多个数字系统重复使用。支持可重用设计方法学的基础就是 IP 核，即知 识产权核（Intellectual Property），它是指某一方提供的、预先设计好的并已经经 过验证的、具有某种确定功能的可重用逻辑模块。设计人员常以 IP 核为基础进 行数字系统设计，可以大大缩短设计所需的周期，也降低了设计难度。因此，现 代数字系统的设计人员更多关注的并非模块的设计，而是模块（IP 核）的集成。 IP 核主要分为两大类，软核和硬核。 </p>
+<p>⚫ 软核：与具体工艺无关的、可综合的 HDL 代码，其优点是灵活性高、可移植 性强，允许用户自配置；缺点是对模块的预测性较低，在后续设计中存在发 生错误的可能性，有一定的设计风险。软核是 IP 核应用最广泛的形式。本实 验中所设计的 74LS138 和 74LS139 模块就是一种软核。 </p>
+<p>⚫ 硬核：与具体工艺相关的、经过了布局布线和验证的网表文件，设计人员不 能对其进行修改。其优点是模块具有稳定的性能、正确性得以最大的保障、 设计风险几乎为零；缺点是灵活性差、不能修改、使用范围窄。 </p>
+<p>​        Vivado 集成开发环境提倡的是积木式的设计，设计者将功能性模块做成一 个一个的 IP 核，然后组装起来成为产品。Vivado 本身也提供了很多 IP 核供设计 者使用，例如算术运算（乘法、除法、浮点运算等）、信号处理（FFT、DFT）、图 像处理、各类存储器等（在 Vivado 的流程导航栏中选择 PROJECT Manager → IP Catalog 即可调出 Vivado 的 IP 库，查看其所提供的所有 IP 核）。另外，设计 者也可以使用第三方 IP 核来加快设计。当然设计者也可以开发自己的 IP 核，然 后在各个工程中调用或提供给第三方使用。</p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/04/14/CTFB/'>
-            Read More
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://cheeseburgerim.github.io/2021/04/22/MLAMS-Lab1/>https://cheeseburgerim.github.io/2021/04/22/MLAMS-Lab1/</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-22T21:42:18+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Apr 22, 2021</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
+          
   
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/04/12/WTDWIBANC/">
-        New Computer
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>What To Do When I Buy A New Computer.</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-04-12</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Course/">Course</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/04/12/WTDWIBANC/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Study/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Study</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Lab/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Lab</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/MLAMS/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>MLAMS</p></a></div>
 
-</div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/03/22/STFIOG/">
-        解决Github官网打不开的问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>Solution to failing in opening Github</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-03-22</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Solution/">Solution</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/03/22/STFIOG/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/26/Course-js/">
-        Course-js
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-02-26</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Code/">Code</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/26/Course-js/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/22/Course-css/">
-        Course-css
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-02-22</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Code/">Code</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/02/22/Course-css/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/02/17/Course-html/">
-        Course for HTML
-      </a>
-    </h2>
-  
-  <div class='md'>
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        教程
-超文本标记语言（英语：HyperText Markup Language，简称：HTML）是一种用于创建网页的标准标记语言；
-可以使用 HTML 来建立自己的 WEB 站点，HTML 运行在浏览器上，由浏览器来解析；
-
-HTML实例1234567891011121314&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta chars...
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cheeseburgerim.github.io/2021/04/22/MLAMS-Lab1/&title=数字逻辑与数字系统-Lab1 - CheeseburgerIM&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://cheeseburgerim.github.io/2021/04/22/MLAMS-Lab1/&title=数字逻辑与数字系统-Lab1 - CheeseburgerIM&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://cheeseburgerim.github.io/2021/04/22/MLAMS-Lab1/&title=数字逻辑与数字系统-Lab1 - CheeseburgerIM&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+</div>
+
+
+
         
-        <time>2021-02-17</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Code/">Code</a>
-        
-      </div>
       
-        <div>
-          <a class='readmore' href='/2021/02/17/Course-html/'>
-            Read More
-          </a>
-        </div>
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2021/04/21/MLAMS-Part4/'>
+          <p class='title'>数字逻辑与数字系统-Part4<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Chapter4</p>
+        </a>
       
     </div>
   
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
+</article>
 
 
-    
-  
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -839,170 +821,29 @@ HTML实例1234567891011121314&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;me
   
     
     
-  
 
-  <section class="widget category shadow desktop">
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/Algorithm/" href="/categories/Algorithm/"
-            id="categoriesAlgorithm"
-            ><div class='name'>Algorithm</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Code/" href="/categories/Code/"
-            id="categoriesCode"
-            ><div class='name'>Code</div><div class='badge'>(9)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Course/" href="/categories/Course/"
-            id="categoriesCourse"
-            ><div class='name'>Course</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/DataBase/" href="/categories/DataBase/"
-            id="categoriesDataBase"
-            ><div class='name'>DataBase</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Game/" href="/categories/Game/"
-            id="categoriesGame"
-            ><div class='name'>Game</div><div class='badge'>(5)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Guidance/" href="/categories/Guidance/"
-            id="categoriesGuidance"
-            ><div class='name'>Guidance</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Humanity/" href="/categories/Humanity/"
-            id="categoriesHumanity"
-            ><div class='name'>Humanity</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/IM/" href="/categories/IM/"
-            id="categoriesIM"
-            ><div class='name'>IM</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Introduction/" href="/categories/Introduction/"
-            id="categoriesIntroduction"
-            ><div class='name'>Introduction</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Lab/" href="/categories/Lab/"
-            id="categoriesLab"
-            ><div class='name'>Lab</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Language/" href="/categories/Language/"
-            id="categoriesLanguage"
-            ><div class='name'>Language</div><div class='badge'>(10)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/New/" href="/categories/New/"
-            id="categoriesNew"
-            ><div class='name'>New</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Notification/" href="/categories/Notification/"
-            id="categoriesNotification"
-            ><div class='name'>Notification</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/OS/" href="/categories/OS/"
-            id="categoriesOS"
-            ><div class='name'>OS</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Physics/" href="/categories/Physics/"
-            id="categoriesPhysics"
-            ><div class='name'>Physics</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Postgraduate/" href="/categories/Postgraduate/"
-            id="categoriesPostgraduate"
-            ><div class='name'>Postgraduate</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Rubik-sCube/" href="/categories/Rubik-sCube/"
-            id="categoriesRubik-sCube"
-            ><div class='name'>Rubik'sCube</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Solution/" href="/categories/Solution/"
-            id="categoriesSolution"
-            ><div class='name'>Solution</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Study/" href="/categories/Study/"
-            id="categoriesStudy"
-            ><div class='name'>Study</div><div class='badge'>(12)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82"><span class="toc-text">实验要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%80%9D%E8%B7%AF"><span class="toc-text">实验思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4"><span class="toc-text">实验步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-text">实验结果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BF%E7%9C%9F%E7%BB%93%E6%9E%9C"><span class="toc-text">仿真结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A2%E5%BD%A2%E5%9B%BE"><span class="toc-text">波形图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FPGA%E6%B5%8B%E8%AF%95"><span class="toc-text">FPGA测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82-1"><span class="toc-text">实验要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-1"><span class="toc-text">实验步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C-1"><span class="toc-text">实验结果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BF%E7%9C%9F%E7%BB%93%E6%9E%9C-1"><span class="toc-text">仿真结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A2%E5%BD%A2%E5%9B%BE-1"><span class="toc-text">波形图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FPGA%E6%B5%8B%E8%AF%95-1"><span class="toc-text">FPGA测试</span></a></li></ol></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/Algorithm/" style="font-size: 20.36px; color: #6e6e6e">Algorithm</a> <a href="/tags/Blog/" style="font-size: 14px; color: #999">Blog</a> <a href="/tags/Butterfly/" style="font-size: 14px; color: #999">Butterfly</a> <a href="/tags/COC/" style="font-size: 14px; color: #999">COC</a> <a href="/tags/ChangeDomainName/" style="font-size: 14px; color: #999">ChangeDomainName</a> <a href="/tags/ChangeTheme/" style="font-size: 14px; color: #999">ChangeTheme</a> <a href="/tags/Code/" style="font-size: 23.09px; color: #5b5b5b">Code</a> <a href="/tags/CodeExercise/" style="font-size: 16.73px; color: #868686">CodeExercise</a> <a href="/tags/ComputerNetwork/" style="font-size: 14px; color: #999">ComputerNetwork</a> <a href="/tags/Course/" style="font-size: 18.55px; color: #7a7a7a">Course</a> <a href="/tags/Daily/" style="font-size: 14.91px; color: #939393">Daily</a> <a href="/tags/DataBase/" style="font-size: 14px; color: #999">DataBase</a> <a href="/tags/DataBasePrinciple/" style="font-size: 14px; color: #999">DataBasePrinciple</a> <a href="/tags/Design/" style="font-size: 15.82px; color: #8d8d8d">Design</a> <a href="/tags/Exercise/" style="font-size: 15.82px; color: #8d8d8d">Exercise</a> <a href="/tags/Fun/" style="font-size: 16.73px; color: #868686">Fun</a> <a href="/tags/GTAV/" style="font-size: 14px; color: #999">GTAV</a> <a href="/tags/Game/" style="font-size: 17.64px; color: #808080">Game</a> <a href="/tags/Git/" style="font-size: 14.91px; color: #939393">Git</a> <a href="/tags/Github/" style="font-size: 14px; color: #999">Github</a> <a href="/tags/Guidance/" style="font-size: 14px; color: #999">Guidance</a> <a href="/tags/Hexo/" style="font-size: 14.91px; color: #939393">Hexo</a> <a href="/tags/Humanity/" style="font-size: 14px; color: #999">Humanity</a> <a href="/tags/IM/" style="font-size: 14px; color: #999">IM</a> <a href="/tags/Introduction/" style="font-size: 19.45px; color: #747474">Introduction</a> <a href="/tags/Java/" style="font-size: 20.36px; color: #6e6e6e">Java</a> <a href="/tags/LOL/" style="font-size: 14px; color: #999">LOL</a> <a href="/tags/Lab/" style="font-size: 16.73px; color: #868686">Lab</a> <a href="/tags/Language/" style="font-size: 21.27px; color: #686868">Language</a> <a href="/tags/MLAMS/" style="font-size: 17.64px; color: #808080">MLAMS</a> <a href="/tags/Markdown/" style="font-size: 14px; color: #999">Markdown</a> <a href="/tags/Marxism/" style="font-size: 14px; color: #999">Marxism</a> <a href="/tags/NCMAM/" style="font-size: 14px; color: #999">NCMAM</a> <a href="/tags/NEMU/" style="font-size: 14px; color: #999">NEMU</a> <a href="/tags/NOWCODER/" style="font-size: 14.91px; color: #939393">NOWCODER</a> <a href="/tags/New/" style="font-size: 16.73px; color: #868686">New</a> <a href="/tags/NewBeginning/" style="font-size: 14px; color: #999">NewBeginning</a> <a href="/tags/NewComputer/" style="font-size: 14px; color: #999">NewComputer</a> <a href="/tags/Notification/" style="font-size: 14px; color: #999">Notification</a> <a href="/tags/OS/" style="font-size: 20.36px; color: #6e6e6e">OS</a> <a href="/tags/PTA/" style="font-size: 14px; color: #999">PTA</a> <a href="/tags/PersonalPage/" style="font-size: 14px; color: #999">PersonalPage</a> <a href="/tags/Physics/" style="font-size: 14px; color: #999">Physics</a> <a href="/tags/Postgraduate/" style="font-size: 17.64px; color: #808080">Postgraduate</a> <a href="/tags/Practice/" style="font-size: 15.82px; color: #8d8d8d">Practice</a> <a href="/tags/Programme/" style="font-size: 22.18px; color: #616161">Programme</a> <a href="/tags/RO/" style="font-size: 14px; color: #999">RO</a> <a href="/tags/Recreation/" style="font-size: 18.55px; color: #7a7a7a">Recreation</a> <a href="/tags/Rubik-sCube/" style="font-size: 14px; color: #999">Rubik'sCube</a> <a href="/tags/Solution/" style="font-size: 14px; color: #999">Solution</a> <a href="/tags/Study/" style="font-size: 24px; color: #555">Study</a> <a href="/tags/Theme/" style="font-size: 14px; color: #999">Theme</a> <a href="/tags/To-The-Moon/" style="font-size: 14px; color: #999">To The Moon</a> <a href="/tags/Website/" style="font-size: 15.82px; color: #8d8d8d">Website</a> <a href="/tags/css/" style="font-size: 14px; color: #999">css</a> <a href="/tags/fun/" style="font-size: 14.91px; color: #939393">fun</a> <a href="/tags/html/" style="font-size: 14px; color: #999">html</a> <a href="/tags/js/" style="font-size: 14px; color: #999">js</a> <a href="/tags/postgraduate/" style="font-size: 14px; color: #999">postgraduate</a>
-    </div>
-  </section>
-
-
-  
-
-  
-    
-    
-
-<section class="widget qrcode shadow desktop mobile">
-  
-
-  <div class='content article-entry'>
-    
-      <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'
-      
-        height='64px'
-      />
-    
-      <img src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png'
-      
-        height='64px'
-      />
-    
-  </div>
-</section>
 
   
 
 
 </aside>
+
 
 
 		  
@@ -1011,21 +852,21 @@ HTML实例1234567891011121314&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;me
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="数字逻辑与数字系统-Lab1";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   // header 这里无论是否开启pjax都需要
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.add("show");
+  l_header.classList.remove("show");
   
   
     // cover
     var cover_wrapper=document.querySelector('.cover-wrapper');
     
-    cover_wrapper.id="none";
-    cover_wrapper.style.display="none";
+    cover_wrapper.id="half";
+    cover_wrapper.style.display="";
     
   
 </script>
