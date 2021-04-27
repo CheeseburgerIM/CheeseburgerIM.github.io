@@ -599,11 +599,11 @@
     
     
     <entry>
-      <title>计算机网络-Part1</title>
+      <title>计算机网络-层次划分</title>
       <link href="2021/03/10/ComputerNetwork-Part1/"/>
       <url>2021/03/10/ComputerNetwork-Part1/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<center><b><font size=8>计算机网络层次划分</font></b></center><center><a class="btn-beautify button--animated red larger" href="https://cheeseburgerim.github.io/"   title="应用层(Application Layer)"><i class="far fa-hand-point-right fa-fw"></i><span>应用层(Application Layer)</span></a></center><center><a class="btn-beautify button--animated light green larger" href="https://cheeseburgerim.github.io/"   title="传输层(Transport Layer)"><i class="far fa-hand-point-right fa-fw"></i><span>传输层(Transport Layer)</span></a></center><center><a class="btn-beautify button--animated larger" href="https://cheeseburgerim.github.io/"   title="网络层(Network Layer)"><i class="far fa-hand-point-right fa-fw"></i><span>网络层(Network Layer)</span></a></center><center><a class="btn-beautify button--animated purple larger" href="https://cheeseburgerim.github.io/"   title="链路层(Link Layer)"><i class="far fa-hand-point-right fa-fw"></i><span>链路层(Link Layer)</span></a></center><center><a class="btn-beautify button--animated blue larger" href="https://cheeseburgerim.github.io/"   title="物理层(Physics Layer)"><i class="far fa-hand-point-right fa-fw"></i><span>物理层(Physics Layer)</span></a></center>]]></content>
       
       
       <categories>
