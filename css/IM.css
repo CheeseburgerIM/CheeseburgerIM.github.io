@@ -2,17 +2,34 @@
 /* @import url('https://fonts.font.im/css?family=Dancing+Script|Playfair+Display'); */
 
 /*mouse effect*/
-body {
+body,
+html {
     /* cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/default.cur), */
     cursor: url(normal.cur),
-        default;
+        auto;
 }
 a,
+a:hover,
+i:hover,
+button:hover,
 text,
-img {
+img,
+#nav #menus:hover,
+#footer-wrap a:hover,
+#pagination .page-number:hover,
+#nav .site-page:hover,
+#rightside_config:hover,
+#go-up:hover,
+#darkmode:hover,
+#hide-aside-btn:hover,
+#calendar .cal-head .cal-title a,
+#calendar .cal-head .cal-prev:hover,
+#calendar .cal-head .cal-next:hover,
+#calendar .cal .cal-foot:hover,
+#calendar .cal a {
     /* cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/pointer.cur), */
     cursor: url(unavailable.cur),
-        default;
+        auto;
 }
 
 /*roll*/
