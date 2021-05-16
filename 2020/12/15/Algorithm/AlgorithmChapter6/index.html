@@ -1,0 +1,805 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dynamic Programming | CheeseburgerIM</title><meta name="keywords" content="Algorithm"><meta name="author" content="Tony Pan"><meta name="copyright" content="Tony Pan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="动态规划  应用  0&#x2F;1背包问题 矩阵乘法链 最短路径 最长公共子序列   原理  从算法设计的角度看，动态规划是一种在各个不同大小(size)的子问题的优化值之间建立递归关系并求解的过程； 能用动态规划求解的问题必须满足优化原理：优化解包含的子问题的解也是优化的； 利用优化原理，使用枚举法建立不同长度子问题的优化值之间的递归关系——动态规划方程； 动态规划得到的是精确解； 子问题的数目决定算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dynamic Programming">
+<meta property="og:url" content="https://cheeseburgerim.github.io/2020/12/15/Algorithm/AlgorithmChapter6/index.html">
+<meta property="og:site_name" content="CheeseburgerIM">
+<meta property="og:description" content="动态规划  应用  0&#x2F;1背包问题 矩阵乘法链 最短路径 最长公共子序列   原理  从算法设计的角度看，动态规划是一种在各个不同大小(size)的子问题的优化值之间建立递归关系并求解的过程； 能用动态规划求解的问题必须满足优化原理：优化解包含的子问题的解也是优化的； 利用优化原理，使用枚举法建立不同长度子问题的优化值之间的递归关系——动态规划方程； 动态规划得到的是精确解； 子问题的数目决定算">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.imgdb.cn/item/5fd889143ffa7d37b3f082a9.jpg">
+<meta property="article:published_time" content="2020-12-15T09:55:46.000Z">
+<meta property="article:modified_time" content="2021-04-10T02:55:24.539Z">
+<meta property="article:author" content="Tony Pan">
+<meta property="article:tag" content="Algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.imgdb.cn/item/5fd889143ffa7d37b3f082a9.jpg"><link rel="shortcut icon" href="/img/IronMan.jpg"><link rel="canonical" href="https://cheeseburgerim.github.io/2020/12/15/Algorithm/AlgorithmChapter6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://fonts.font.im/css?family=Dancing+Script|Playfair+Display"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-10 10:55:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/IM.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_2260265_yn4j21lmjpj.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@master/hexo/css/GalMenu.css"><link rel="stylesheet" href="/css/cover.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"><link rel="stylesheet" href="/css/about.css"><link rel="stylesheet" href="/css/piano.css"><link rel="stylesheet" href="/css/comment.css"><link rel="stylesheet" href="font-awesome.min.css"><link rel="stylesheet" href="font-awesome-animation.min.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiperstyle.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><img class="load-image" src="https://img.imgdb.cn/item/605c3b918322e6675c8e9260.gif" alt=""/></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Home/Avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">71</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">68</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">21</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> Articles</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page" href="/Motto/"><i class="fa-fw fas fa-pencil-alt"></i><span> Motto</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/IronMan/"><i class="fa-fw fas fa-robot"></i><span> IronMan</span></a></li><li><a class="site-page" href="/Movie/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw far fa-image"></i><span> Gallery</span></a></li><li><a class="site-page" href="/Accounts/"><i class="fa-fw fas fa-user-circle"></i><span> Accounts</span></a></li><li><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-tv"></i><span> Animation</span></a></li><li><a class="site-page" href="/emoji/"><i class="fa-fw far fa-laugh"></i><span> Emoji</span></a></li><li><a class="site-page" href="/GoodGifs/"><i class="fa-fw fas fa-file-video"></i><span> GoodGifs</span></a></li><li><a class="site-page" href="/HappyTime/"><i class="fa-fw fa fa-gamepad"></i><span> HappyTime</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://travellings.now.sh"><i class="fa-fw fas fa-subway"></i><span> Travelling</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://img.imgdb.cn/item/5fd889143ffa7d37b3f082a9.jpg)"><nav id="nav" style="opacity: 1; animation: 1s ease 0s 1 normal none running headerNoOpacity;"><span id="blog_name"><div id="clock" style="display:inline"><canvas id="particleClockCanvas" style="width:100px;margin-bottom:-10px;margin-right:15px;" width="820" height="250"></canvas><script src="js/clock.js"></script></div></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> Articles</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page" href="/Motto/"><i class="fa-fw fas fa-pencil-alt"></i><span> Motto</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/IronMan/"><i class="fa-fw fas fa-robot"></i><span> IronMan</span></a></li><li><a class="site-page" href="/Movie/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw far fa-image"></i><span> Gallery</span></a></li><li><a class="site-page" href="/Accounts/"><i class="fa-fw fas fa-user-circle"></i><span> Accounts</span></a></li><li><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-tv"></i><span> Animation</span></a></li><li><a class="site-page" href="/emoji/"><i class="fa-fw far fa-laugh"></i><span> Emoji</span></a></li><li><a class="site-page" href="/GoodGifs/"><i class="fa-fw fas fa-file-video"></i><span> GoodGifs</span></a></li><li><a class="site-page" href="/HappyTime/"><i class="fa-fw fa fa-gamepad"></i><span> HappyTime</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://travellings.now.sh"><i class="fa-fw fas fa-subway"></i><span> Travelling</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">Dynamic Programming</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-12-15T09:55:46.000Z" title="Created 2020-12-15 17:55:46">2020-12-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-04-10T02:55:24.539Z" title="Updated 2021-04-10 10:55:24">2021-04-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Algorithm/">Algorithm</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">3.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>15min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="动态规划"><a class="markdownIt-Anchor" href="#动态规划"></a> 动态规划</h2>
+<h3 id="应用"><a class="markdownIt-Anchor" href="#应用"></a> 应用</h3>
+<ul>
+<li>0/1背包问题</li>
+<li>矩阵乘法链</li>
+<li>最短路径</li>
+<li>最长公共子序列</li>
+</ul>
+<h3 id="原理"><a class="markdownIt-Anchor" href="#原理"></a> 原理</h3>
+<ul>
+<li>从算法设计的角度看，动态规划是一种在各个不同大小(size)的子问题的优化值之间建立递归关系并求解的过程；</li>
+<li>能用动态规划求解的问题必须满足优化原理：优化解包含的子问题的解也是优化的；</li>
+<li>利用优化原理，使用枚举法建立不同长度子问题的优化值之间的递归关系——动态规划方程；</li>
+<li>动态规划得到的是精确解；</li>
+<li>子问题的数目决定算法的复杂性；</li>
+<li>实现时要尽可能消去递归。</li>
+</ul>
+<h3 id="example多段图-最短路径"><a class="markdownIt-Anchor" href="#example多段图-最短路径"></a> Example：多段图-最短路径</h3>
+<p><img src="https://img.imgdb.cn/item/5fdc3a713ffa7d37b33fb1e7.jpg" alt="多段图" /></p>
+<ul>
+<li>多段图问题满足优化原理：最短路(1-&gt;3-&gt;5-&gt;7)上的子路径(3-&gt;5-&gt;7)是3到目的节点7在子图上的最短路；</li>
+<li>无论最短路的下一跳是{2，3，4}中的那个节点，其后的路径也应是最短路；</li>
+<li>节点1到目的的节点的最短路长度c(1)可从2，3，4到目的节点的最短路c(i)+节点1到这些节点的边成本cost(1,i)经枚举得到：c(1)=min{c(i)+cost(1,i)}，i∈{2，3，4}。</li>
+<li>但2，3，4到目的节点的最短长度c(2),c(3),c(4)还不知道；</li>
+<li>我们需计算c(2),c(3),c(4)；仍使用优化原理；</li>
+<li>一般情形：设c(i)为i到目的节点的最短路长度，A(i)为与i相邻的节点集合，有：c(i)=min{c(j)+cost(i,j)}，j∈A(i)；</li>
+<li>但c(i)由i到目的节点的子图在决定，和节点1怎样走到i没关系。</li>
+</ul>
+<p>多段图的动态规划算法</p>
+<ul>
+<li>从c(7)开始向前计算；</li>
+<li>初始c(7)=0；</li>
+<li>依次计算c(6),c(5),…,c(1)；</li>
+<li>c(6)=1，c(5)=2；</li>
+<li>c(4)=8+c(6)；</li>
+<li>c(3)=min{1+c(5),5+c(6)}；</li>
+<li>c(2)=min{7+c(5),6+c(6)}；</li>
+<li>c(1)=min{1+c(2),4+c(3),6+c(4)}；</li>
+<li>递归还可以从前向后。</li>
+</ul>
+<p>Example：0/1背包问题</p>
+<ul>
+<li>0/1背包问题的解指物品1,2,…,n的一种放法(x1,x2,…,xn的0/1赋值)，使得效益值最大；</li>
+<li>假定背包容量不足以装入所有物品：面临选择；</li>
+<li>因为目标函数是非负数之和；</li>
+<li>优化原理：无论优化解是否放物品1，相对剩余背包容量，优化解对物品2,3,…,n的放法也是优化解。</li>
+</ul>
+<p><img src="https://img.imgdb.cn/item/5fdc471b3ffa7d37b34bcc23.jpg" alt="背包问题满足的优化原理" /></p>
+<h3 id="优化值间的递归式"><a class="markdownIt-Anchor" href="#优化值间的递归式"></a> 优化值间的递归式</h3>
+<ul>
+<li>虽然我们不知道优化解是否放物品1，但我们可以利用优化原理，从枚举&quot;放&quot;和&quot;不放&quot;两种情形建立优化值之间的递归式：</li>
+<li>设f(i,y)为以背包容量y，放物品i,i+1,…,n，得到优化效益值，一下递归关系成立：</li>
+<li>f(1,c)=max{f(2,c),f(2,c-w1)+p1}(不放1和放1)；</li>
+<li>先求子问题的优化值(递归)，再从2种可能性中选出最优的；</li>
+<li>需求解：任意给定容量y，任意i,i+1,…,n种物品的子问题。</li>
+</ul>
+<h3 id="动态规划法步骤"><a class="markdownIt-Anchor" href="#动态规划法步骤"></a> 动态规划法步骤</h3>
+<ul>
+<li>在应用动态规划法时，须先验证欲求解的问题是否满足优化原理；</li>
+<li>应用优化原理建立子问题优化解的值(优化值)之间的递归式；</li>
+<li>解优化值满足的递归式；</li>
+<li>回溯从优化值构造优化解；</li>
+</ul>
+<h3 id="算法复杂性"><a class="markdownIt-Anchor" href="#算法复杂性"></a> 算法复杂性</h3>
+<ul>
+<li>直接用递归实现动态规划递归方程往往会引发大量重复计算，算法的计算量变得非常可观；最好使用迭代法实现动态规划算法；</li>
+<li>迭代实现需要存贮所有子问题的优化解的值f(i,y)，以便避免重复计算，所以算法往往需要较大的存储空间；</li>
+<li>算法的复杂性来自子问题的数目，通常子问题的数目很大。</li>
+</ul>
+<h3 id="01背包问题dp算法的实现"><a class="markdownIt-Anchor" href="#01背包问题dp算法的实现"></a> 0/1背包问题DP算法的实现</h3>
+<h4 id="1递归实现"><a class="markdownIt-Anchor" href="#1递归实现"></a> 1.递归实现</h4>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>n</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>P</mi><mi>n</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>y</mi><mo>≥</mo><mi>w</mi><mi>n</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>0</mn><mo>≤</mo><mi>y</mi><mo>&lt;</mo><mi>w</mi><mi>n</mi></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">f(n,y)=\begin{cases}
+Pn &amp; y≥wn\\
+0 &amp; 0≤y&lt;wn
+\end{cases}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">n</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">n</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">(</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>y</mi><mo>−</mo><mi>w</mi><mi>i</mi><mo stretchy="false">)</mo><mo>+</mo><mi>p</mi><mi>i</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>y</mi><mo>≥</mo><mi>w</mi><mi>i</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>0</mn><mo>≤</mo><mi>y</mi><mo>&lt;</mo><mi>w</mi><mi>i</mi></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">f(i,y)=\begin{cases}
+max(f(i+1,y),f(i+1,y-wi)+pi) &amp; y≥wi\\
+f(i+1,y) &amp; 0≤y&lt;wi
+\end{cases}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">i</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>​                                 <strong>说明：f(i,y)中，y≥wi的情况中，前者为不放i，后者为放i</strong></p>
+<p>Example：</p>
+<p><img src="https://img.imgdb.cn/item/5fdc7b213ffa7d37b3838480.jpg" alt="" /></p>
+<p><img src="https://img.imgdb.cn/item/5fdc7adf3ffa7d37b3832a3f.jpg" alt="递归调用树" /></p>
+<h4 id="2权为整数的迭代实现"><a class="markdownIt-Anchor" href="#2权为整数的迭代实现"></a> 2.权为整数的迭代实现</h4>
+<ul>
+<li>当物品重量为整数时，可设计一相当简单的算法来求解f(1,c)；</li>
+<li>该实现用二维数组 f [i] [y] 来保存每个f(i,y)的值，并且只计算一次；</li>
+<li>二维数组需Θ(nc)空间；</li>
+<li>函数Traceback从 f [i] [y] 产生优化的xi值；</li>
+<li>Knapsack的复杂性Θ(nc)，似乎是多项式算法。但因c的二进制输入长度为logc(2为底)，所以nc仍是输入长度的指数函数；</li>
+<li>Traceback的复杂性为Θ(n)。</li>
+</ul>
+<p>Example：n=5，p=[6,3,5,4,6]，w=[2,2,6,5,4]，且c=10，求f(1,10)</p>
+<table>
+<thead>
+<tr>
+<th>i\y</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>缺点：</p>
+<ol>
+<li>要求物品重量为整数；</li>
+<li>当背包容量c很大时，例如c&gt;2<sup>n，需要Ω(n*2</sup>n)。</li>
+<li>下述元组法克服了上述缺点。</li>
+</ol>
+<h4 id="3元组法实现"><a class="markdownIt-Anchor" href="#3元组法实现"></a> 3.元组法实现</h4>
+<ul>
+<li>
+<p>元组法将函数f(i,y)的跳跃点以元组(y,f(i,y))形式存储于一个线性表P(i)中；</p>
+</li>
+<li>
+<p>表P(i)中的元组(y,f(i,y))按y的增序排列；</p>
+</li>
+<li>
+<p>P(i)中的元组(a,b)表示：存在一种装物品{i,i+1,…,n}的方案，能以容量y，a≤y＜a‘，a’为下一元组的横坐标，得到效益值b；</p>
+</li>
+<li>
+<p>下面给出从f(i+1,y)的线性表P(i+1)得出f(i,y)的线性表P(i)的算法；</p>
+</li>
+<li>
+<p>按f(i,y)的定义：f(i,y)=max{f(i+1,y),f(i+1,y-wi)+pi}，首先需要从P(i+1)得到函数f(i+1,y)=f(i+1,y-wi)+pi的元组集合Q；</p>
+</li>
+<li>
+<p>设(a,b)∈Q，则(a-wi,b-pi)必为P(i+1)的元组，反之亦然。所以，P(i+1)的每个元组(w,p)对应Q的一个元组(w+wi,p+pi)；</p>
+</li>
+<li>
+<p>Q的元组(u,v)代表装物品{i,i+1,…,y}的元组(即P(i)的元组)；</p>
+</li>
+<li>
+<p>从P(i+1)和Q得到P(i)的元组：</p>
+<p>因P(i+1)和Q内元组均按w和p的增序排列，所以可以用以前学过的merge算法进行合并；</p>
+</li>
+<li>
+<p>合并时使用以下支配(选优)规则：</p>
+<p>设(a,b)和(u,v)是来自P(i+1)和Q的元组，若a≥u且b＜v，则称(a,b)受(u,v)支配；</p>
+<p>因为(a,b)代表以容量a得到效益值b的方案；</p>
+<p>而(u,v)代表以较少的容量u得到较大效益值v的方案；</p>
+</li>
+<li>
+<p>在合并时舍弃被支配的元组(选优)。</p>
+</li>
+<li>
+<p>P(i+1)于Q合并，并按支配规则舍弃被支配的元组即可得到P(i)；</p>
+</li>
+<li>
+<p>在产生P(i)时丢弃w&gt;c的元组(w,v)；</p>
+</li>
+<li>
+<p>得到P(2)后不再产生P(1)：</p>
+<p>P(2)的最后一个元组是f(2,c)对应的元组；</p>
+<p>设线性表P(2)中满足w+w1≤c的最后一个元组为(w,v)；</p>
+<p>将v+p1于P(2)的最后一个元组对应的效益值p做比较，效益值大的即为优化效益值f(1,c)。</p>
+</li>
+</ul>
+<p><strong>Example：n=5，p=[6,3,5,4,6]，w=[2,2,6,5,4]，且c=10，求f(1,10)</strong></p>
+<p><strong>方便起见，w=[2,2,6,5,4]，p=[6,3,5,4,6]，(横坐标为W，纵坐标为P)</strong></p>
+<ol>
+<li>
+<p><strong>P(5)={(0,0),(4,6)}, Q={(5,4),(9,10)};</strong></p>
+</li>
+<li>
+<p><strong>P(4)={(0,0),(4,6),(9,10)}, delete(5,4), Q={(6,5),(10,11)};</strong></p>
+</li>
+<li>
+<p><strong>P(3)={(0,0),(4,6),(9,10),(10,11)}, delete(6,5), Q={(2,3),(8,8),(7,7),(6,9)};</strong></p>
+</li>
+<li>
+<p><strong>P(2)={(0,0),(2,3),(4,6),(6,9),(9,10),(10,11)};</strong></p>
+</li>
+<li>
+<p><strong>(w1,p1)=(2,6)，P2中满足w+w1≤c的最后一个元组为(6,9)；</strong></p>
+<p><strong>∵ (2,6)+(6,9)&gt;(10,11)</strong></p>
+<p><strong>∴15为最大效益值，通过回溯法找到解为[1,1,0,0,1]</strong></p>
+</li>
+</ol>
+<h3 id="矩阵乘法链"><a class="markdownIt-Anchor" href="#矩阵乘法链"></a> 矩阵乘法链</h3>
+<ul>
+<li>m×n矩阵A于n×p矩阵B相乘需要做mnp个元素乘法；</li>
+<li>计算三个矩阵A，B和C的乘积ABC有两种方法：(AB)C和A(BC)；</li>
+<li>结果相同，但所需元素乘法数不同；</li>
+<li>问题：对任意给定长度q的矩阵乘法链M1×M2,…,Mq，求优化的乘法顺序使得计算该乘法链所用的乘法数最少；</li>
+<li>长度为q的矩阵乘法链有指数量级Ω(2^q)的可能乘法顺序(有q个叶节点的二叉树的数目)；</li>
+</ul>
+<p><strong>动态规划解</strong></p>
+<ul>
+<li>
+<p>用M(i,j)表示Mi×Mi+1×…×Mj(i≤j)的乘积。假设优化的矩阵乘法顺序最后计算乘积M(i,k)×M(k+1,j)；</p>
+</li>
+<li>
+<p>则计算M(i,j)的优化乘法顺序在计算子链M(i,k)和M(k+1,j)时也是优化的；</p>
+</li>
+<li>
+<p>设c(i,j)为计算M(i,j)的优化乘法数(优化值)，根据优化原理，优化值之间满足：</p>
+<p>c(i,j)=min{c(i,k)+c(k+1,j)+ri*r(k+1)*r(j+1)}，i≤k&lt;j；</p>
+<p>令kay(i,j)为达到最小值的k；</p>
+</li>
+<li>
+<p>可用上述递归式计算c(1,q)；</p>
+</li>
+<li>
+<p>用kay(i,j)回溯找到优化的乘法顺序。</p>
+</li>
+</ul>
+<p><strong>Example：q=5，r=(10,5,1,10,2,10)</strong></p>
+<p><strong>递归</strong></p>
+<ol>
+<li><strong>c(1,5)=min{c(1,1)+c(2,5)+500, c(1,2)+c(3,5)+100, c(1,3)+c(4,5)+1000, c(1,4)+c(5,5)+200};</strong></li>
+<li><strong>c(2,5)=min{c(2,2)+c(3,5)+50, c(2,3)+c(4,5)+500, c(2,4)+c(5,5)+100};</strong></li>
+<li><strong>c(3,5)=min{c(3,3)+c(4,5)+100,c(3,4)+c(5,5)+20};</strong></li>
+<li><strong>c(4,5)=min{c(4,4)+c(5,5)+200}=200;</strong></li>
+<li><strong>c(3,5)=c(3,4)+c(5,5)+20=20+0+20=40;</strong></li>
+<li><strong>c(2,5)=c(2,2)+c(3,5)+50=0+40+50=90;</strong></li>
+<li><strong>c(1,5)=c(1,2)+c(3,5)+100=50+40+100=190;</strong></li>
+<li><strong>解为M(1,2)×M(3,4)×M(5,5);</strong></li>
+</ol>
+<p><strong>迭代</strong>：可避免大量重复计算，但需要O(q²)的存储空间，时间复杂度为Θ(q³)。</p>
+<p>s=2，3，4；</p>
+<p>s=2，计算c(1,3),c(2,4),c(3,5);</p>
+<p>s=3，计算c(1,4),c(2,5);</p>
+<p>s=4，计算c(1,5).</p>
+<h3 id="all-pair最短路问题"><a class="markdownIt-Anchor" href="#all-pair最短路问题"></a> All-Pair最短路问题</h3>
+<ul>
+<li>最短路径：设G为有向图，其中每条边都有一个成本(cost)，图中每条有向路径的长度(或成本)定义为该路径上各边的成本之和；</li>
+<li>对于没对顶点(i,j)，定义从i到j的所有路径中，具有最小长度的路径为从i到j的最短路；</li>
+<li>All-Pair最短路问题：求每对点间的最短路；</li>
+<li>假定图上无负成本的环路，这是只需考虑简单路径，加上环路只会增加路径成本。</li>
+</ul>
+<p>动态规划解：</p>
+<ul>
+<li>
+<p>将节点按1到n编号；</p>
+</li>
+<li>
+<p>定义c(i,j,k)=i到j的中间节点编号不超过k的最短路长度，即包含节点i和j即节点1,2,…,k的子图上的最短路；</p>
+</li>
+<li>
+<p>c(i,j,n)是在原来的图上i到j的最短路长度，即我们要求的最短路长度；</p>
+</li>
+<li>
+<p>因为只考虑简单路径，所以：</p>
+<p>c(i,k,k)=c(i,k,k-1);</p>
+<p>c(k,j,k)=c(k,j,k-1);</p>
+<p>c(i,i,k)=0 for all k;</p>
+</li>
+<li>
+<p>特别地，c(i,j,0)=cost(i,j)或∞。</p>
+</li>
+</ul>
+<p>Example：</p>
+<p><img src="https://img.imgdb.cn/item/5fddacd83ffa7d37b36cb9aa.jpg" alt="" /></p>
+<ul>
+<li>
+<p>建立c(i,j,k)和c(i,j,k-1)之间的递归关系；</p>
+</li>
+<li>
+<p>对于任意k＞0，i到j的中间节点编号不超过k的最短路上，或包含节点k或不包含节点k，所以有递归如下：</p>
+<p>c(i,j,k)=min{c(i,j,k-1),c(i,k,k-1)+c(k,j,k-1)}；</p>
+</li>
+<li>
+<p>如果直接用递归程序求解上式，则计算c(i,j,n)的复杂度极高。利用迭代方法可将计算c值得时间减少到O(n)³。</p>
+</li>
+</ul>
+<p>迭代算法伪代码：</p>
+<ul>
+<li>
+<p>n令C(k)代表矩阵(c(i,j,k))i,j=1,…,n,因c(i,i,k)=0 for all k,所以矩阵C(k)的对角线元素为0.</p>
+</li>
+<li>
+<p>n算法迭代计算C(k) ,k=0,…,n</p>
+</li>
+<li>
+<p>n初始C(0)=(c(i, j)),即图的邻接矩阵,无边相连的i和j 令c(i, j)=∞.</p>
+</li>
+<li>
+<p>n因c(i,k,k)=c(i,k,k-1),c(k,j,k)=c(k,j,k-1),所以,矩阵C(k)的k行、k列上的元素不变:</p>
+</li>
+<li>
+<p>C(k)(i,k)=C(k-1)(i,k), C(k)(k,j)=C(k-1)(k,j).</p>
+</li>
+<li>
+<p>n矩阵C(k)非k行、k列上的元素,按下式计算</p>
+</li>
+<li>
+<p><strong>C(k)(i,j)←min{C(k-1)(i, j), C(k-1)(i, k)+</strong></p>
+</li>
+<li>
+<p>​                    <strong>C(k-1)(k,j)},</strong></p>
+</li>
+<li>
+<p>即C(k)(i,j)←min{C(k-1)(i, j), C(k)(i, k)+</p>
+</li>
+<li>
+<p>​                    C(k)(k,j)},</p>
+</li>
+<li>
+<p>n所以算法只需使用一个矩阵,每次迭代时, 用第k列的i行元素和第k行的j列元素之和去更新元素C(k-1)(i, j).</p>
+</li>
+<li>
+<p>n算法迭代至多n次，每次迭代需O(n2)时间，所以算法的时间复杂度为O(n3).</p>
+</li>
+</ul>
+<p>Example：最短路径</p>
+<p><img src="https://img.imgdb.cn/item/5fddae053ffa7d37b36dbf9a.jpg" alt="最短路径实例" /></p>
+<p>解：</p>
+<p><img src="https://img.imgdb.cn/item/5fddae2d3ffa7d37b36de486.jpg" alt="" /></p>
+<p>C(3)(1,2)=min{C(2)(1,2), C(2)(1,3)+C(2)(3,2)}=min{4, 6+7}=min{4, 13}=4;</p>
+<p>C(3)(2,1)=min{C(2)(2,1), C(2)(2,3)+C(2)(3,1)}=min{6, 2+3}=min{6, 5}=5.</p>
+<h3 id="最长公共子序列问题"><a class="markdownIt-Anchor" href="#最长公共子序列问题"></a> 最长公共子序列问题</h3>
+<ul>
+<li>
+<p>首先需要说明，子序列与字串不同</p>
+<p>一个给定的序列的子序列，就是将给定序列中零个或多个元素去掉之后的结果；</p>
+<p>字串指给定串中任意个连续的字符组成的子序列；</p>
+</li>
+<li>
+<p>可以用一个表来记录所有已解的子问题的答案。不管该子问题以后是否被用到，只要它被计算过，就将其结果填入表中，可以避免大量的重复计算；</p>
+</li>
+<li>
+<p>递归方程如下：</p>
+</li>
+<li>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>0</mn><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mi>f</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mo>=</mo><mn>0</mn><mi>o</mi><mi>r</mi><mi>j</mi><mo>=</mo><mn>0</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>C</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mi mathvariant="normal">，</mi><mi>j</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo separator="true">,</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mi>f</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo>&gt;</mo><mn>0</mn><mi>a</mi><mi>n</mi><mi>d</mi><msub><mi>x</mi><mi>i</mi></msub><mo>=</mo><msub><mi>y</mi><mi>i</mi></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">{</mo><mi>C</mi><mo stretchy="false">[</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo separator="true">,</mo><mi>c</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">]</mo><mo stretchy="false">}</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mi>f</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo>&gt;</mo><mn>0</mn><mi>a</mi><mi>n</mi><mi>d</mi><msub><mi>x</mi><mi>i</mi></msub><mi mathvariant="normal">≠</mi><msub><mi>y</mi><mi>i</mi></msub></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">C(i,j)=\begin{cases}
+0,&amp;if&amp;i=0orj=0\\
+C[i-1，j-1],&amp;if&amp;i,j&gt;0andx_i=y_i\\
+max\{C[i,j-1],c[i-1,j]\}&amp;if&amp;i,j&gt;0andx_i≠y_i
+\end{cases}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:4.32em;vertical-align:-1.9099999999999997em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.35002em;"><span style="top:-2.19999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎩</span></span></span><span style="top:-2.19999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-3.1500100000000004em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎨</span></span></span><span style="top:-4.30001em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-4.60002em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎧</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.8500199999999998em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.41em;"><span style="top:-4.41em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">0</span><span class="mpunct">,</span></span></span><span style="top:-2.97em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mord cjk_fallback">，</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mpunct">,</span></span></span><span style="top:-1.5300000000000002em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">{</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mclose">}</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.9099999999999997em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.41em;"><span style="top:-4.41em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span><span style="top:-2.97em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span><span style="top:-1.5300000000000002em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.9099999999999997em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.41em;"><span style="top:-4.41em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span></span></span><span style="top:-2.97em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-1.5300000000000002em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.9099999999999997em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+</li>
+</ul>
+<p>Example：s1=[1,3,4,5,6,7,7,8]，s2=[3,5,7,4,8,6,7,8,2]</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">下标j</th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+<th style="text-align:center">7</th>
+<th style="text-align:center">8</th>
+<th style="text-align:center">9</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>下标i</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">s2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">s1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+</tr>
+</tbody>
+</table>
+<p>右下角元素即为最长公共子序列长度，得到问题的解。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Tony Pan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://cheeseburgerim.github.io/2020/12/15/Algorithm/AlgorithmChapter6/">https://cheeseburgerim.github.io/2020/12/15/Algorithm/AlgorithmChapter6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Algorithm/">Algorithm</a></div><div class="post_share"><div class="social-share" data-image="https://img.imgdb.cn/item/5fd889143ffa7d37b3f082a9.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/12/15/Algorithm/AlgorithmChapter7/"><img class="prev-cover" src="https://img.imgdb.cn/item/5fd88f033ffa7d37b3f67a24.jpg" onerror="onerror=null;src='/img/404_GIF.gif'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Traceback</div></div></a></div><div class="next-post pull-right"><a href="/2020/12/15/Algorithm/AlgorithmChapter5/"><img class="next-cover" src="https://img.imgdb.cn/item/5fd84ed33ffa7d37b3af0d56.jpg" onerror="onerror=null;src='/img/404_GIF.gif'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Divide and Conquer</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/12/10/Algorithm/AlgorithmChapter1/" title="Chapter 1 算法概述"><img class="cover" src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/AlgorithmChapter/AlgorithmChapter1/cover_AlgorithmChapter1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-10</div><div class="title">Chapter 1 算法概述</div></div></a></div><div><a href="/2020/12/10/Algorithm/AlgorithmChapter3/" title="Analysis of Algorithms"><img class="cover" src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/AlgorithmChapter/AlgorithmChapter3/cover_AlgorithmChapter3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-10</div><div class="title">Analysis of Algorithms</div></div></a></div><div><a href="/2020/12/10/Algorithm/AlgorithmChapter2/" title="Chapter 2 程序性能"><img class="cover" src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/AlgorithmChapter/AlgorithmChapter2/cover_AlgorithmChapter2.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-10</div><div class="title">Chapter 2 程序性能</div></div></a></div><div><a href="/2020/12/11/Algorithm/AlgorithmChapter4/" title="Greedy"><img class="cover" src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/AlgorithmChapter/AlgorithmChapter4/cover_AlgorithmChapter4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-11</div><div class="title">Greedy</div></div></a></div><div><a href="/2020/12/15/Algorithm/AlgorithmChapter5/" title="Divide and Conquer"><img class="cover" src="https://img.imgdb.cn/item/5fd84ed33ffa7d37b3af0d56.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-15</div><div class="title">Divide and Conquer</div></div></a></div><div><a href="/2020/12/15/Algorithm/AlgorithmChapter7/" title="Traceback"><img class="cover" src="https://img.imgdb.cn/item/5fd88f033ffa7d37b3f67a24.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-15</div><div class="title">Traceback</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Home/Avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Tony Pan</div><div class="author-info__description">I d like a cheeseburger^_^</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">71</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">68</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">21</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/CheeseburgerIM"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="/123456789" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="/123456789" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="https://github.com/CheeseburgerIM" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/13051172893@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content"><i class="fas fa-feather-alt" style="color:gold"></i> IMF,I've got a lot to learn. <br><i class="fas fa-desktop" style="color:blue"></i> 绑定域名:<br><a target="_blank" rel="noopener" href="https://cheeseburgerim.space/">https://cheeseburgerim.space/</a><br><i class="fas fa-laptop-house" style="color:red"></i> 原域名也可用:<br><a href="https://cheeseburgerim.github.io/">https://cheeseburgerim.github.io/</a><br><i class="fas fa-network-wired" style="color:gray"></i> 备用域名:<br><a target="_blank" rel="noopener" href="https://cheeseburgerim.gitee.io/">https://cheeseburgerim.gitee.io/</a><br><i class="far fa-comments" style="color:lightgreen"></i> 可以在<a target="_blank" rel="noopener" href="https://cheeseburgerim.space/MessageBoard/">留言板</a>进行评论与交流<br></div></div></div><div class="sticky_layout"></div><div class="card-widget card-calendar"><div class="card-content"><div class="item-headline"><i class="far fa-calendar-alt" aria-hidden="true"></i><span>日历</span></div><div class="widget-wrap"></div><div class="widget" id="calendar"></div></div></div><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-number">1.</span> <span class="toc-text"> 动态规划</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text"> 应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text"> 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#example%E5%A4%9A%E6%AE%B5%E5%9B%BE-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84"><span class="toc-number">1.3.</span> <span class="toc-text"> Example：多段图-最短路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E5%80%BC%E9%97%B4%E7%9A%84%E9%80%92%E5%BD%92%E5%BC%8F"><span class="toc-number">1.4.</span> <span class="toc-text"> 优化值间的递归式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B3%95%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.5.</span> <span class="toc-text"> 动态规划法步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="toc-number">1.6.</span> <span class="toc-text"> 算法复杂性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98dp%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.7.</span> <span class="toc-text"> 0&#x2F;1背包问题DP算法的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.7.1.</span> <span class="toc-text"> 1.递归实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E6%9D%83%E4%B8%BA%E6%95%B4%E6%95%B0%E7%9A%84%E8%BF%AD%E4%BB%A3%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.7.2.</span> <span class="toc-text"> 2.权为整数的迭代实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E5%85%83%E7%BB%84%E6%B3%95%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.7.3.</span> <span class="toc-text"> 3.元组法实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E9%93%BE"><span class="toc-number">1.8.</span> <span class="toc-text"> 矩阵乘法链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#all-pair%E6%9C%80%E7%9F%AD%E8%B7%AF%E9%97%AE%E9%A2%98"><span class="toc-number">1.9.</span> <span class="toc-text"> All-Pair最短路问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98"><span class="toc-number">1.10.</span> <span class="toc-text"> 最长公共子序列问题</span></a></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/05/15/Project/DaChuang2021-2022/DaChuang2021-2022-Process/" title="基于ORB-SLAM2的Android手机实时定位-进度"><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/2021/DaChuang2021-2022-Process/cover_DaChuang2021-2022-Process.jpg" onerror="this.onerror=null;this.src='/img/404_GIF.gif'" alt="基于ORB-SLAM2的Android手机实时定位-进度"/></a><div class="content"><a class="title" href="/2021/05/15/Project/DaChuang2021-2022/DaChuang2021-2022-Process/" title="基于ORB-SLAM2的Android手机实时定位-进度">基于ORB-SLAM2的Android手机实时定位-进度</a><time datetime="2021-05-15T02:28:48.000Z" title="Created 2021-05-15 10:28:48">2021-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/14/MLAMS/MLAMS-Lab3/" title="数字逻辑与数字系统-Lab3"><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab3/cover_MLAMS-Lab3.jpg" onerror="this.onerror=null;this.src='/img/404_GIF.gif'" alt="数字逻辑与数字系统-Lab3"/></a><div class="content"><a class="title" href="/2021/05/14/MLAMS/MLAMS-Lab3/" title="数字逻辑与数字系统-Lab3">数字逻辑与数字系统-Lab3</a><time datetime="2021-05-14T05:33:46.000Z" title="Created 2021-05-14 13:33:46">2021-05-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/05/Android-Part1/" title="Android-Part1"><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/2021/Android-Part1/cover_Android-Part1.jpg" onerror="this.onerror=null;this.src='/img/404_GIF.gif'" alt="Android-Part1"/></a><div class="content"><a class="title" href="/2021/05/05/Android-Part1/" title="Android-Part1">Android-Part1</a><time datetime="2021-05-05T09:01:42.000Z" title="Created 2021-05-05 17:01:42">2021-05-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/04/Java/Java-Summary/" title="Java-Summary"><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/Java-Summary/cover_Java-Summary.jpg" onerror="this.onerror=null;this.src='/img/404_GIF.gif'" alt="Java-Summary"/></a><div class="content"><a class="title" href="/2021/05/04/Java/Java-Summary/" title="Java-Summary">Java-Summary</a><time datetime="2021-05-04T14:17:54.000Z" title="Created 2021-05-04 22:17:54">2021-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/01/WindowsTips/" title="Windows Tips"><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/WindowsTips/cover_WindowsTips.png" onerror="this.onerror=null;this.src='/img/404_GIF.gif'" alt="Windows Tips"/></a><div class="content"><a class="title" href="/2021/05/01/WindowsTips/" title="Windows Tips">Windows Tips</a><time datetime="2021-05-01T06:09:57.000Z" title="Created 2021-05-01 14:09:57">2021-05-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Tony Pan</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a> <a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a> <a style="margin-inline:5px" target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a> <a style="margin-inline:5px" target="_blank" href="https://cloud.tencent.com/"><img src="https://img.shields.io/badge/Host-TencentCloud-brightgreen" title="个人主页托管在腾讯云"></a> <a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div><div id="workboard"></div><script async="async" src="/js/runtime.js"></script></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="/js/search/local-search.js"></script><!--script.--><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})
+setTimeout(function(){preloader.endLoading();}, 3000);</script><div class="js-pjax"><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    $.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js', function () {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script src="/js/IM.js"></script><script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script><script src="/js/clock.js"></script><script src="/js/about.js"></script><script src="https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js"></script><script src="/js/githubcalendar.js"></script><script src="/js/games.js"></script><script src="/js/HomePage.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script></div>
+  <div class="GalMenu GalDropDown">
+     <div class="circle" id="gal">
+       <div class="ring">
+         <a href="/" class="menuItem">首页</a>
+         <a href="javascript:history.go(1);" class="menuItem">前进</a>
+         <a href="javascript:$('html,body').animate({scrollTop:0},500);" class="menuItem">顶部</a>
+         <a href="javascript:location.reload();" class="menuItem">刷新</a>
+         <a href="/MessageBoard/" class="menuItem">留言</a>
+         <a href="javascript:history.go(-1);" class="menuItem">后退</a>
+       </div>
+       
+     </div>
+</div>
+<script type="text/javascript">
+var items = document.querySelectorAll('.menuItem'); 
+for (var i = 0, l = items.length; i < l; i++) {
+   items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+   items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+ }
+</script>
+<script>window.jQuery || document.write('<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@master/hexo/js/jquery-2.1.1.min.js"></script></script>    
+
+<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@master/hexo/js/GalMenu.js"></script>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+   $('body').GalMenu({
+     'menu': 'GalDropDown'
+   })
+ });
+</script>
+<!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://CheeseburgerIM.github.io/tags/Java/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 面向对象程序设计 (10)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://CheeseburgerIM.github.io/tags/MLAMS/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎮 数字逻辑与数字系统 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://CheeseburgerIM.github.io/tags/DataBase/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 数据库原理 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://CheeseburgerIM.github.io/tags/ComputerNetwork/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 计算机网络 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://CheeseburgerIM.github.io/tags/DaChuang2021-2022/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 基于ORB-SLAM2的Android手机实时定位 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://CheeseburgerIM.github.io/tags/CodeExercise/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">💡 编程练习 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="https://CheeseburgerIM.github.io/tags" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style> <script data-pjax>if(document.getElementById('recent-posts') && location.pathname =='/'){
+    
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://img.imgdb.cn/item/5fd07c113ffa7d37b3e9753e.png" alt="https://img.imgdb.cn/item/5fd07c113ffa7d37b3e9753e.png"/></div><div class="blog-slider__content"><span class="blog-slider__code">2020-12-08</span><a class="blog-slider__title" href="2020/12/08/IM/">IM</a><div class="blog-slider__text">Part of the journey is the end.</div><a class="blog-slider__button" href="2020/12/08/IM/">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/SFHBZZRX/cover_SFHBZZRX.jpg" alt="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/SFHBZZRX/cover_SFHBZZRX.jpg"/></div><div class="blog-slider__content"><span class="blog-slider__code">2020-12-10</span><a class="blog-slider__title" href="2020/12/10/是非黑白-自在人心/">是非黑白 自在人心</a><div class="blog-slider__text">是非黑白 自在人心</div><a class="blog-slider__button" href="2020/12/10/是非黑白-自在人心/">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://img.imgdb.cn/item/6008e36a3ffa7d37b32207e2.jpg" alt="https://img.imgdb.cn/item/6008e36a3ffa7d37b32207e2.jpg"/></div><div class="blog-slider__content"><span class="blog-slider__code">2021-01-21</span><a class="blog-slider__title" href="2021/01/21/Game/LeagueOfLegends/">英雄联盟</a><div class="blog-slider__text">League of Legends</div><a class="blog-slider__button" href="2021/01/21/Game/LeagueOfLegends/">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://img.imgdb.cn/item/6061dc208322e6675c1d9c99.png" alt="https://img.imgdb.cn/item/6061dc208322e6675c1d9c99.png"/></div><div class="blog-slider__content"><span class="blog-slider__code">2020-12-08</span><a class="blog-slider__title" href="2020/12/08/hello-world/">Hello World</a><div class="blog-slider__text">Hello World</div><a class="blog-slider__button" href="2020/12/08/hello-world/">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/WindowsTips/cover_WindowsTips.png" alt="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/WindowsTips/cover_WindowsTips.png"/></div><div class="blog-slider__content"><span class="blog-slider__code">2021-05-01</span><a class="blog-slider__title" href="2021/05/01/WindowsTips/">Windows Tips</a><div class="blog-slider__text">Windows Tips</div><a class="blog-slider__button" href="2021/05/01/WindowsTips/">详情</a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载swiper')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.js"></script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper@0.18/swiper/swiperindex.js"></script>
+<style></style>
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?CheeseburgerIM";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="CheeseburgerIM";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:248px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>

@@ -1,0 +1,112 @@
+/* font family */
+/* @import url('https://fonts.font.im/css?family=Dancing+Script|Playfair+Display'); */
+
+/*mouse effect*/
+body,
+html,
+#tag .article-sort .article-sort-item .article-sort-item-info .article-sort-item-time .post-meta-date-created:hover,
+#tag .article-sort .article-sort-item .article-sort-item-info .article-sort-item-time .far:hover,
+#tag .article-sort .article-sort-item .article-sort-item-info .article-sort-item-time .fa-calendar-alt:hover,
+#sidebar-menus .menus_items .menus_item a:hover,
+#sidebar-menus .menus_items .menus_item ul:hover {
+    /* cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/default.cur), */
+    cursor: url(normal.cur),
+        auto;
+}
+a,
+a:hover,
+i:hover,
+button:hover,
+text,
+img,
+#nav #menus:hover,
+#footer-wrap a:hover,
+#pagination .page-number:hover,
+#nav .site-page:hover,
+#rightside_config:hover,
+#to_comment:hover,
+#go-up:hover,
+#darkmode:hover,
+#hide-aside-btn:hover,
+#calendar .cal-head .cal-title a,
+#calendar .cal-head .cal-prev:hover,
+#calendar .cal-head .cal-next:hover,
+#calendar .cal .cal-foot:hover,
+#calendar .cal a,
+#swiper_container .swiper-pagination-bullet:hover,
+#gitalk-container .gt-container .gt-header a,
+#gitalk-container .gt-container .gt-header .gt-header-comment .gt-header-controls button,
+#gitalk-container .gt-container .gt-meta .gt-user .gt-user-inner:hover,
+#gitalk-container .gt-container .gt-meta .gt-popup .gt-copyright a,
+#gitalk-container .gt-container .gt-meta .gt-popup a,
+#scroll-down:hover,
+#scroll-down i,
+#scroll-down .fas:hover,
+#scroll-down .fa-angle-down:hover,
+#scroll-down .scroll-down-effects:hover,
+#recent-posts .recent-post-item .recent-post-info .article-meta-wrap .article-meta:hover,
+#recent-posts .recent-post-item .recent-post-info .article-meta-wrap .post-meta-date:hover,
+#local-hits .search-result-list .local-search__hit-item a,
+#sidebar-menus .menus_items .menus_item .site-page:hover,
+#sidebar-menus .menus_items .menus_item a:hover,
+#sidebar-menus .menus_items .menus_item span:hover {
+    /* cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/pointer.cur), */
+    cursor: url(unavailable.cur),
+        auto;
+}
+canvas,
+textarea {
+  cursor: url(link.cur),
+        auto;
+}
+
+/*roll*/
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+  
+::-webkit-scrollbar-track {
+    background-color:#fff;
+    border-radius: 2em;
+}
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #49b1f5;
+    background-image: -webkit-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.4) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0.4) 75%,
+      transparent 75%,
+      transparent
+    );
+    border-radius: 2em;
+  }
+  
+  ::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+  
+  ::-moz-selection {
+    color: #fff;
+    background-color: #49b1f5;
+  }
+
+  /* #aside_content
+.card-archives
+ul.card-archive-list
+> .card-archive-list-item
+a
+span:first-child,
+#aside_content
+.card-categories
+ul.card-category-list
+> .card-category-list-item
+a
+span:first-child {
+    width: auto;
+    min-width: 50%;
+} */

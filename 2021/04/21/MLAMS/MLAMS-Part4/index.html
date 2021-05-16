@@ -1,0 +1,1214 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>数字逻辑与数字系统-Part4 | CheeseburgerIM</title><meta name="keywords" content="Study,MLAMS"><meta name="author" content="Tony Pan"><meta name="copyright" content="Tony Pan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Math logic and math systemChapter4 时序逻辑设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数字逻辑与数字系统-Part4">
+<meta property="og:url" content="https://cheeseburgerim.github.io/2021/04/21/MLAMS/MLAMS-Part4/index.html">
+<meta property="og:site_name" content="CheeseburgerIM">
+<meta property="og:description" content="Math logic and math systemChapter4 时序逻辑设计">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.imgdb.cn/item/608004d2af7e6730a7aefd3e.png">
+<meta property="article:published_time" content="2021-04-21T10:47:28.000Z">
+<meta property="article:modified_time" content="2021-05-01T12:34:23.860Z">
+<meta property="article:author" content="Tony Pan">
+<meta property="article:tag" content="Study">
+<meta property="article:tag" content="MLAMS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.imgdb.cn/item/608004d2af7e6730a7aefd3e.png"><link rel="shortcut icon" href="/img/IronMan.jpg"><link rel="canonical" href="https://cheeseburgerim.github.io/2021/04/21/MLAMS/MLAMS-Part4/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://fonts.font.im/css?family=Dancing+Script|Playfair+Display"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-05-01 20:34:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/IM.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_2260265_yn4j21lmjpj.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@master/hexo/css/GalMenu.css"><link rel="stylesheet" href="/css/cover.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"><link rel="stylesheet" href="/css/about.css"><link rel="stylesheet" href="/css/piano.css"><link rel="stylesheet" href="/css/comment.css"><link rel="stylesheet" href="font-awesome.min.css"><link rel="stylesheet" href="font-awesome-animation.min.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiperstyle.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><img class="load-image" src="https://img.imgdb.cn/item/605c3b918322e6675c8e9260.gif" alt=""/></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Home/Avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">71</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">68</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">21</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> Articles</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page" href="/Motto/"><i class="fa-fw fas fa-pencil-alt"></i><span> Motto</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/IronMan/"><i class="fa-fw fas fa-robot"></i><span> IronMan</span></a></li><li><a class="site-page" href="/Movie/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw far fa-image"></i><span> Gallery</span></a></li><li><a class="site-page" href="/Accounts/"><i class="fa-fw fas fa-user-circle"></i><span> Accounts</span></a></li><li><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-tv"></i><span> Animation</span></a></li><li><a class="site-page" href="/emoji/"><i class="fa-fw far fa-laugh"></i><span> Emoji</span></a></li><li><a class="site-page" href="/GoodGifs/"><i class="fa-fw fas fa-file-video"></i><span> GoodGifs</span></a></li><li><a class="site-page" href="/HappyTime/"><i class="fa-fw fa fa-gamepad"></i><span> HappyTime</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://travellings.now.sh"><i class="fa-fw fas fa-subway"></i><span> Travelling</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://img.imgdb.cn/item/608004d2af7e6730a7aefd3e.png)"><nav id="nav" style="opacity: 1; animation: 1s ease 0s 1 normal none running headerNoOpacity;"><span id="blog_name"><div id="clock" style="display:inline"><canvas id="particleClockCanvas" style="width:100px;margin-bottom:-10px;margin-right:15px;" width="820" height="250"></canvas><script src="js/clock.js"></script></div></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> Articles</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page" href="/Motto/"><i class="fa-fw fas fa-pencil-alt"></i><span> Motto</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/IronMan/"><i class="fa-fw fas fa-robot"></i><span> IronMan</span></a></li><li><a class="site-page" href="/Movie/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw far fa-image"></i><span> Gallery</span></a></li><li><a class="site-page" href="/Accounts/"><i class="fa-fw fas fa-user-circle"></i><span> Accounts</span></a></li><li><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-tv"></i><span> Animation</span></a></li><li><a class="site-page" href="/emoji/"><i class="fa-fw far fa-laugh"></i><span> Emoji</span></a></li><li><a class="site-page" href="/GoodGifs/"><i class="fa-fw fas fa-file-video"></i><span> GoodGifs</span></a></li><li><a class="site-page" href="/HappyTime/"><i class="fa-fw fa fa-gamepad"></i><span> HappyTime</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://travellings.now.sh"><i class="fa-fw fas fa-subway"></i><span> Travelling</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">数字逻辑与数字系统-Part4</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-04-21T10:47:28.000Z" title="Created 2021-04-21 18:47:28">2021-04-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-05-01T12:34:23.860Z" title="Updated 2021-05-01 20:34:23">2021-05-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Study/">Study</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">6.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>20min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><center><font size=8>Chapter4</font></center>
+<h1 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h1>
+<h2 id="时序逻辑电路定义"><a class="markdownIt-Anchor" href="#时序逻辑电路定义"></a> 时序逻辑电路定义</h2>
+<ul>
+<li>时序逻辑电路的输出由当前时刻的输入和之前时刻的输入共同决定；</li>
+<li>时序逻辑电路内部具有记忆；</li>
+<li>一些基本概念
+<ul>
+<li>状态：用于解释电路未来行为所需的信息；</li>
+<li>锁存器与触发器：用于存储1比特状态的模块；</li>
+<li>同步时序逻辑电路：一类由组合逻辑和一组表示电路状态的触发器所构成的电路。</li>
+</ul>
+</li>
+</ul>
+<h2 id="时序逻辑电路特征"><a class="markdownIt-Anchor" href="#时序逻辑电路特征"></a> 时序逻辑电路特征</h2>
+<ul>
+<li>按照一定的输入输出时序实现功能；</li>
+<li>电路内部具有短期记忆；</li>
+<li>在输出与输入之间具有反馈回路。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/1.png" alt="1" /></p>
+<h1 id="锁存器和触发器"><a class="markdownIt-Anchor" href="#锁存器和触发器"></a> 锁存器和触发器</h1>
+<h2 id="电路中的状态"><a class="markdownIt-Anchor" href="#电路中的状态"></a> 电路中的状态</h2>
+<ul>
+<li>电路中的状态会影响电路未来的行为；</li>
+<li>一些常见的电路状态存储模块
+<ul>
+<li>双稳态电路；</li>
+<li>SR锁存器；</li>
+<li>D锁存器；</li>
+<li>D触发器。</li>
+</ul>
+</li>
+</ul>
+<h2 id="双稳态电路"><a class="markdownIt-Anchor" href="#双稳态电路"></a> 双稳态电路</h2>
+<h3 id="定义"><a class="markdownIt-Anchor" href="#定义"></a> 定义</h3>
+<ul>
+<li>双稳态电路是其他存储模块的基础；</li>
+<li>下图两个电路具有以下特点：
+<ul>
+<li>对称性；</li>
+<li>有两个输出：Q和<font style="text-decoration: overline;">Q</font>；</li>
+<li>没有输入。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/2.png" alt="2" /></p>
+<h3 id="分析"><a class="markdownIt-Anchor" href="#分析"></a> 分析</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/3.png" alt="3" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/4.png" alt="4" /></p>
+<ul>
+<li>由以上分析可以看到，电路存在两种状态，用0和1表示，可以用这两种状态存储1比特二进制状态；</li>
+<li>但该电路中没有输入端，无法控制电路中状态的存储。</li>
+</ul>
+<h2 id="sr锁存器latch"><a class="markdownIt-Anchor" href="#sr锁存器latch"></a> SR锁存器(Latch)</h2>
+<h3 id="定义-2"><a class="markdownIt-Anchor" href="#定义-2"></a> 定义</h3>
+<ul>
+<li>SR锁存器
+<ul>
+<li>两个输入端(激励信号)；</li>
+<li>两个输出端(状态)。</li>
+</ul>
+</li>
+<li>考虑以下四种输入情况
+<ul>
+<li>S=1，R=0；</li>
+<li>S=0，R=1；</li>
+<li>S=0，R=0；</li>
+<li>S=1，R=1。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/5.png" alt="5" /></p>
+<h3 id="分析-2"><a class="markdownIt-Anchor" href="#分析-2"></a> 分析</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/6.png" alt="6" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/7.png" alt="7" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/8.png" alt="8" /></p>
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<ul>
+<li>SR锁存器是一个存储1比特状态的双稳态模块
+<ul>
+<li>SR分别表示置位(Set)和复位(Reset)</li>
+</ul>
+</li>
+<li>通过控制S、R信号的输入，控制锁存器的状态
+<ul>
+<li>Set置位，使Q=1(S=1，R=0)；</li>
+<li>Reset复位，使Q=0(S=0，R=1)；</li>
+<li>保持，使Q<sup>n+1</sup>=Q<sup>n</sup>(S=0，R=0)；</li>
+<li>禁止输入，S=R=1。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/9.png" alt="9" /></p>
+<h2 id="d锁存器"><a class="markdownIt-Anchor" href="#d锁存器"></a> D锁存器</h2>
+<h3 id="定义-3"><a class="markdownIt-Anchor" href="#定义-3"></a> 定义</h3>
+<ul>
+<li>包含两个输入端：CLK，D
+<ul>
+<li>CLK：控制锁存器状态发生改变的时间；</li>
+<li>D：数据输入，控制下一个状态的值。</li>
+</ul>
+</li>
+<li>功能
+<ul>
+<li>当CLK=1时，Q<sup>n</sup>=D，Q跟随D进行变化，D锁存器是透明的；</li>
+<li>当CLK=0时，Q<sup>n+1</sup>=Q<sup>n</sup>，Q保持原先的状态，D锁存器是不透明的。</li>
+</ul>
+</li>
+<li>D锁存器避免了SR锁存器中S和R信号同时有效而造成的奇怪情况。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/10.png" alt="10" /></p>
+<h3 id="实现"><a class="markdownIt-Anchor" href="#实现"></a> 实现</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/11.png" alt="11" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/12.png" alt="12" /></p>
+<h2 id="d触发器flip-flop"><a class="markdownIt-Anchor" href="#d触发器flip-flop"></a> D触发器(Flip-flop)</h2>
+<h3 id="定义-4"><a class="markdownIt-Anchor" href="#定义-4"></a> 定义</h3>
+<ul>
+<li>包含两个输入端：CLK，D</li>
+<li>功能
+<ul>
+<li>在CLK的上升沿对D进行采样
+<ul>
+<li>当CLK的信号从0到1的瞬间，Q被修改为当前时刻D的值；</li>
+<li>在其他时刻，Q处于保持状态。</li>
+</ul>
+</li>
+<li>Q的值只会在CLK的上升沿时刻发生改变</li>
+</ul>
+</li>
+<li>这种工作模式被称为边沿触发。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/13.png" alt="13" /></p>
+<h3 id="主从式d触发器的实现"><a class="markdownIt-Anchor" href="#主从式d触发器的实现"></a> 主从式D触发器的实现</h3>
+<ul>
+<li>由两个顺序连接的D锁存器构成(L1,L2)；</li>
+<li>由一组相反的时钟信号所控制。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/14.png" alt="14" /></p>
+<ul>
+<li>当CLK=0时
+<ul>
+<li>主锁存器L1是透明的；</li>
+<li>从锁存器L2是不透明的；</li>
+<li>主锁存器的状态(N1)跟随D变化。</li>
+</ul>
+</li>
+<li>当CLK=1时
+<ul>
+<li>主锁存器L1是不透明的；</li>
+<li>从锁存器L2是透明的；</li>
+<li>从锁存器的状态跟随N1变化。</li>
+</ul>
+</li>
+<li>因此在时钟的上升沿时刻(CLK 0→1)
+<ul>
+<li>Q被赋值为D。</li>
+</ul>
+</li>
+</ul>
+<h3 id="带使能端的d触发器"><a class="markdownIt-Anchor" href="#带使能端的d触发器"></a> 带使能端的D触发器</h3>
+<ul>
+<li>三个输入端：CLK，D，EN
+<ul>
+<li>EN为使能端：用来控制D是否能被触发器存储</li>
+</ul>
+</li>
+<li>功能(EN信号高电平有效)
+<ul>
+<li>EN=1：在时钟上升沿时，Q被更新为当前时刻的D值；</li>
+<li>EN=0：触发器处于保持状态。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/17.png" alt="17" /></p>
+<h3 id="带复位功能的d触发器"><a class="markdownIt-Anchor" href="#带复位功能的d触发器"></a> 带复位功能的D触发器</h3>
+<ul>
+<li>三个输入端：CLK，D，Reset</li>
+<li>功能(Reset信号高电平有效)
+<ul>
+<li>Reset=1：Q被强制设置为0；</li>
+<li>Reset=0：触发器正常工作。</li>
+</ul>
+</li>
+<li>同步复位
+<ul>
+<li>只在CLK上升沿进行复位。</li>
+</ul>
+</li>
+<li>异步复位
+<ul>
+<li>只要Reset信号有效即可复位。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/18.png" alt="18" /></p>
+<h3 id="带置位功能的d触发器"><a class="markdownIt-Anchor" href="#带置位功能的d触发器"></a> 带置位功能的D触发器</h3>
+<ul>
+<li>三个输入端：CLK，D，Set</li>
+<li>功能(Set信号高电平有效)
+<ul>
+<li>Set=1：Q被强制设置为1；</li>
+<li>Set=0：触发器正常工作。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/19.png" alt="19" /></p>
+<h2 id="d锁存器与d触发器"><a class="markdownIt-Anchor" href="#d锁存器与d触发器"></a> D锁存器与D触发器</h2>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/15.png" alt="15" /></p>
+<h2 id="寄存器register"><a class="markdownIt-Anchor" href="#寄存器register"></a> 寄存器(Register)</h2>
+<ul>
+<li>一个N位寄存器由一个共享的CLK输入和N个D触发器组成；</li>
+<li>寄存器的所有位同时被更新；</li>
+<li>是大多数时序电路中的关键组件。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/16.png" alt="16" /></p>
+<h1 id="同步逻辑设计"><a class="markdownIt-Anchor" href="#同步逻辑设计"></a> 同步逻辑设计</h1>
+<h2 id="时序逻辑电路"><a class="markdownIt-Anchor" href="#时序逻辑电路"></a> 时序逻辑电路</h2>
+<ul>
+<li>时序逻辑电路：所有不是组合逻辑的电路
+<ul>
+<li>电路的输出不能简单地通过观察当前输入来决定。</li>
+</ul>
+</li>
+<li>一个有问题的电路
+<ul>
+<li>没有输入；</li>
+<li>有1-3个输出。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/20.png" alt="20" /></p>
+<h2 id="非稳态电路"><a class="markdownIt-Anchor" href="#非稳态电路"></a> 非稳态电路</h2>
+<ul>
+<li>电路特征
+<ul>
+<li>非稳态电路；</li>
+<li>输出结果周期性地翻转；</li>
+<li>电路中具有回路，输出端反馈至输入端。</li>
+</ul>
+</li>
+<li>环形振荡器</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/21.png" alt="21" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/22.png" alt="22" /></p>
+<h2 id="同步时序电路"><a class="markdownIt-Anchor" href="#同步时序电路"></a> 同步时序电路</h2>
+<h3 id="定义-5"><a class="markdownIt-Anchor" href="#定义-5"></a> 定义</h3>
+<ul>
+<li>在信号传播路径中插入寄存器以断开电路中环路
+<ul>
+<li>使电路转变成组合逻辑电路和寄存器的集合。</li>
+</ul>
+</li>
+<li>寄存器包含系统的状态；</li>
+<li>状态仅在始终边沿(上升沿或下降沿)到达时发生改变
+<ul>
+<li>即状态同步与时钟信号。</li>
+</ul>
+</li>
+<li>如果时钟足够慢，使得在下一个时钟沿到达之前，输入寄存器的信号都可以稳定下来，则所有的冒险将被消除；</li>
+<li>一个时序电路包含一组有限的离散状态(S<sub>0</sub>,S<sub>1</sub>,S<sub>2</sub>…S<sub>k-1</sub>)；</li>
+<li>同步时序电路有一个时钟输入；</li>
+<li>上升沿表示电路状态转变发生的时间
+<ul>
+<li>当前状态(现态)：当前系统的状态；</li>
+<li>下一个状态(次态)：下一个时钟沿后系统将进入的状态。</li>
+</ul>
+</li>
+<li>功能规范：
+<ul>
+<li>描述当前状态和输入的各种组合所对应的下一个状态和输出。</li>
+</ul>
+</li>
+<li>时序规范：
+<ul>
+<li>建立时间、保持时间。</li>
+</ul>
+</li>
+</ul>
+<h3 id="组成规则"><a class="markdownIt-Anchor" href="#组成规则"></a> 组成规则</h3>
+<ul>
+<li>组成规则：
+<ul>
+<li>电路中的模块或者是寄存器或者是组合逻辑电路；</li>
+<li>模块中至少包含一个寄存器；</li>
+<li>所有的寄存器都共用一个时钟信号；</li>
+<li>电路的每个环路至少包含一个寄存器。</li>
+</ul>
+</li>
+<li>两类常见的同步时序逻辑电路
+<ul>
+<li>有限状态机(FSM)；</li>
+<li>流水线。</li>
+</ul>
+</li>
+</ul>
+<h3 id="一个简单的同步时序电路实例"><a class="markdownIt-Anchor" href="#一个简单的同步时序电路实例"></a> 一个简单的同步时序电路实例</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/23.png" alt="23" /></p>
+<ul>
+<li>一个D触发器是一个最简单的同步时序电路
+<ul>
+<li>包含一个输入D；</li>
+<li>一个时钟CLK；</li>
+<li>一个输出Q；</li>
+<li>两个状态(0,1)。</li>
+</ul>
+</li>
+<li>D触发器功能规范
+<ul>
+<li>下一个状态是D；</li>
+<li>输出Q是当前状态。</li>
+</ul>
+</li>
+</ul>
+<h3 id="思考下列那些电路是同步时序电路"><a class="markdownIt-Anchor" href="#思考下列那些电路是同步时序电路"></a> 思考：下列那些电路是同步时序电路？</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/24.png" alt="24" /></p>
+<ol>
+<li>F，模块可以是组合逻辑电路，但模块中必须包含一个寄存器；</li>
+<li>T，电路中的模块或者是寄存器或者是组合逻辑电路，寄存器又是由触发器组成；</li>
+<li>F，图中为锁存器；</li>
+<li>T，电路的每个环路至少包含一个寄存器；</li>
+<li>T；</li>
+<li>F，电路的每个环路至少包含一个寄存器；</li>
+<li>
+<ul>
+<li>如果三个CLK相同，T，所有的寄存器都共用一个时钟信号；</li>
+<li>反之，F。</li>
+</ul>
+</li>
+</ol>
+<h2 id="异步时序电路"><a class="markdownIt-Anchor" href="#异步时序电路"></a> 异步时序电路</h2>
+<ul>
+<li>非同步的时序电路称为异步时序电路；</li>
+<li>理论上，异步时序电路设计比同步时序电路更通用
+<ul>
+<li>系统的时序不由时钟控制的寄存器所约束。</li>
+</ul>
+</li>
+<li>实际上，几乎所有的系统本质上都是同步的
+<ul>
+<li>同步时序电路比异步时序电路更容易设计。</li>
+</ul>
+</li>
+</ul>
+<h1 id="有限状态机"><a class="markdownIt-Anchor" href="#有限状态机"></a> 有限状态机</h1>
+<h2 id="有限状态机结构"><a class="markdownIt-Anchor" href="#有限状态机结构"></a> 有限状态机结构</h2>
+<blockquote>
+<p>由以下模块组成</p>
+</blockquote>
+<ul>
+<li>状态寄存器
+<ul>
+<li>存储当前时刻的状态；</li>
+<li>状态在下一个有效时钟沿发生改变。</li>
+</ul>
+</li>
+<li>组合逻辑
+<ul>
+<li>计算下一个状态；</li>
+<li>计算电路的输出。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/25.png" alt="25" /></p>
+<h2 id="moore和mealy型有限状态机"><a class="markdownIt-Anchor" href="#moore和mealy型有限状态机"></a> Moore和Mealy型有限状态机</h2>
+<ul>
+<li>次态由现态和当前输入共同决定；</li>
+<li>根据输出逻辑的不同，可以将有限状态机分为两类
+<ul>
+<li>Moore型：输出仅由当前时刻状态所决定；</li>
+<li>Mealy型：输出由当前时刻状态和输入共同决定。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/26.png" alt="26" /></p>
+<h2 id="例交通灯控制器"><a class="markdownIt-Anchor" href="#例交通灯控制器"></a> 例：交通灯控制器</h2>
+<h3 id="设计"><a class="markdownIt-Anchor" href="#设计"></a> 设计</h3>
+<ul>
+<li>输入：两个交通传感器T<sub>A</sub>和T<sub>B</sub>
+<ul>
+<li>当路上有人出现时，传感器返回TRUE；</li>
+<li>否则返回FALSE。</li>
+</ul>
+</li>
+<li>输出：两个交通灯L<sub>A</sub>和L<sub>B</sub>
+<ul>
+<li>红色、黄色和绿色。</li>
+</ul>
+</li>
+<li>周期为5s的时钟，在每一个时钟沿到达时，灯根据交通传感器来改变；</li>
+<li>一个复位按键，可以使交通灯控制器回到初始状态。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/27.png" alt="27" /></p>
+<h3 id="有限状态机黑盒视图"><a class="markdownIt-Anchor" href="#有限状态机黑盒视图"></a> 有限状态机黑盒视图</h3>
+<ul>
+<li>输入：CLK，Reset，T<sub>A</sub>，T<sub>B</sub>；</li>
+<li>输出：L<sub>A</sub>，L<sub>B</sub>。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/28.png" alt="28" /></p>
+<h3 id="状态转换图"><a class="markdownIt-Anchor" href="#状态转换图"></a> 状态转换图</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/29.png" alt="29" /></p>
+<ul>
+<li>图中的每一个圆圈代表一个状态；</li>
+<li>图中的每一个圆弧代表两个状态之间的转换；</li>
+<li>圆弧上的项表示实现状态转换所需要的输入；</li>
+<li>状态转换发生在时钟有效沿产生的时刻；</li>
+<li>Moore型状态机：输出信息标在状态(圆圈)中。</li>
+</ul>
+<h3 id="状态转换表"><a class="markdownIt-Anchor" href="#状态转换表"></a> 状态转换表</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/30.png" alt="30" /></p>
+<h3 id="对状态进行编码"><a class="markdownIt-Anchor" href="#对状态进行编码"></a> 对状态进行编码</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/31.png" alt="31" /></p>
+<h3 id="输出表"><a class="markdownIt-Anchor" href="#输出表"></a> 输出表</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/32.png" alt="32" /></p>
+<h3 id="原理图寄存器"><a class="markdownIt-Anchor" href="#原理图寄存器"></a> 原理图：寄存器</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/33.png" alt="33" /></p>
+<h3 id="原理图次态逻辑"><a class="markdownIt-Anchor" href="#原理图次态逻辑"></a> 原理图：次态逻辑</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/34.png" alt="34" /></p>
+<h3 id="原理图输出逻辑"><a class="markdownIt-Anchor" href="#原理图输出逻辑"></a> 原理图：输出逻辑</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/35.png" alt="35" /></p>
+<h3 id="时序图"><a class="markdownIt-Anchor" href="#时序图"></a> 时序图</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/36.png" alt="36" /></p>
+<h2 id="moore型有限状态机设计方法"><a class="markdownIt-Anchor" href="#moore型有限状态机设计方法"></a> Moore型有限状态机设计方法</h2>
+<ol>
+<li>根据问题进行抽象，确定输入输出以及对应的逻辑含义；</li>
+<li>画出状态转换图；</li>
+<li>列出状态转换表；</li>
+<li>对状态进行编码，并列出次态方程；</li>
+<li>列出输出表；</li>
+<li>对输出进行编码，并列出输出方程；</li>
+<li>绘制原理图。</li>
+</ol>
+<h2 id="状态编码"><a class="markdownIt-Anchor" href="#状态编码"></a> 状态编码</h2>
+<h3 id="定义-6"><a class="markdownIt-Anchor" href="#定义-6"></a> 定义</h3>
+<ul>
+<li>不同的状态编码和输出编码会产生不同的电路；</li>
+<li>进行合理的编码，使之能产生一个逻辑门数最少且传播延迟最短的电路；</li>
+<li>目前没有一种简单的办法可以找到；</li>
+<li>可以通过计算机辅助设计(CAD)工具来解决；</li>
+<li>常见的状态编码有两种
+<ul>
+<li>二进制编码(Binary encoding)；</li>
+<li>独热编码(One-hot encoding)；</li>
+<li>可以理解为译码器的输入与输出端的形式。</li>
+</ul>
+</li>
+</ul>
+<h3 id="二进制编码"><a class="markdownIt-Anchor" href="#二进制编码"></a> 二进制编码</h3>
+<blockquote>
+<p>例如：4种状态，对应的编码为：00，01，10，11。</p>
+</blockquote>
+<h3 id="独热编码"><a class="markdownIt-Anchor" href="#独热编码"></a> 独热编码</h3>
+<ul>
+<li>状态的每一位(1 bit)表示一种状态；</li>
+<li>任何时候只能有一位是“热的”(TRUE或1)；</li>
+<li>例如：4种状态，对应的编码为：0001，0010，0100，1000；</li>
+<li>需要使用更多的触发器；</li>
+<li>相比于二进制编码，次态逻辑和输出逻辑实现起来更加的简单。</li>
+</ul>
+<h2 id="moore型状态机-vs-mealy状态机"><a class="markdownIt-Anchor" href="#moore型状态机-vs-mealy状态机"></a> Moore型状态机 VS Mealy状态机</h2>
+<h3 id="实例"><a class="markdownIt-Anchor" href="#实例"></a> 实例</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/37.png" alt="37" /></p>
+<h3 id="状态转换图-2"><a class="markdownIt-Anchor" href="#状态转换图-2"></a> 状态转换图</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/38.png" alt="38" /></p>
+<h3 id="moore型状态机的状态转换表"><a class="markdownIt-Anchor" href="#moore型状态机的状态转换表"></a> Moore型状态机的状态转换表</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/39.png" alt="39" /></p>
+<h3 id="moore型状态机的输出表"><a class="markdownIt-Anchor" href="#moore型状态机的输出表"></a> Moore型状态机的输出表</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/40.png" alt="40" /></p>
+<h3 id="mealy型状态机状态转换表和输出表"><a class="markdownIt-Anchor" href="#mealy型状态机状态转换表和输出表"></a> Mealy型状态机状态转换表和输出表</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/41.png" alt="41" /></p>
+<h3 id="moore型状态机原理图"><a class="markdownIt-Anchor" href="#moore型状态机原理图"></a> Moore型状态机原理图</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/42.png" alt="42" /></p>
+<h3 id="mealy型状态机原理图"><a class="markdownIt-Anchor" href="#mealy型状态机原理图"></a> Mealy型状态机原理图</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/43.png" alt="43" /></p>
+<h3 id="moore型和mealy型状态机时序图"><a class="markdownIt-Anchor" href="#moore型和mealy型状态机时序图"></a> Moore型和Mealy型状态机时序图</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/44.png" alt="44" /></p>
+<h2 id="mealy型有限状态机设计方法"><a class="markdownIt-Anchor" href="#mealy型有限状态机设计方法"></a> Mealy型有限状态机设计方法</h2>
+<ol>
+<li>根据问题进行抽象，确定输入输出以及对应的逻辑含义；</li>
+<li>画出状态转换图；</li>
+<li>列出状态转换表和输出表(可同时列出)；</li>
+<li>对状态和输出进行编码，并列出次态方程和输出方程；</li>
+<li>绘制原理图。</li>
+</ol>
+<h2 id="moore型状态机与mealy型状态机的总结"><a class="markdownIt-Anchor" href="#moore型状态机与mealy型状态机的总结"></a> Moore型状态机与Mealy型状态机的总结</h2>
+<p><strong>Moore型状态机：输出只和现态有关</strong></p>
+<ul>
+<li>在状态转换图中，输出标记在圆圈内；</li>
+<li>输入后，需要等待状态的变化才能得到输出；</li>
+<li>相同情况下需要使用更多的状态。</li>
+</ul>
+<p><strong>Mealy型状态机：输出与现态和输入都有关</strong></p>
+<ul>
+<li>在状态转换图中，输出标记在圆弧上；</li>
+<li>输出可以直接响应输入；</li>
+<li>相同情况下需要使用更少的状态。</li>
+</ul>
+<h2 id="状态机的分解"><a class="markdownIt-Anchor" href="#状态机的分解"></a> 状态机的分解</h2>
+<h3 id="目标"><a class="markdownIt-Anchor" href="#目标"></a> 目标</h3>
+<blockquote>
+<p>将复杂的有限状态机分解成多个简单的状态机</p>
+</blockquote>
+<ul>
+<li>其中一些状态机的输出是另一些状态机的输入；</li>
+<li>层次化、模块化。</li>
+</ul>
+<h3 id="实例-2"><a class="markdownIt-Anchor" href="#实例-2"></a> 实例</h3>
+<blockquote>
+<p>为交通灯控制器增加“游行”模式</p>
+</blockquote>
+<ul>
+<li>增加两个输入端：P，R；</li>
+<li>当P=1时，进入“游行”模式，保证Bravado Blvd.大道的交通灯一直为绿色；</li>
+<li>当R=1时，退出“游行”模式。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/45.png" alt="45" /></p>
+<h3 id="游行模式状态机设计"><a class="markdownIt-Anchor" href="#游行模式状态机设计"></a> “游行”模式状态机设计</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/46.png" alt="46" /></p>
+<h3 id="未分解的状态转换图"><a class="markdownIt-Anchor" href="#未分解的状态转换图"></a> 未分解的状态转换图</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/47.png" alt="47" /></p>
+<h3 id="分解后的状态转换图"><a class="markdownIt-Anchor" href="#分解后的状态转换图"></a> 分解后的状态转换图</h3>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/raw.png" alt="raw" /></p>
+<h2 id="有限状态机设计小结"><a class="markdownIt-Anchor" href="#有限状态机设计小结"></a> 有限状态机设计小结</h2>
+<ol>
+<li>确定输入和输出；</li>
+<li>画状态转换图；</li>
+<li>对于Moore型状态机
+<ul>
+<li>写出状态转换表；</li>
+<li>写出输出表。</li>
+</ul>
+</li>
+<li>对于Mealy型状态机
+<ul>
+<li>写出组合的状态转换表和输出表。</li>
+</ul>
+</li>
+<li>选择状态编码；</li>
+<li>写出次态方程和输出方程；</li>
+<li>绘制电路原理图。</li>
+</ol>
+<h2 id="由电路图导出状态机"><a class="markdownIt-Anchor" href="#由电路图导出状态机"></a> 由电路图导出状态机</h2>
+<h3 id="主要步骤"><a class="markdownIt-Anchor" href="#主要步骤"></a> 主要步骤</h3>
+<ul>
+<li>电路分析：在给定电路原理图的情况下推断电路的逻辑功能，是电路设计的逆过程
+<ul>
+<li>当承担一个没有完整文档的项目；</li>
+<li>开展基于其他人系统的逆向工程。</li>
+</ul>
+</li>
+<li>主要步骤
+<ol>
+<li>检查电路，表明输入输出和状态位；</li>
+<li>写出次态方程和输出方程；</li>
+<li>列出状态表和输出表；</li>
+<li>删除不可达状态以简化状态表；</li>
+<li>给每个有效状态编码指定状态名称；</li>
+<li>用状态名称重写状态表和输出表；</li>
+<li>画出状态转换图；</li>
+<li>使用文字描述有限状态机的功能。</li>
+</ol>
+</li>
+</ul>
+<h3 id="实例键盘锁电路分析"><a class="markdownIt-Anchor" href="#实例键盘锁电路分析"></a> 实例：键盘锁电路分析</h3>
+<blockquote>
+<p>下图是一个键盘锁电路，包含两个输入和一个输出，当输出为1时表示开锁成功。试分析，如何进行输入才能使电路产生开锁信号。</p>
+</blockquote>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/49.png" alt="49" /></p>
+<p><strong>步骤</strong></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/50.png" alt="50" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/51.png" alt="51" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/52.png" alt="52" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/53.png" alt="53" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/54.png" alt="54" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/55.png" alt="55" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/56.png" alt="56" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/57.png" alt="57" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/58.png" alt="58" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/59.png" alt="59" /></p>
+<h1 id="时序逻辑中的时序问题"><a class="markdownIt-Anchor" href="#时序逻辑中的时序问题"></a> 时序逻辑中的时序问题</h1>
+<h2 id="时序"><a class="markdownIt-Anchor" href="#时序"></a> 时序</h2>
+<ul>
+<li>D触发器在时钟有效边沿(上升沿/下降沿)对输入D采样，并复制给Q；</li>
+<li>在采样的时刻，D必须处在一个稳定的状态，为0或为1；</li>
+<li>这个过程如同照相一样
+<ul>
+<li>只有当被拍摄物体静止不动时才能获得清晰的图像。</li>
+</ul>
+</li>
+<li>如果在采样时刻，D未处于稳定的状态，则会产生亚稳态。</li>
+</ul>
+<h2 id="输入时序约束"><a class="markdownIt-Anchor" href="#输入时序约束"></a> 输入时序约束</h2>
+<ul>
+<li>建立时间(Setup time)：t<sub>setup</sub>=在时钟有效边沿到来前输入信号所需要的稳定时间；</li>
+<li>保持时间(Hold time)：t<sub>hold</sub>=在时钟有效边沿到来后输入信号所保持稳定的时间；</li>
+<li>孔径时间(Aperture time)：t<sub>a</sub>=在时钟边沿附近输入信号需要保持稳定的总时间；</li>
+<li>t<sub>a</sub>=t<sub>setup</sub>+t<sub>hold</sub></li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/60.png" alt="60" /></p>
+<h2 id="输出时序约束"><a class="markdownIt-Anchor" href="#输出时序约束"></a> 输出时序约束</h2>
+<ul>
+<li>传播延迟(Propagation delay)：t<sub>pcq</sub>=时钟有效边沿到达后到Q最终稳定所需的最长时间；</li>
+<li>最小延迟(Contamination delay)：t<sub>ccq</sub>=时钟有效边沿到达后到Q开始改变所需的最短时间。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/61.png" alt="61" /></p>
+<h2 id="动态约束"><a class="markdownIt-Anchor" href="#动态约束"></a> 动态约束</h2>
+<ul>
+<li>同步时序电路中，输入必须在时钟有效边沿附近的孔径时间内保持稳定；</li>
+<li>输入信号必须稳定
+<ul>
+<li>在时钟有效边沿到达前，至少稳定t<sub>setup</sub>；</li>
+<li>在时钟有效边沿到达后，至少稳定t<sub>hold</sub>。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/62.png" alt="62" /></p>
+<h2 id="系统时序"><a class="markdownIt-Anchor" href="#系统时序"></a> 系统时序</h2>
+<ul>
+<li>时钟周期T<sub>c</sub>是两个时钟上升沿(或下降沿)之间的间隔；</li>
+<li>f<sub>c</sub>=1/T<sub>c</sub>，表示时钟频率；</li>
+<li>提高时钟频率可以增加数字系统在单位时间内完成的工作量，但频率不能无限制的增加。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/63.png" alt="63" /></p>
+<ul>
+<li>如上图所示，两个寄存器间的延迟具有最小和最大延迟；</li>
+<li>这些延迟是由其中的电路元件的延迟所决定。</li>
+</ul>
+<h2 id="建立时间约束"><a class="markdownIt-Anchor" href="#建立时间约束"></a> 建立时间约束</h2>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/65.png" alt="65" /></p>
+<ul>
+<li>建立时间约束由路径R1至R2间的最大延迟所决定
+<ul>
+<li>寄存器的传播延迟t<sub>pcq</sub>；</li>
+<li>组合逻辑电路的传播延迟t<sub>pd</sub>。</li>
+</ul>
+</li>
+<li>寄存器R2的输入信号必须在下一个时钟上升沿的t<sub>setup</sub>时间前稳定。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/64.png" alt="64" /></p>
+<ul>
+<li>t<sub>pd</sub>≤T<sub>c</sub>-(t<sub>pcq</sub>+t<sub>setup</sub>)</li>
+<li>上式被称为建立时间约束或最大延迟约束；</li>
+<li>限制了通过组合逻辑的最大延迟；</li>
+<li>在商业设计中
+<ul>
+<li>T<sub>c</sub>由研发总监和市场部提出，以确保产品的竞争性；</li>
+<li>制造商确定触发器的传播延迟t<sub>pcq</sub>和建立时间t<sub>pcq</sub>；</li>
+<li>t<sub>pcq</sub>+t<sub>pcq</sub>被称为时序开销，由芯片的生产工艺所决定；</li>
+<li>通常，只有t<sub>pd</sub>是设计人员能够控制的变量。</li>
+</ul>
+</li>
+</ul>
+<h2 id="保持时间约束"><a class="markdownIt-Anchor" href="#保持时间约束"></a> 保持时间约束</h2>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/66.png" alt="66" /></p>
+<ul>
+<li>保持时间约束由路径R1至R2间的最短延迟所决定
+<ul>
+<li>寄存器的最小延迟t<sub>ccq</sub>；</li>
+<li>组合逻辑电路的最小延迟t<sub>cd</sub>。</li>
+</ul>
+</li>
+<li>寄存器R2的输入信号必须在时钟上升沿后至少稳定t<sub>hold</sub>时间。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/67.png" alt="67" /></p>
+<ul>
+<li>t<sub>cd</sub>≥t<sub>hold</sub>-t<sub>ccq</sub></li>
+<li>上式被称为保持时间约束或最小延迟约束；</li>
+<li>限制了通过组合逻辑的最小延迟。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/68.png" alt="68" /></p>
+<ul>
+<li>在实际应用中，经常将触发器设计成t<sub>hold</sub>=0，以保证保持时间约束在各种情况下都可以满足；</li>
+<li>保持时间约束非常重要，如果一旦违反则必须重新设计电路；
+<ul>
+<li>与建立时间约束不同，不能通过调整时钟周期来改正。</li>
+</ul>
+</li>
+<li>因此一旦违反保持时间约束会产生非常严重的后果。</li>
+</ul>
+<h2 id="时序分析"><a class="markdownIt-Anchor" href="#时序分析"></a> 时序分析</h2>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/69.png" alt="69" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/70.png" alt="70" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/71.png" alt="71" /></p>
+<h1 id="时序逻辑模块"><a class="markdownIt-Anchor" href="#时序逻辑模块"></a> 时序逻辑模块</h1>
+<h2 id="基于systemverilog-hdl的时序逻辑设计"><a class="markdownIt-Anchor" href="#基于systemverilog-hdl的时序逻辑设计"></a> 基于SystemVerilog HDL的时序逻辑设计</h2>
+<ul>
+<li>SystemVerilog使用一些特殊的编码风格(idioms)描述锁存器、触发器和状态机；</li>
+<li>其他的编码风格虽然可以正确的进行仿真，但是综合后会产生错误的电路。</li>
+</ul>
+<h2 id="always过程快的时序逻辑建模"><a class="markdownIt-Anchor" href="#always过程快的时序逻辑建模"></a> always过程快的时序逻辑建模</h2>
+<ul>
+<li>always过程块分为三种类型：
+<ul>
+<li>always_comb(描述组合逻辑)，always_latch，always_ff(后两者用于描述时序逻辑)。</li>
+</ul>
+</li>
+<li>always过程块结构如下：</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(sensitivity list)</span><br><span class="line">    statements;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>sensitivity list是敏感事件列表，当列表中的事件产生时，过程快中的语句开始工作。</li>
+</ul>
+<h2 id="寄存器建模"><a class="markdownIt-Anchor" href="#寄存器建模"></a> 寄存器建模</h2>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> flop(<span class="keyword">input</span> <span class="keyword">logic</span> clk,</span><br><span class="line">            <span class="keyword">input</span> <span class="keyword">logic</span> [<span class="number">3</span>:<span class="number">0</span>]d,</span><br><span class="line">            <span class="keyword">output</span> <span class="keyword">logic</span> [<span class="number">3</span>:<span class="number">0</span>]q);</span><br><span class="line">    <span class="keyword">always_ff</span> @(<span class="keyword">posedge</span> clk)</span><br><span class="line">        q&lt;=d;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/72.png" alt="72" /></p>
+<ul>
+<li>使用正边沿D触发器实现；</li>
+<li>always_ff用来表示触发器；</li>
+<li>posedge clk表示clk信号上升沿；</li>
+<li>&lt;=是非阻塞赋值，暂时可以把它看做是普通的赋值语句。</li>
+</ul>
+<h2 id="带复位端的寄存器建模"><a class="markdownIt-Anchor" href="#带复位端的寄存器建模"></a> 带复位端的寄存器建模</h2>
+<h3 id="同步复位功能"><a class="markdownIt-Anchor" href="#同步复位功能"></a> 同步复位功能</h3>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> flopr(<span class="keyword">input</span> <span class="keyword">logic</span> clk,</span><br><span class="line">             <span class="keyword">input</span> <span class="keyword">logic</span> reset,</span><br><span class="line">             <span class="keyword">input</span> <span class="keyword">logic</span> [<span class="number">3</span>:<span class="number">0</span>]d,</span><br><span class="line">             <span class="keyword">output</span> <span class="keyword">logic</span> [<span class="number">3</span>:<span class="number">0</span>]q);</span><br><span class="line">    <span class="keyword">always_ff</span> @(<span class="keyword">posedge</span> clk)</span><br><span class="line">        <span class="keyword">if</span>(reset) q&lt;=<span class="number">4&#x27;b0000</span>;</span><br><span class="line">    	<span class="keyword">else</span> q&lt;=d;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/73.png" alt="73" /></p>
+<h3 id="异步复位功能"><a class="markdownIt-Anchor" href="#异步复位功能"></a> 异步复位功能</h3>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> flopr(<span class="keyword">input</span> <span class="keyword">logic</span> clk,</span><br><span class="line">             <span class="keyword">input</span> <span class="keyword">logic</span> reset,</span><br><span class="line">             <span class="keyword">input</span> <span class="keyword">logic</span> [<span class="number">3</span>:<span class="number">0</span>]d,</span><br><span class="line">             <span class="keyword">output</span> <span class="keyword">logic</span> [<span class="number">3</span>:<span class="number">0</span>]q);</span><br><span class="line">    <span class="keyword">always_ff</span> @(<span class="keyword">posedge</span> clk,<span class="keyword">posedge</span> reset)</span><br><span class="line">        <span class="keyword">if</span>(reset) q&lt;=<span class="number">4&#x27;b0000</span>;</span><br><span class="line">    	<span class="keyword">else</span> q&lt;=d;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/74.png" alt="74" /></p>
+<h2 id="带使能端的寄存器建模"><a class="markdownIt-Anchor" href="#带使能端的寄存器建模"></a> 带使能端的寄存器建模</h2>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> flopren(<span class="keyword">input</span> <span class="keyword">logic</span> clk,</span><br><span class="line">               <span class="keyword">input</span> <span class="keyword">logic</span> reset,</span><br><span class="line">               <span class="keyword">input</span> <span class="keyword">logic</span> en,</span><br><span class="line">               <span class="keyword">input</span> <span class="keyword">logic</span> [<span class="number">3</span>:<span class="number">0</span>]d,</span><br><span class="line">               <span class="keyword">output</span> <span class="keyword">logic</span> [<span class="number">3</span>:<span class="number">0</span>]q);</span><br><span class="line">    <span class="keyword">always_ff</span> @(<span class="keyword">posedge</span> clk,<span class="keyword">posedge</span> reset)</span><br><span class="line">        <span class="keyword">if</span>(reset) q&lt;=<span class="number">4&#x27;b0000</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(en) q&lt;=d;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/75.png" alt="75" /></p>
+<h2 id="锁存器"><a class="markdownIt-Anchor" href="#锁存器"></a> 锁存器</h2>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> latch(<span class="keyword">input</span> <span class="keyword">logic</span> clk,</span><br><span class="line">             <span class="keyword">input</span> <span class="keyword">logic</span> [<span class="number">3</span>:<span class="number">0</span>]d,</span><br><span class="line">             <span class="keyword">output</span> <span class="keyword">logic</span> [<span class="number">3</span>:<span class="number">0</span>]q);</span><br><span class="line">    <span class="keyword">always_latch</span></span><br><span class="line">        <span class="keyword">if</span>(clk) q&lt;=d;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/76.png" alt="76" /></p>
+<ul>
+<li>不是所有的综合工具都能很好地支持锁存器；</li>
+<li>除非你明确地知道工具支持锁存器，或者你有理由使用锁存器；</li>
+<li>最好不要使用锁存器而是使用边沿触发器；</li>
+<li>此外还要防止HDL代码意外生成锁存器。</li>
+</ul>
+<h2 id="阻塞赋值-vs-非阻塞赋值"><a class="markdownIt-Anchor" href="#阻塞赋值-vs-非阻塞赋值"></a> 阻塞赋值 VS 非阻塞赋值</h2>
+<blockquote>
+<p><strong>&lt;=是非阻塞赋值</strong></p>
+<ul>
+<li>与其他的语句同时工作</li>
+</ul>
+<p><strong>=是阻塞赋值</strong></p>
+<ul>
+<li>按照语句在代码中的顺序依次工作</li>
+</ul>
+</blockquote>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/77.png" alt="77" /></p>
+<h2 id="赋值语句使用规则"><a class="markdownIt-Anchor" href="#赋值语句使用规则"></a> 赋值语句使用规则</h2>
+<ul>
+<li>同步时序逻辑电路中使用always_ff @(posedge clk)和非阻塞赋值&lt;=</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always_ff</span> @(<span class="keyword">posedge</span> clk)</span><br><span class="line">    q&lt;=d;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>简单的组合逻辑电路中使用持续赋值语句assign</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assign</span> y=a&amp;b;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用always_comb和阻塞赋值语句=描述复杂组合逻辑</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always_comb</span> <span class="keyword">begin</span></span><br><span class="line">    p=a^b;</span><br><span class="line">    g=a&amp;b;</span><br><span class="line">    s=p^cin;</span><br><span class="line">    cout=g|(p&amp;cin);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>不要再多余1个always语句块或者连续赋值语句中对同一个信号赋值。</li>
+</ul>
+<h2 id="计数器"><a class="markdownIt-Anchor" href="#计数器"></a> 计数器</h2>
+<h3 id="定义-7"><a class="markdownIt-Anchor" href="#定义-7"></a> 定义</h3>
+<ul>
+<li>N位二进制计数器
+<ul>
+<li>输入：时钟、复位信号；</li>
+<li>输出：N位计数结果。</li>
+</ul>
+</li>
+<li>功能：时钟上升沿到达时将结果加1并输出；</li>
+<li>能够实现循环计数
+<ul>
+<li>例如：000,001,010,011,100,101,110,111,000,001…</li>
+</ul>
+</li>
+<li>典型应用
+<ul>
+<li>数字时钟、程序计数器(PC)。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/78.png" alt="78" /></p>
+<h3 id="建模"><a class="markdownIt-Anchor" href="#建模"></a> 建模</h3>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> counter #(<span class="keyword">parameter</span> N=<span class="number">8</span>)</span><br><span class="line">    (<span class="keyword">input</span> <span class="keyword">logic</span> clk,</span><br><span class="line">     <span class="keyword">input</span> <span class="keyword">logic</span> reset,</span><br><span class="line">     <span class="keyword">output</span> <span class="keyword">logic</span> [N-<span class="number">1</span>:<span class="number">0</span>]q);</span><br><span class="line">    <span class="keyword">always_ff</span> @(<span class="keyword">posedge</span> clk,<span class="keyword">posedge</span> reset)</span><br><span class="line">        <span class="keyword">if</span>(reset) q&lt;=<span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">else</span> q&lt;=q+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/79.png" alt="79" /></p>
+<h2 id="移位寄存器"><a class="markdownIt-Anchor" href="#移位寄存器"></a> 移位寄存器</h2>
+<ul>
+<li>移位寄存器
+<ul>
+<li>输入：时钟、串行输入S<sub>in</sub>；</li>
+<li>输出：串行输出S<sub>out</sub>、N位并行输出Q<sub>N-1:0</sub>。</li>
+</ul>
+</li>
+<li>功能：在时钟的每一个上升沿，从S<sub>in</sub>移入一个新的位，寄存器中所有内容都向前移动一位，最前面的位移入S<sub>out</sub>；</li>
+<li>可以看做是一个串行到并行的转换器，每个周期从S<sub>in</sub>输入一位，N个周期后可以通过Q<sub>N-1:0</sub>直接访问N位输入；</li>
+<li>实现：N个D触发器串联。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/80.png" alt="80" /></p>
+<h2 id="带并行加载的移位寄存器"><a class="markdownIt-Anchor" href="#带并行加载的移位寄存器"></a> 带并行加载的移位寄存器</h2>
+<h3 id="定义-8"><a class="markdownIt-Anchor" href="#定义-8"></a> 定义</h3>
+<ul>
+<li>带并行加载的移位寄存器
+<ul>
+<li>输入：在移位寄存器基础上增加了加载(Load)信号和并行输入信号D<sub>1:0</sub>。</li>
+</ul>
+</li>
+<li>功能：
+<ul>
+<li>Load=1，并行加载位；</li>
+<li>Load=0，移位寄存器。</li>
+</ul>
+</li>
+<li>可以实现
+<ul>
+<li>串行转并行(S<sub>in</sub>到Q<sub>N-1:0</sub>)；</li>
+<li>并行转串行(D<sub>N-1:0</sub>到S<sub>out</sub>)。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/81.png" alt="81" /></p>
+<h3 id="建模-2"><a class="markdownIt-Anchor" href="#建模-2"></a> 建模</h3>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> shiftreg #(<span class="keyword">parameter</span> N=<span class="number">8</span>)</span><br><span class="line">    (<span class="keyword">input</span> <span class="keyword">logic</span> clk,</span><br><span class="line">     <span class="keyword">input</span> <span class="keyword">logic</span> reset,load,</span><br><span class="line">     <span class="keyword">input</span> <span class="keyword">logic</span> sin,</span><br><span class="line">     <span class="keyword">input</span> <span class="keyword">logic</span> [N-<span class="number">1</span>:<span class="number">0</span>]q,</span><br><span class="line">     <span class="keyword">output</span> <span class="keyword">logic</span> [N-<span class="number">1</span>:<span class="number">0</span>]q,</span><br><span class="line">     <span class="keyword">output</span> <span class="keyword">logic</span> sout);</span><br><span class="line">    <span class="keyword">always_ff</span> @(<span class="keyword">posedge</span> clk,<span class="keyword">posedge</span> reset)</span><br><span class="line">        <span class="keyword">if</span>(reset) q&lt;=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(load) q&lt;=d;</span><br><span class="line">    <span class="keyword">else</span> q&lt;=&#123;q[N-<span class="number">2</span>:<span class="number">0</span>],sin&#125;;</span><br><span class="line">    <span class="keyword">assign</span> sout=q[N-<span class="number">1</span>];</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/82.png" alt="82" /></p>
+<h2 id="有限状态机建模"><a class="markdownIt-Anchor" href="#有限状态机建模"></a> 有限状态机建模</h2>
+<h3 id="定义-9"><a class="markdownIt-Anchor" href="#定义-9"></a> 定义</h3>
+<ul>
+<li>有限状态机主要包含三个模块：
+<ul>
+<li>状态寄存器
+<ul>
+<li>存储当前时刻的状态；</li>
+<li>状态在下一个有效时钟沿发生改变。</li>
+</ul>
+</li>
+<li>组合逻辑
+<ul>
+<li>计算下一个状态(次态逻辑)；</li>
+<li>计算电路的输出(输出逻辑)。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>在状态机建模时也应包含三个对应的语句块。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/83.png" alt="83" /></p>
+<h3 id="实例3分频计数器"><a class="markdownIt-Anchor" href="#实例3分频计数器"></a> 实例：3分频计数器</h3>
+<blockquote>
+<p>3分频计数器</p>
+</blockquote>
+<ul>
+<li>一个时钟输入；</li>
+<li>一个输出；</li>
+<li>每三个时钟周期后输出产生一个周期的高电平；</li>
+<li>输出是时钟的三分频。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/84.png" alt="84" /></p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> divideby3FSM(<span class="keyword">input</span> <span class="keyword">logic</span> clk,</span><br><span class="line">                    <span class="keyword">input</span> <span class="keyword">logic</span> reset,</span><br><span class="line">                    <span class="keyword">output</span> <span class="keyword">logic</span> q);</span><br><span class="line">    <span class="keyword">typedef</span> <span class="keyword">enum</span> <span class="keyword">logic</span> [<span class="number">1</span>:<span class="number">0</span>]&#123;S0,S1,S2&#125; statetype;</span><br><span class="line">    statetype [<span class="number">1</span>:<span class="number">0</span>] state, nextstate;</span><br><span class="line">    <span class="comment">//寄存器</span></span><br><span class="line">    <span class="keyword">always_ff</span> @(<span class="keyword">posedge</span> clk,<span class="keyword">posedge</span> reset)</span><br><span class="line">        <span class="keyword">if</span>(reset) state&lt;=S0;</span><br><span class="line">    <span class="keyword">else</span> state&lt;=nextstate;</span><br><span class="line">    <span class="comment">//次态逻辑</span></span><br><span class="line">    <span class="keyword">always_comb</span></span><br><span class="line">        <span class="keyword">case</span>(state)</span><br><span class="line">            S0:nextstate=S1;</span><br><span class="line">            S1:nextstate=S2;</span><br><span class="line">            S2:nextstate=S0;</span><br><span class="line">            <span class="keyword">default</span>:nextstate=S0;</span><br><span class="line">        <span class="keyword">endcase</span></span><br><span class="line">    <span class="comment">//输出逻辑</span></span><br><span class="line">    <span class="keyword">assign</span> q=(state==S0);</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h2 id="存储器阵列"><a class="markdownIt-Anchor" href="#存储器阵列"></a> 存储器阵列</h2>
+<ul>
+<li>一种有效的存储大量数据的模块；</li>
+<li>每个N位地址都可以读出或写出M位的数据
+<ul>
+<li>数据：存储的内容；</li>
+<li>地址：数据的索引。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/85.png" alt="85" /></p>
+<ul>
+<li>存储器由一个二维存储单元阵列构成；</li>
+<li>每个位单元存储1位数据；</li>
+<li>一个N位地址M位数据的阵列：
+<ul>
+<li>有2<sup>N</sup>行和M列；</li>
+<li>深度(Depth)：阵列的行数；</li>
+<li>宽度(Width)：阵列的列数；</li>
+<li>阵列的总大小(Array Size)：宽度×深度=2<sup>N</sup>×M；</li>
+<li>字(Word)：每行数据都称为一个字。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/86.png" alt="86" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/87.png" alt="87" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/88.png" alt="88" /></p>
+<h2 id="位单元"><a class="markdownIt-Anchor" href="#位单元"></a> 位单元</h2>
+<ul>
+<li>存储器阵列由位单元(bit cell)阵列组成；</li>
+<li>每个位单元存储1位数据；</li>
+<li>每一个位单元与一个字线(wordline)和一个位线(bitline)相连。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/89.png" alt="89" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/90.png" alt="90" /></p>
+<h2 id="存储器的结构"><a class="markdownIt-Anchor" href="#存储器的结构"></a> 存储器的结构</h2>
+<blockquote>
+<p>字线</p>
+</blockquote>
+<ul>
+<li>与使能端相似；</li>
+<li>用于控制阵列中一行数据的读/写；</li>
+<li>对应着唯一的地址；</li>
+<li>同一时刻至多有一个字线为高电平。</li>
+</ul>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/91.png" alt="91" /></p>
+<h2 id="存储器的类型"><a class="markdownIt-Anchor" href="#存储器的类型"></a> 存储器的类型</h2>
+<ul>
+<li>两种主要的类型
+<ul>
+<li>随机访问存储器(Random Access Memory)：易失的(volatile)
+<ul>
+<li>动态随机访问存储器(DRAM)：计算机的主存；</li>
+<li>静态随机访问存储器(SRAM)：CPU中的高速缓存。</li>
+</ul>
+</li>
+<li>只读存储器(Read Only Memory)：非易失的(non-volatile)</li>
+</ul>
+</li>
+<li>RAM和ROM的命名是由于历史的原因
+<ul>
+<li>ROM也可以是随机访问的，大多数现代ROM也是可读写的。</li>
+</ul>
+</li>
+</ul>
+<h2 id="dram-vs-sram"><a class="markdownIt-Anchor" href="#dram-vs-sram"></a> DRAM VS SRAM</h2>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/92.png" alt="92" /></p>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/93.png" alt="93" /></p>
+<h2 id="几种存储器的比较"><a class="markdownIt-Anchor" href="#几种存储器的比较"></a> 几种存储器的比较</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">存储器类型</th>
+<th style="text-align:center">每个位单元的晶体管数</th>
+<th style="text-align:center">成本</th>
+<th style="text-align:center">延迟</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">触发器</td>
+<td style="text-align:center">≈20</td>
+<td style="text-align:center">高</td>
+<td style="text-align:center">低</td>
+</tr>
+<tr>
+<td style="text-align:center">SRAM</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">中等</td>
+<td style="text-align:center">中等</td>
+</tr>
+<tr>
+<td style="text-align:center">DRAM</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">低</td>
+<td style="text-align:center">高</td>
+</tr>
+</tbody>
+</table>
+<center>ROM：读速度快，写速度较慢</center>
+<h2 id="存储器端口"><a class="markdownIt-Anchor" href="#存储器端口"></a> 存储器端口</h2>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/94.png" alt="94" /></p>
+<h2 id="寄存器文件"><a class="markdownIt-Anchor" href="#寄存器文件"></a> 寄存器文件</h2>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/95.png" alt="95" /></p>
+<ul>
+<li>寄存器文件(Register files)通常是一个小型多端口SRAM阵列；</li>
+<li>上图是一个32寄存器×32位的3端口寄存器文件；</li>
+<li>由两个读端口A1/RD1和A2/RD2；</li>
+<li>一个写端口A3/WD3；</li>
+<li>地址线均为5位，可寻址2<sup>5</sup>=32个寄存器；</li>
+<li>可以同时读两个寄存器和写一个寄存器。</li>
+</ul>
+<h2 id="ram建模"><a class="markdownIt-Anchor" href="#ram建模"></a> RAM建模</h2>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> ram #(<span class="keyword">parameter</span> N=<span class="number">6</span>,M=<span class="number">32</span>)</span><br><span class="line">    (<span class="keyword">input</span> <span class="keyword">logic</span> clk,we,</span><br><span class="line">     <span class="keyword">input</span> <span class="keyword">logic</span> [N-<span class="number">1</span>:<span class="number">0</span>]adr,</span><br><span class="line">     <span class="keyword">input</span> <span class="keyword">logic</span> [M-<span class="number">1</span>:<span class="number">0</span>]din,</span><br><span class="line">     <span class="keyword">output</span> <span class="keyword">logic</span> [M-<span class="number">1</span>:<span class="number">0</span>]dout);</span><br><span class="line">    <span class="keyword">logic</span> [M-<span class="number">1</span>:<span class="number">0</span>] mem[<span class="number">2</span>**N-<span class="number">1</span>:<span class="number">0</span>];<span class="comment">//**位幂运算,即2的N次方-1</span></span><br><span class="line">    <span class="keyword">always_ff</span> @(<span class="keyword">posedge</span> clk)</span><br><span class="line">        <span class="keyword">if</span>(we) mem[adr]&lt;=din;</span><br><span class="line">    <span class="keyword">assign</span> dout=mem[adr];</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part4/96.png" alt="96" /></p>
+<h2 id="rom建模"><a class="markdownIt-Anchor" href="#rom建模"></a> ROM建模</h2>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> rom(<span class="keyword">input</span> <span class="keyword">logic</span> [<span class="number">1</span>:<span class="number">0</span>]adr,</span><br><span class="line">           <span class="keyword">output</span> <span class="keyword">logic</span> [<span class="number">2</span>:<span class="number">0</span>]dout);</span><br><span class="line">    <span class="keyword">always_comb</span></span><br><span class="line">        <span class="keyword">case</span>(adr)</span><br><span class="line">            <span class="number">2&#x27;b00</span>:dout&lt;=<span class="number">3&#x27;b011</span>;</span><br><span class="line">            <span class="number">2&#x27;b01</span>:dout&lt;=<span class="number">3&#x27;b110</span>;</span><br><span class="line">            <span class="number">2&#x27;b10</span>:dout&lt;=<span class="number">3&#x27;b100</span>;</span><br><span class="line">            <span class="number">2&#x27;b11</span>:dout&lt;=<span class="number">3&#x27;b010</span>;</span><br><span class="line">        <span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Tony Pan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://cheeseburgerim.github.io/2021/04/21/MLAMS/MLAMS-Part4/">https://cheeseburgerim.github.io/2021/04/21/MLAMS/MLAMS-Part4/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Study/">Study</a><a class="post-meta__tags" href="/tags/MLAMS/">MLAMS</a></div><div class="post_share"><div class="social-share" data-image="https://img.imgdb.cn/item/608004d2af7e6730a7aefd3e.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/04/22/MLAMS/MLAMS-Lab1/"><img class="prev-cover" src="https://img.imgdb.cn/item/60815398563420b647214bd3.png" onerror="onerror=null;src='/img/404_GIF.gif'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">数字逻辑与数字系统-Lab1</div></div></a></div><div class="next-post pull-right"><a href="/2021/04/17/Java/Java-Part9/"><img class="next-cover" src="https://img.imgdb.cn/item/607a4a508322e6675ccc1880.png" onerror="onerror=null;src='/img/404_GIF.gif'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Java-Part9</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2021/04/22/MLAMS/MLAMS-Lab1/" title="数字逻辑与数字系统-Lab1"><img class="cover" src="https://img.imgdb.cn/item/60815398563420b647214bd3.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-22</div><div class="title">数字逻辑与数字系统-Lab1</div></div></a></div><div><a href="/2021/05/14/MLAMS/MLAMS-Lab3/" title="数字逻辑与数字系统-Lab3"><img class="cover" src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab3/cover_MLAMS-Lab3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-14</div><div class="title">数字逻辑与数字系统-Lab3</div></div></a></div><div><a href="/2021/03/07/MLAMS/MLAMS-Part1/" title="数字逻辑与数字系统-Part1"><img class="cover" src="https://img.imgdb.cn/item/60444332cef1ec5e6f9cf8f9.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-07</div><div class="title">数字逻辑与数字系统-Part1</div></div></a></div><div><a href="/2021/04/25/MLAMS/MLAMS-Lab2/" title="数字逻辑与数字系统-Lab2"><img class="cover" src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab2/cover_MLAMS-Lab2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-25</div><div class="title">数字逻辑与数字系统-Lab2</div></div></a></div><div><a href="/2021/03/19/MLAMS/MLAMS-Part3/" title="数字逻辑与数字系统-Part3"><img class="cover" src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part3/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-19</div><div class="title">数字逻辑与数字系统-Part3</div></div></a></div><div><a href="/2021/03/13/MLAMS/MLAMS-Part2/" title="数字逻辑与数字系统-Part2"><img class="cover" src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Part2/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-13</div><div class="title">数字逻辑与数字系统-Part2</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Home/Avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Tony Pan</div><div class="author-info__description">I d like a cheeseburger^_^</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">71</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">68</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">21</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/CheeseburgerIM"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="/123456789" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="/123456789" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a><a class="social-icon" href="https://github.com/CheeseburgerIM" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/13051172893@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content"><i class="fas fa-feather-alt" style="color:gold"></i> IMF,I've got a lot to learn. <br><i class="fas fa-desktop" style="color:blue"></i> 绑定域名:<br><a target="_blank" rel="noopener" href="https://cheeseburgerim.space/">https://cheeseburgerim.space/</a><br><i class="fas fa-laptop-house" style="color:red"></i> 原域名也可用:<br><a href="https://cheeseburgerim.github.io/">https://cheeseburgerim.github.io/</a><br><i class="fas fa-network-wired" style="color:gray"></i> 备用域名:<br><a target="_blank" rel="noopener" href="https://cheeseburgerim.gitee.io/">https://cheeseburgerim.gitee.io/</a><br><i class="far fa-comments" style="color:lightgreen"></i> 可以在<a target="_blank" rel="noopener" href="https://cheeseburgerim.space/MessageBoard/">留言板</a>进行评论与交流<br></div></div></div><div class="sticky_layout"></div><div class="card-widget card-calendar"><div class="card-content"><div class="item-headline"><i class="far fa-calendar-alt" aria-hidden="true"></i><span>日历</span></div><div class="widget-wrap"></div><div class="widget" id="calendar"></div></div></div><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text"> 引言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text"> 时序逻辑电路定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E7%89%B9%E5%BE%81"><span class="toc-number">1.2.</span> <span class="toc-text"> 时序逻辑电路特征</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%94%81%E5%AD%98%E5%99%A8%E5%92%8C%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text"> 锁存器和触发器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E8%B7%AF%E4%B8%AD%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-number">2.1.</span> <span class="toc-text"> 电路中的状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E7%A8%B3%E6%80%81%E7%94%B5%E8%B7%AF"><span class="toc-number">2.2.</span> <span class="toc-text"> 双稳态电路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sr%E9%94%81%E5%AD%98%E5%99%A8latch"><span class="toc-number">2.3.</span> <span class="toc-text"> SR锁存器(Latch)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-2"><span class="toc-number">2.3.1.</span> <span class="toc-text"> 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90-2"><span class="toc-number">2.3.2.</span> <span class="toc-text"> 分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.3.3.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d%E9%94%81%E5%AD%98%E5%99%A8"><span class="toc-number">2.4.</span> <span class="toc-text"> D锁存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-3"><span class="toc-number">2.4.1.</span> <span class="toc-text"> 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.4.2.</span> <span class="toc-text"> 实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d%E8%A7%A6%E5%8F%91%E5%99%A8flip-flop"><span class="toc-number">2.5.</span> <span class="toc-text"> D触发器(Flip-flop)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-4"><span class="toc-number">2.5.1.</span> <span class="toc-text"> 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E4%BB%8E%E5%BC%8Fd%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.5.2.</span> <span class="toc-text"> 主从式D触发器的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A6%E4%BD%BF%E8%83%BD%E7%AB%AF%E7%9A%84d%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">2.5.3.</span> <span class="toc-text"> 带使能端的D触发器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A6%E5%A4%8D%E4%BD%8D%E5%8A%9F%E8%83%BD%E7%9A%84d%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">2.5.4.</span> <span class="toc-text"> 带复位功能的D触发器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A6%E7%BD%AE%E4%BD%8D%E5%8A%9F%E8%83%BD%E7%9A%84d%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">2.5.5.</span> <span class="toc-text"> 带置位功能的D触发器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d%E9%94%81%E5%AD%98%E5%99%A8%E4%B8%8Ed%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">2.6.</span> <span class="toc-text"> D锁存器与D触发器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8register"><span class="toc-number">2.7.</span> <span class="toc-text"> 寄存器(Register)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text"> 同步逻辑设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF"><span class="toc-number">3.1.</span> <span class="toc-text"> 时序逻辑电路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E7%A8%B3%E6%80%81%E7%94%B5%E8%B7%AF"><span class="toc-number">3.2.</span> <span class="toc-text"> 非稳态电路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF"><span class="toc-number">3.3.</span> <span class="toc-text"> 同步时序电路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-5"><span class="toc-number">3.3.1.</span> <span class="toc-text"> 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E6%88%90%E8%A7%84%E5%88%99"><span class="toc-number">3.3.2.</span> <span class="toc-text"> 组成规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%90%8C%E6%AD%A5%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF%E5%AE%9E%E4%BE%8B"><span class="toc-number">3.3.3.</span> <span class="toc-text"> 一个简单的同步时序电路实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E4%B8%8B%E5%88%97%E9%82%A3%E4%BA%9B%E7%94%B5%E8%B7%AF%E6%98%AF%E5%90%8C%E6%AD%A5%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF"><span class="toc-number">3.3.4.</span> <span class="toc-text"> 思考：下列那些电路是同步时序电路？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF"><span class="toc-number">3.4.</span> <span class="toc-text"> 异步时序电路</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="toc-number">4.</span> <span class="toc-text"> 有限状态机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E7%BB%93%E6%9E%84"><span class="toc-number">4.1.</span> <span class="toc-text"> 有限状态机结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#moore%E5%92%8Cmealy%E5%9E%8B%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="toc-number">4.2.</span> <span class="toc-text"> Moore和Mealy型有限状态机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E4%BA%A4%E9%80%9A%E7%81%AF%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-number">4.3.</span> <span class="toc-text"> 例：交通灯控制器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1"><span class="toc-number">4.3.1.</span> <span class="toc-text"> 设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E9%BB%91%E7%9B%92%E8%A7%86%E5%9B%BE"><span class="toc-number">4.3.2.</span> <span class="toc-text"> 有限状态机黑盒视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE"><span class="toc-number">4.3.3.</span> <span class="toc-text"> 状态转换图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E8%A1%A8"><span class="toc-number">4.3.4.</span> <span class="toc-text"> 状态转换表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E7%8A%B6%E6%80%81%E8%BF%9B%E8%A1%8C%E7%BC%96%E7%A0%81"><span class="toc-number">4.3.5.</span> <span class="toc-text"> 对状态进行编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E8%A1%A8"><span class="toc-number">4.3.6.</span> <span class="toc-text"> 输出表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E5%9B%BE%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">4.3.7.</span> <span class="toc-text"> 原理图：寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E5%9B%BE%E6%AC%A1%E6%80%81%E9%80%BB%E8%BE%91"><span class="toc-number">4.3.8.</span> <span class="toc-text"> 原理图：次态逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E5%9B%BE%E8%BE%93%E5%87%BA%E9%80%BB%E8%BE%91"><span class="toc-number">4.3.9.</span> <span class="toc-text"> 原理图：输出逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="toc-number">4.3.10.</span> <span class="toc-text"> 时序图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#moore%E5%9E%8B%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95"><span class="toc-number">4.4.</span> <span class="toc-text"> Moore型有限状态机设计方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%BC%96%E7%A0%81"><span class="toc-number">4.5.</span> <span class="toc-text"> 状态编码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-6"><span class="toc-number">4.5.1.</span> <span class="toc-text"> 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%BC%96%E7%A0%81"><span class="toc-number">4.5.2.</span> <span class="toc-text"> 二进制编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8B%AC%E7%83%AD%E7%BC%96%E7%A0%81"><span class="toc-number">4.5.3.</span> <span class="toc-text"> 独热编码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#moore%E5%9E%8B%E7%8A%B6%E6%80%81%E6%9C%BA-vs-mealy%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="toc-number">4.6.</span> <span class="toc-text"> Moore型状态机 VS Mealy状态机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-number">4.6.1.</span> <span class="toc-text"> 实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE-2"><span class="toc-number">4.6.2.</span> <span class="toc-text"> 状态转换图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#moore%E5%9E%8B%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E8%A1%A8"><span class="toc-number">4.6.3.</span> <span class="toc-text"> Moore型状态机的状态转换表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#moore%E5%9E%8B%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E8%BE%93%E5%87%BA%E8%A1%A8"><span class="toc-number">4.6.4.</span> <span class="toc-text"> Moore型状态机的输出表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mealy%E5%9E%8B%E7%8A%B6%E6%80%81%E6%9C%BA%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E8%A1%A8%E5%92%8C%E8%BE%93%E5%87%BA%E8%A1%A8"><span class="toc-number">4.6.5.</span> <span class="toc-text"> Mealy型状态机状态转换表和输出表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#moore%E5%9E%8B%E7%8A%B6%E6%80%81%E6%9C%BA%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-number">4.6.6.</span> <span class="toc-text"> Moore型状态机原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mealy%E5%9E%8B%E7%8A%B6%E6%80%81%E6%9C%BA%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-number">4.6.7.</span> <span class="toc-text"> Mealy型状态机原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#moore%E5%9E%8B%E5%92%8Cmealy%E5%9E%8B%E7%8A%B6%E6%80%81%E6%9C%BA%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="toc-number">4.6.8.</span> <span class="toc-text"> Moore型和Mealy型状态机时序图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mealy%E5%9E%8B%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95"><span class="toc-number">4.7.</span> <span class="toc-text"> Mealy型有限状态机设计方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#moore%E5%9E%8B%E7%8A%B6%E6%80%81%E6%9C%BA%E4%B8%8Emealy%E5%9E%8B%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E6%80%BB%E7%BB%93"><span class="toc-number">4.8.</span> <span class="toc-text"> Moore型状态机与Mealy型状态机的总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E5%88%86%E8%A7%A3"><span class="toc-number">4.9.</span> <span class="toc-text"> 状态机的分解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87"><span class="toc-number">4.9.1.</span> <span class="toc-text"> 目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B-2"><span class="toc-number">4.9.2.</span> <span class="toc-text"> 实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B8%E8%A1%8C%E6%A8%A1%E5%BC%8F%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1"><span class="toc-number">4.9.3.</span> <span class="toc-text"> “游行”模式状态机设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E5%88%86%E8%A7%A3%E7%9A%84%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE"><span class="toc-number">4.9.4.</span> <span class="toc-text"> 未分解的状态转换图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E8%A7%A3%E5%90%8E%E7%9A%84%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE"><span class="toc-number">4.9.5.</span> <span class="toc-text"> 分解后的状态转换图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E5%B0%8F%E7%BB%93"><span class="toc-number">4.10.</span> <span class="toc-text"> 有限状态机设计小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B1%E7%94%B5%E8%B7%AF%E5%9B%BE%E5%AF%BC%E5%87%BA%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="toc-number">4.11.</span> <span class="toc-text"> 由电路图导出状态机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%AD%A5%E9%AA%A4"><span class="toc-number">4.11.1.</span> <span class="toc-text"> 主要步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E9%94%AE%E7%9B%98%E9%94%81%E7%94%B5%E8%B7%AF%E5%88%86%E6%9E%90"><span class="toc-number">4.11.2.</span> <span class="toc-text"> 实例：键盘锁电路分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E4%B8%AD%E7%9A%84%E6%97%B6%E5%BA%8F%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text"> 时序逻辑中的时序问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F"><span class="toc-number">5.1.</span> <span class="toc-text"> 时序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%97%B6%E5%BA%8F%E7%BA%A6%E6%9D%9F"><span class="toc-number">5.2.</span> <span class="toc-text"> 输入时序约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%97%B6%E5%BA%8F%E7%BA%A6%E6%9D%9F"><span class="toc-number">5.3.</span> <span class="toc-text"> 输出时序约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E7%BA%A6%E6%9D%9F"><span class="toc-number">5.4.</span> <span class="toc-text"> 动态约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%BA%8F"><span class="toc-number">5.5.</span> <span class="toc-text"> 系统时序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E6%97%B6%E9%97%B4%E7%BA%A6%E6%9D%9F"><span class="toc-number">5.6.</span> <span class="toc-text"> 建立时间约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%9D%E6%8C%81%E6%97%B6%E9%97%B4%E7%BA%A6%E6%9D%9F"><span class="toc-number">5.7.</span> <span class="toc-text"> 保持时间约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90"><span class="toc-number">5.8.</span> <span class="toc-text"> 时序分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E6%A8%A1%E5%9D%97"><span class="toc-number">6.</span> <span class="toc-text"> 时序逻辑模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Esystemverilog-hdl%E7%9A%84%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1"><span class="toc-number">6.1.</span> <span class="toc-text"> 基于SystemVerilog HDL的时序逻辑设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#always%E8%BF%87%E7%A8%8B%E5%BF%AB%E7%9A%84%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E5%BB%BA%E6%A8%A1"><span class="toc-number">6.2.</span> <span class="toc-text"> always过程快的时序逻辑建模</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E5%BB%BA%E6%A8%A1"><span class="toc-number">6.3.</span> <span class="toc-text"> 寄存器建模</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%A6%E5%A4%8D%E4%BD%8D%E7%AB%AF%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8%E5%BB%BA%E6%A8%A1"><span class="toc-number">6.4.</span> <span class="toc-text"> 带复位端的寄存器建模</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%8A%9F%E8%83%BD"><span class="toc-number">6.4.1.</span> <span class="toc-text"> 同步复位功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%8A%9F%E8%83%BD"><span class="toc-number">6.4.2.</span> <span class="toc-text"> 异步复位功能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%A6%E4%BD%BF%E8%83%BD%E7%AB%AF%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8%E5%BB%BA%E6%A8%A1"><span class="toc-number">6.5.</span> <span class="toc-text"> 带使能端的寄存器建模</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%81%E5%AD%98%E5%99%A8"><span class="toc-number">6.6.</span> <span class="toc-text"> 锁存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC-vs-%E9%9D%9E%E9%98%BB%E5%A1%9E%E8%B5%8B%E5%80%BC"><span class="toc-number">6.7.</span> <span class="toc-text"> 阻塞赋值 VS 非阻塞赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC%E8%AF%AD%E5%8F%A5%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99"><span class="toc-number">6.8.</span> <span class="toc-text"> 赋值语句使用规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">6.9.</span> <span class="toc-text"> 计数器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-7"><span class="toc-number">6.9.1.</span> <span class="toc-text"> 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E6%A8%A1"><span class="toc-number">6.9.2.</span> <span class="toc-text"> 建模</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">6.10.</span> <span class="toc-text"> 移位寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%A6%E5%B9%B6%E8%A1%8C%E5%8A%A0%E8%BD%BD%E7%9A%84%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">6.11.</span> <span class="toc-text"> 带并行加载的移位寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-8"><span class="toc-number">6.11.1.</span> <span class="toc-text"> 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E6%A8%A1-2"><span class="toc-number">6.11.2.</span> <span class="toc-text"> 建模</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E5%BB%BA%E6%A8%A1"><span class="toc-number">6.12.</span> <span class="toc-text"> 有限状态机建模</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-9"><span class="toc-number">6.12.1.</span> <span class="toc-text"> 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B3%E5%88%86%E9%A2%91%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">6.12.2.</span> <span class="toc-text"> 实例：3分频计数器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E9%98%B5%E5%88%97"><span class="toc-number">6.13.</span> <span class="toc-text"> 存储器阵列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8D%E5%8D%95%E5%85%83"><span class="toc-number">6.14.</span> <span class="toc-text"> 位单元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-number">6.15.</span> <span class="toc-text"> 存储器的结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">6.16.</span> <span class="toc-text"> 存储器的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dram-vs-sram"><span class="toc-number">6.17.</span> <span class="toc-text"> DRAM VS SRAM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E7%A7%8D%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">6.18.</span> <span class="toc-text"> 几种存储器的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E7%AB%AF%E5%8F%A3"><span class="toc-number">6.19.</span> <span class="toc-text"> 存储器端口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E6%96%87%E4%BB%B6"><span class="toc-number">6.20.</span> <span class="toc-text"> 寄存器文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ram%E5%BB%BA%E6%A8%A1"><span class="toc-number">6.21.</span> <span class="toc-text"> RAM建模</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rom%E5%BB%BA%E6%A8%A1"><span class="toc-number">6.22.</span> <span class="toc-text"> ROM建模</span></a></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/05/15/Project/DaChuang2021-2022/DaChuang2021-2022-Process/" title="基于ORB-SLAM2的Android手机实时定位-进度"><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/2021/DaChuang2021-2022-Process/cover_DaChuang2021-2022-Process.jpg" onerror="this.onerror=null;this.src='/img/404_GIF.gif'" alt="基于ORB-SLAM2的Android手机实时定位-进度"/></a><div class="content"><a class="title" href="/2021/05/15/Project/DaChuang2021-2022/DaChuang2021-2022-Process/" title="基于ORB-SLAM2的Android手机实时定位-进度">基于ORB-SLAM2的Android手机实时定位-进度</a><time datetime="2021-05-15T02:28:48.000Z" title="Created 2021-05-15 10:28:48">2021-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/14/MLAMS/MLAMS-Lab3/" title="数字逻辑与数字系统-Lab3"><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/MLAMS-Lab3/cover_MLAMS-Lab3.jpg" onerror="this.onerror=null;this.src='/img/404_GIF.gif'" alt="数字逻辑与数字系统-Lab3"/></a><div class="content"><a class="title" href="/2021/05/14/MLAMS/MLAMS-Lab3/" title="数字逻辑与数字系统-Lab3">数字逻辑与数字系统-Lab3</a><time datetime="2021-05-14T05:33:46.000Z" title="Created 2021-05-14 13:33:46">2021-05-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/05/Android-Part1/" title="Android-Part1"><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/2021/Android-Part1/cover_Android-Part1.jpg" onerror="this.onerror=null;this.src='/img/404_GIF.gif'" alt="Android-Part1"/></a><div class="content"><a class="title" href="/2021/05/05/Android-Part1/" title="Android-Part1">Android-Part1</a><time datetime="2021-05-05T09:01:42.000Z" title="Created 2021-05-05 17:01:42">2021-05-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/04/Java/Java-Summary/" title="Java-Summary"><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/Java-Summary/cover_Java-Summary.jpg" onerror="this.onerror=null;this.src='/img/404_GIF.gif'" alt="Java-Summary"/></a><div class="content"><a class="title" href="/2021/05/04/Java/Java-Summary/" title="Java-Summary">Java-Summary</a><time datetime="2021-05-04T14:17:54.000Z" title="Created 2021-05-04 22:17:54">2021-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/01/WindowsTips/" title="Windows Tips"><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/WindowsTips/cover_WindowsTips.png" onerror="this.onerror=null;this.src='/img/404_GIF.gif'" alt="Windows Tips"/></a><div class="content"><a class="title" href="/2021/05/01/WindowsTips/" title="Windows Tips">Windows Tips</a><time datetime="2021-05-01T06:09:57.000Z" title="Created 2021-05-01 14:09:57">2021-05-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Tony Pan</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><p><a style="margin-inline:5px" target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a> <a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a> <a style="margin-inline:5px" target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a> <a style="margin-inline:5px" target="_blank" href="https://cloud.tencent.com/"><img src="https://img.shields.io/badge/Host-TencentCloud-brightgreen" title="个人主页托管在腾讯云"></a> <a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div><div id="workboard"></div><script async="async" src="/js/runtime.js"></script></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="/js/search/local-search.js"></script><!--script.--><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})
+setTimeout(function(){preloader.endLoading();}, 3000);</script><div class="js-pjax"><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    $.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js', function () {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script src="/js/IM.js"></script><script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script><script src="/js/clock.js"></script><script src="/js/about.js"></script><script src="https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js"></script><script src="/js/githubcalendar.js"></script><script src="/js/games.js"></script><script src="/js/HomePage.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script></div>
+  <div class="GalMenu GalDropDown">
+     <div class="circle" id="gal">
+       <div class="ring">
+         <a href="/" class="menuItem">首页</a>
+         <a href="javascript:history.go(1);" class="menuItem">前进</a>
+         <a href="javascript:$('html,body').animate({scrollTop:0},500);" class="menuItem">顶部</a>
+         <a href="javascript:location.reload();" class="menuItem">刷新</a>
+         <a href="/MessageBoard/" class="menuItem">留言</a>
+         <a href="javascript:history.go(-1);" class="menuItem">后退</a>
+       </div>
+       
+     </div>
+</div>
+<script type="text/javascript">
+var items = document.querySelectorAll('.menuItem'); 
+for (var i = 0, l = items.length; i < l; i++) {
+   items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+   items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+ }
+</script>
+<script>window.jQuery || document.write('<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@master/hexo/js/jquery-2.1.1.min.js"></script></script>    
+
+<script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog@master/hexo/js/GalMenu.js"></script>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+   $('body').GalMenu({
+     'menu': 'GalDropDown'
+   })
+ });
+</script>
+<!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://CheeseburgerIM.github.io/tags/Java/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 面向对象程序设计 (10)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://CheeseburgerIM.github.io/tags/MLAMS/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎮 数字逻辑与数字系统 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://CheeseburgerIM.github.io/tags/DataBase/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 数据库原理 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://CheeseburgerIM.github.io/tags/ComputerNetwork/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 计算机网络 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://CheeseburgerIM.github.io/tags/DaChuang2021-2022/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 基于ORB-SLAM2的Android手机实时定位 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://CheeseburgerIM.github.io/tags/CodeExercise/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">💡 编程练习 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="https://CheeseburgerIM.github.io/tags" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style> <script data-pjax>if(document.getElementById('recent-posts') && location.pathname =='/'){
+    
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://img.imgdb.cn/item/5fd07c113ffa7d37b3e9753e.png" alt="https://img.imgdb.cn/item/5fd07c113ffa7d37b3e9753e.png"/></div><div class="blog-slider__content"><span class="blog-slider__code">2020-12-08</span><a class="blog-slider__title" href="2020/12/08/IM/">IM</a><div class="blog-slider__text">Part of the journey is the end.</div><a class="blog-slider__button" href="2020/12/08/IM/">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/SFHBZZRX/cover_SFHBZZRX.jpg" alt="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/SFHBZZRX/cover_SFHBZZRX.jpg"/></div><div class="blog-slider__content"><span class="blog-slider__code">2020-12-10</span><a class="blog-slider__title" href="2020/12/10/是非黑白-自在人心/">是非黑白 自在人心</a><div class="blog-slider__text">是非黑白 自在人心</div><a class="blog-slider__button" href="2020/12/10/是非黑白-自在人心/">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://img.imgdb.cn/item/6008e36a3ffa7d37b32207e2.jpg" alt="https://img.imgdb.cn/item/6008e36a3ffa7d37b32207e2.jpg"/></div><div class="blog-slider__content"><span class="blog-slider__code">2021-01-21</span><a class="blog-slider__title" href="2021/01/21/Game/LeagueOfLegends/">英雄联盟</a><div class="blog-slider__text">League of Legends</div><a class="blog-slider__button" href="2021/01/21/Game/LeagueOfLegends/">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://img.imgdb.cn/item/6061dc208322e6675c1d9c99.png" alt="https://img.imgdb.cn/item/6061dc208322e6675c1d9c99.png"/></div><div class="blog-slider__content"><span class="blog-slider__code">2020-12-08</span><a class="blog-slider__title" href="2020/12/08/hello-world/">Hello World</a><div class="blog-slider__text">Hello World</div><a class="blog-slider__button" href="2020/12/08/hello-world/">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/WindowsTips/cover_WindowsTips.png" alt="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Post/WindowsTips/cover_WindowsTips.png"/></div><div class="blog-slider__content"><span class="blog-slider__code">2021-05-01</span><a class="blog-slider__title" href="2021/05/01/WindowsTips/">Windows Tips</a><div class="blog-slider__text">Windows Tips</div><a class="blog-slider__button" href="2021/05/01/WindowsTips/">详情</a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载swiper')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.js"></script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper@0.18/swiper/swiperindex.js"></script>
+<style></style>
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?CheeseburgerIM";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="CheeseburgerIM";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:248px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
