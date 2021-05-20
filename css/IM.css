@@ -49,7 +49,8 @@ img,
 #local-hits .search-result-list .local-search__hit-item a,
 #sidebar-menus .menus_items .menus_item .site-page:hover,
 #sidebar-menus .menus_items .menus_item a:hover,
-#sidebar-menus .menus_items .menus_item span:hover {
+#sidebar-menus .menus_items .menus_item span:hover,
+#chunk input {
     /* cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/pointer.cur), */
     cursor: url(unavailable.cur),
         auto;
