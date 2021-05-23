@@ -150,3 +150,62 @@
 	.cover-wrapper.focus .menu:hover{background:rgba(255,255,255,.5);backdrop-filter:saturate(200%) blur(20px)}}
 	.cover-wrapper.focus .menu .list-h a{margin:2px}
 	.cover-wrapper.focus .menu .list-h a:hover{opacity:1;background:#fff}
+
+/* font awesome color at nav */
+.fa-search{
+	color: #09C7F7;
+}
+.fa-home{
+	color: #00FF99;
+}
+.fa-book{
+	color: #EF9D21;
+}
+.fa-list{
+	color: #F93AD2;
+}
+.fa-cube{
+	color: #9C56CC;
+}
+.fa-subway{
+	color: #F0F031;
+}
+.fa-heart{
+	color: #EE0000;
+}
+.fa-comments{
+	color: #71F350;
+}
+.fa-link{
+	color: #F49B60;
+}
+.fa-archive{
+	color: #CAF031;
+}
+.fa-tags{
+	color: #BD47DB;
+}
+.fa-folder-open{
+	color: #63D0D0;
+}
+.fa-pencil-alt{
+	color: #FA5BDA;
+}
+.fa-robot{
+	color: #ff0000;
+}
+.fa-video{
+	color: #448FFF;
+}
+.fa-image{
+	color: #4BF990;
+}
+.fa-user-circle{
+	color: #F49B60;
+}
+.fa-tv{
+	color: #9450C0;
+}
+.fa-gamepad{
+	color: #60B0A0;
+}
