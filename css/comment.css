@@ -259,10 +259,10 @@ code {
 }
 
 #kootiao h2,
-h3,
-h4,
-h5,
-h6 {
+#kontiao h3,
+#kontiao h4,
+#kontiao h5,
+#kontiao h6 {
     display: block !important;
     background: none !important;
     color: rgb(204, 204, 204) !important
