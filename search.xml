@@ -66,11 +66,11 @@
     
     
     <entry>
-      <title>Android-Part1</title>
-      <link href="2021/05/05/Android-Part1/"/>
-      <url>2021/05/05/Android-Part1/</url>
+      <title>Android-Process</title>
+      <link href="2021/05/05/Android-Process/"/>
+      <url>2021/05/05/Android-Process/</url>
       
-        <content type="html"><![CDATA[<blockquote><a class="btn-beautify button--animated blue larger" href="https://gitee.com/CheeseburgerIM/AndroidStudio"   title="练习源码"><i class="far fa-hand-point-right fa-fw"></i><span>练习源码</span></a><a class="btn-beautify button--animated pink larger" href="https://space.bilibili.com/588552300/channel/detail?cid=183723&ctype=0"   title="学习过程"><i class="far fa-hand-point-right fa-fw"></i><span>学习过程</span></a></blockquote><h1 id="process"><a class="markdownIt-Anchor" href="#process"></a> Process</h1><blockquote><p>2021/5/15~Now：学习Android Studio的使用</p></blockquote><iframe src="//player.bilibili.com/player.html?aid=38409964&bvid=BV1Rt411e76H&cid=67515009&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="500" width="100%"> </iframe><h1 id="hello-world"><a class="markdownIt-Anchor" href="#hello-world"></a> Hello World</h1><h1 id="myfirstapp"><a class="markdownIt-Anchor" href="#myfirstapp"></a> MyFirstApp</h1>]]></content>
+        <content type="html"><![CDATA[<a class="btn-beautify button--animated blue larger" href="https://gitee.com/CheeseburgerIM/AndroidStudio"   title="练习源码"><i class="far fa-hand-point-right fa-fw"></i><span>练习源码</span></a><a class="btn-beautify button--animated pink larger" href="https://space.bilibili.com/588552300/channel/detail?cid=183723&ctype=0"   title="学习过程"><i class="far fa-hand-point-right fa-fw"></i><span>学习过程</span></a><h1 id="process"><a class="markdownIt-Anchor" href="#process"></a> Process</h1><blockquote><p>2021/5/15~Now：学习Android Studio的使用</p></blockquote><iframe src="//player.bilibili.com/player.html?aid=38409964&bvid=BV1Rt411e76H&cid=67515009&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="500" width="100%"> </iframe><h1 id="hello-world"><a class="markdownIt-Anchor" href="#hello-world"></a> Hello World</h1><h1 id="myfirstapp"><a class="markdownIt-Anchor" href="#myfirstapp"></a> MyFirstApp</h1><h1 id="points"><a class="markdownIt-Anchor" href="#points"></a> Points</h1><h2 id="更改avd默认路径"><a class="markdownIt-Anchor" href="#更改avd默认路径"></a> 更改AVD默认路径</h2><ol><li>在想要存放的地方新建文件夹，假设命名为ADK；</li><li>打开<u>编辑系统环境变量</u>并点<u>击环境变量</u>；</li><li>新建一个系统变量<ul><li>变量名：ANDROID_SDK_HOME</li><li>变量值：ADK文件夹的路径</li></ul></li><li>在AndroidStudio中新建虚拟机即可。</li></ol>]]></content>
       
       
       <categories>
