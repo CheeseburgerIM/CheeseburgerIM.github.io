@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>数字逻辑与数字系统-Lab4</title>
+      <link href="2021/05/29/MLAMS/MLAMS-Lab4/"/>
+      <url>2021/05/29/MLAMS/MLAMS-Lab4/</url>
+      
+        <content type="html"><![CDATA[<center><font size=6>实验四  自动贩售机的设计与实现</font></center><a class="btn-beautify button--animated blue larger" href="https://gitee.com/CheeseburgerIM/files/tree/master/Study/Lab/MLAMS/Lab4"   title="实验资料"><i class="far fa-hand-point-right fa-fw"></i><span>实验资料</span></a><a class="btn-beautify button--animated red larger" href="https://gitee.com/CheeseburgerIM/VscodeOnPC/tree/main/SystemVerilog/LAB/LAB4"   title="实验源码"><i class="far fa-hand-point-right fa-fw"></i><span>实验源码</span></a>]]></content>
+      
+      
+      <categories>
+          
+          <category> Lab </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Study </tag>
+            
+            <tag> Lab </tag>
+            
+            <tag> MLAMS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>基于ORB-SLAM2的Android手机实时定位-进度</title>
       <link href="2021/05/15/Project/DaChuang2021-2022/DaChuang2021-2022-Process/"/>
       <url>2021/05/15/Project/DaChuang2021-2022/DaChuang2021-2022-Process/</url>
