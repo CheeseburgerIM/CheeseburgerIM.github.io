@@ -56,7 +56,11 @@ img,
         auto;
 }
 canvas,
-textarea {
+textarea,
+.fa-paste::before,
+.fa-angle-down::before,
+.expand:hover,
+.copy-button:hover {
   cursor: url(link.cur),
         auto;
 }
