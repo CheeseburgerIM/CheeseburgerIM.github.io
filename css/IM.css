@@ -115,3 +115,7 @@ span:first-child {
     width: auto;
     min-width: 50%;
 } */
+
+.fa-thumbs-up{
+  color: red;
+}
