@@ -8,7 +8,7 @@
       <link href="2021/06/01/DataBase/DataBasePrinciple-Lab3/"/>
       <url>2021/06/01/DataBase/DataBasePrinciple-Lab3/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<a class="btn-beautify button--animated blue larger" href="https://gitee.com/CheeseburgerIM/files/tree/master/Study/Lab/DataBasePrinciple/Lab2"   title="实验资料"><i class="far fa-hand-point-right fa-fw"></i><span>实验资料</span></a><a class="btn-beautify button--animated red larger" href="https://gitee.com/CheeseburgerIM/VscodeOnPC/tree/main/DataBase/Lab/Lab02"   title="实验源码"><i class="far fa-hand-point-right fa-fw"></i><span>实验源码</span></a><h1 id="实验目的"><a class="markdownIt-Anchor" href="#实验目的"></a> 实验目的</h1><h1 id="实验原理"><a class="markdownIt-Anchor" href="#实验原理"></a> 实验原理</h1><h1 id="实验内容"><a class="markdownIt-Anchor" href="#实验内容"></a> 实验内容</h1><p>详情见<a href="https://gitee.com/CheeseburgerIM/files/raw/master/Study/Lab/DataBasePrinciple/Lab3/%E5%AE%9E%E9%AA%8C%E4%B8%89%E5%AE%9E%E9%AA%8C%E6%8C%87%E5%AF%BC%E4%B9%A6.txt">实验指导书</a></p><h1 id="实验步骤"><a class="markdownIt-Anchor" href="#实验步骤"></a> 实验步骤</h1>]]></content>
       
       
       <categories>
@@ -41,7 +41,7 @@
       <link href="2021/05/30/DataBase/DataBasePrinciple-Lab2/"/>
       <url>2021/05/30/DataBase/DataBasePrinciple-Lab2/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<a class="btn-beautify button--animated blue larger" href="https://gitee.com/CheeseburgerIM/files/tree/master/Study/Lab/DataBasePrinciple/Lab3"   title="实验资料"><i class="far fa-hand-point-right fa-fw"></i><span>实验资料</span></a><a class="btn-beautify button--animated red larger" href="https://gitee.com/CheeseburgerIM/VscodeOnPC/tree/main/DataBase/Lab/Lab03"   title="实验源码"><i class="far fa-hand-point-right fa-fw"></i><span>实验源码</span></a><h1 id="实验目的"><a class="markdownIt-Anchor" href="#实验目的"></a> 实验目的</h1><ol><li>巩固关系数据模型及其基本概念；</li><li>掌握使用SQL创建关系模式；</li><li>掌握使用SQL创建主键和外键约束；</li><li>掌握关系模式与ER模型的转换。</li></ol><h1 id="实验原理"><a class="markdownIt-Anchor" href="#实验原理"></a> 实验原理</h1><ol><li>采用PostgreSQL数据库作为实验用DBMS；</li><li>用SQL创建数据库模式；</li><li>用SQL创建主键和外键约束；</li><li>将关系模式转换为ER模型并绘制ER图。</li></ol><h1 id="实验内容"><a class="markdownIt-Anchor" href="#实验内容"></a> 实验内容</h1><p>详情见<a href="https://gitee.com/CheeseburgerIM/files/raw/master/Study/Lab/DataBasePrinciple/Lab2/%E5%AE%9E%E9%AA%8C%E4%BA%8C%E5%AE%9E%E9%AA%8C%E6%8C%87%E5%AF%BC%E4%B9%A6.txt">实验指导书</a></p><h1 id="实验步骤"><a class="markdownIt-Anchor" href="#实验步骤"></a> 实验步骤</h1>]]></content>
       
       
       <categories>
