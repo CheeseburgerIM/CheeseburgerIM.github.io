@@ -51,11 +51,11 @@
             
             <tag> Study </tag>
             
+            <tag> Lab </tag>
+            
             <tag> DataBase </tag>
             
             <tag> DataBasePrinciple </tag>
-            
-            <tag> Lab </tag>
             
         </tags>
       
@@ -84,11 +84,11 @@
             
             <tag> Study </tag>
             
+            <tag> Lab </tag>
+            
             <tag> DataBase </tag>
             
             <tag> DataBasePrinciple </tag>
-            
-            <tag> Lab </tag>
             
         </tags>
       
@@ -334,11 +334,11 @@
             
             <tag> Study </tag>
             
+            <tag> Lab </tag>
+            
             <tag> DataBase </tag>
             
             <tag> DataBasePrinciple </tag>
-            
-            <tag> Lab </tag>
             
         </tags>
       
@@ -1259,9 +1259,9 @@
             
             <tag> Study </tag>
             
-            <tag> Postgraduate </tag>
-            
             <tag> OS </tag>
+            
+            <tag> Postgraduate </tag>
             
         </tags>
       
@@ -1383,9 +1383,9 @@
             
             <tag> Study </tag>
             
-            <tag> Postgraduate </tag>
-            
             <tag> OS </tag>
+            
+            <tag> Postgraduate </tag>
             
         </tags>
       
@@ -1412,9 +1412,9 @@
             
             <tag> Study </tag>
             
-            <tag> Postgraduate </tag>
-            
             <tag> OS </tag>
+            
+            <tag> Postgraduate </tag>
             
         </tags>
       
@@ -1441,9 +1441,9 @@
             
             <tag> Study </tag>
             
-            <tag> Postgraduate </tag>
-            
             <tag> OS </tag>
+            
+            <tag> Postgraduate </tag>
             
         </tags>
       
@@ -1503,9 +1503,9 @@
             
             <tag> Study </tag>
             
-            <tag> Marxism </tag>
-            
             <tag> Postgraduate </tag>
+            
+            <tag> Marxism </tag>
             
         </tags>
       
@@ -1745,9 +1745,9 @@
             
             <tag> Code </tag>
             
-            <tag> Lab </tag>
-            
             <tag> Programme </tag>
+            
+            <tag> Lab </tag>
             
             <tag> NEMU </tag>
             
