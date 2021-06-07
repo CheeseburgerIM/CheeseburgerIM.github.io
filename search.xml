@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>计算机网络-实验</title>
+      <link href="2021/06/07/Network/Network-Lab/"/>
+      <url>2021/06/07/Network/Network-Lab/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Lab </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Introduction </tag>
+            
+            <tag> Study </tag>
+            
+            <tag> Lab </tag>
+            
+            <tag> ComputerNetwork </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>数字逻辑与数字系统-Part5</title>
       <link href="2021/06/02/MLAMS/MLAMS-Part5/"/>
       <url>2021/06/02/MLAMS/MLAMS-Part5/</url>
@@ -881,8 +912,8 @@
     
     <entry>
       <title>计算机网络-层次划分</title>
-      <link href="2021/03/10/ComputerNetwork/ComputerNetwork-Layers/"/>
-      <url>2021/03/10/ComputerNetwork/ComputerNetwork-Layers/</url>
+      <link href="2021/03/10/Network/Network-Layers/"/>
+      <url>2021/03/10/Network/Network-Layers/</url>
       
         <content type="html"><![CDATA[<center><b><font size=8>计算机网络层次划分</font></b></center><center><a class="btn-beautify button--animated red larger" href="https://cheeseburgerim.github.io/"   title="应用层(Application Layer)"><i class="far fa-hand-point-right fa-fw"></i><span>应用层(Application Layer)</span></a></center><center><a class="btn-beautify button--animated light green larger" href="https://cheeseburgerim.github.io/"   title="传输层(Transport Layer)"><i class="far fa-hand-point-right fa-fw"></i><span>传输层(Transport Layer)</span></a></center><center><a class="btn-beautify button--animated larger" href="https://cheeseburgerim.github.io/"   title="网络层(Network Layer)"><i class="far fa-hand-point-right fa-fw"></i><span>网络层(Network Layer)</span></a></center><center><a class="btn-beautify button--animated purple larger" href="https://cheeseburgerim.github.io/"   title="链路层(Link Layer)"><i class="far fa-hand-point-right fa-fw"></i><span>链路层(Link Layer)</span></a></center><center><a class="btn-beautify button--animated blue larger" href="https://cheeseburgerim.github.io/"   title="物理层(Physics Layer)"><i class="far fa-hand-point-right fa-fw"></i><span>物理层(Physics Layer)</span></a></center>]]></content>
       
