@@ -19,6 +19,13 @@ console.log("不嫌弃的话大佬可以加个友链互动交流🍻https://chee
 console.log("有什么独特的想法欢迎大佬在留言板留言哦💬https://cheeseburgerim.space/MessageBoard/")
 console.log("⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️");
 
+// ratio Math.floor(myDate.getHours()*100/24)
+var myDate=new Date();
+console.log("今日已过去",myDate.getHours(),"小时",Math.floor(myDate.getHours()*100/24),"%");
+console.log("这周已过去",myDate.getDay(),"天",Math.floor(myDate.getDay()*100/7),"%");
+console.log("本月已过去",myDate.getDate(),"天",Math.floor(myDate.getDate()*100/31),"%");
+console.log("今年已过去",myDate.getMonth(),"月",Math.floor(myDate.getMonth()*100/12),"%");
+
 /*mobile auto hide aside*/
 // var mobile_sidebar_menus = document.getElementById("mobile-sidebar-menus");
 // var menus_item_child = mobile_sidebar_menus.getElementsByClassName(
