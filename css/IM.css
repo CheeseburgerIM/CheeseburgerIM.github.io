@@ -120,4 +120,115 @@ span:first-child {
   color: red;
 }
 
-/* ul and ol */
+/* progress */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.progress {
+  margin: 3rem auto;
+  max-width: 600px;
+  font-size: 100%;
+  font-family: "Open sans", Arial, sans-serif;
+  color: white;
+}
+@media(max-width: 610px) {
+  .progress {
+    padding: 0 5%;
+  }
+}
+.bar {
+  height: 40px;
+  width: 0;
+  transition: width 1.2s ease-in-out;
+  position: relative;
+  margin: 0.5rem 0;
+  border-radius: 4px;
+}
+@media(max-width: 350px) {
+  .bar {
+    margin: 2.5rem 0 0.5rem;
+  }
+}
+.bar.mint {
+  background-color: #14c3a2;
+  background-image: repeating-linear-gradient(-45deg, #14c3a2, #14c3a2 30px, #22e8c3 30px, #22e8c3 60px);
+  background-size: 600px 100%;
+  animation: barberpole 12s linear infinite;
+  border-bottom: 0.2rem solid #0d7e68;
+}
+.bar.red {
+  background-color: #cf4647;
+  background-image: repeating-linear-gradient(-45deg, #cf4647, #cf4647 30px, #da6e6f 30px, #da6e6f 60px);
+  background-size: 600px 100%;
+  animation: barberpole 12s linear infinite;
+  border-bottom: 0.2rem solid #9f292a;
+}
+.bar.orange {
+  background-color: #eb7b59;
+  background-image: repeating-linear-gradient(-45deg, #eb7b59, #eb7b59 30px, #f09f87 30px, #f09f87 60px);
+  background-size: 600px 100%;
+  animation: barberpole 12s linear infinite;
+  border-bottom: 0.2rem solid #dd481b;
+}
+.bar.lila {
+  background-color: #524656;
+  background-image: repeating-linear-gradient(-45deg, #524656, #524656 30px, #6d5d72 30px, #6d5d72 60px);
+  background-size: 600px 100%;
+  animation: barberpole 12s linear infinite;
+  border-bottom: 0.2rem solid #2a242c;
+}
+.bar.gray {
+  background-color: #595b5a;
+  background-image: repeating-linear-gradient(-45deg, #595b5a, #595b5a 30px, #727574 30px, #727574 60px);
+  background-size: 600px 100%;
+  animation: barberpole 12s linear infinite;
+  border-bottom: 0.2rem solid #333434;
+}
+.bar.active:after, .bar.active:before {
+  opacity: 1;
+}
+.bar:before {
+  content: attr(data-skill);
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  height: 40px;
+  font-style: italic;
+  opacity: 0;
+  transition: opacity 2s 0.6s;
+}
+@media(max-width: 350px) {
+  .bar:before {
+    top: -100%;
+    color: black;
+    padding: 10px 0 0;
+  }
+}
+.bar:after {
+  content: attr(data-percent) "%";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 40px;
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 2s 0.6s;
+}
+@media(max-width: 350px) {
+  .bar:after {
+    left: 0;
+  }
+}
+@keyframes barberpole {
+  from {
+    background-position: 0% 0%;
+  }
+
+  to {
+    background-position: 600px 0%;
+  }
+}

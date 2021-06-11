@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>数据库原理-Lab4</title>
+      <link href="2021/06/11/DataBase/DataBasePrinciple-Lab4/"/>
+      <url>2021/06/11/DataBase/DataBasePrinciple-Lab4/</url>
+      
+        <content type="html"><![CDATA[<a class="btn-beautify button--animated blue larger" href="https://gitee.com/CheeseburgerIM/files/tree/master/Study/Lab/DataBasePrinciple/Lab4"   title="实验资料"><i class="far fa-hand-point-right fa-fw"></i><span>实验资料</span></a><a class="btn-beautify button--animated red larger" href="https://gitee.com/CheeseburgerIM/VscodeOnPC/tree/main/DataBase/Lab/Lab04"   title="实验源码"><i class="far fa-hand-point-right fa-fw"></i><span>实验源码</span></a><h1 id="实验目的"><a class="markdownIt-Anchor" href="#实验目的"></a> 实验目的</h1><p>通过上机练习掌握数据库编程技术</p><h1 id="实验原理"><a class="markdownIt-Anchor" href="#实验原理"></a> 实验原理</h1><ol><li>用SQL进行高级数据库操作；</li><li>用JDBC编程连接数据库并进行操作。</li></ol><h1 id="实验内容"><a class="markdownIt-Anchor" href="#实验内容"></a> 实验内容</h1><p>详情见<a href="https://gitee.com/CheeseburgerIM/files/raw/master/Study/Lab/DataBasePrinciple/Lab4/Instruction_Lab4.txt">实验指导书</a></p><h1 id="实验步骤"><a class="markdownIt-Anchor" href="#实验步骤"></a> 实验步骤</h1><h1 id="实验思考"><a class="markdownIt-Anchor" href="#实验思考"></a> 实验思考</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> Lab </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Code </tag>
+            
+            <tag> Study </tag>
+            
+            <tag> Lab </tag>
+            
+            <tag> DataBase </tag>
+            
+            <tag> DataBasePrinciple </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>计算机网络-实验</title>
       <link href="2021/06/07/Network/Network-Lab/"/>
       <url>2021/06/07/Network/Network-Lab/</url>

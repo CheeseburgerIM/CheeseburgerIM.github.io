@@ -26,6 +26,32 @@ console.log("这周已过去",myDate.getDay(),"天",Math.floor(myDate.getDay()*1
 console.log("本月已过去",myDate.getDate(),"天",Math.floor(myDate.getDate()*100/31),"%");
 console.log("今年已过去",myDate.getMonth(),"月",Math.floor(myDate.getMonth()*100/12),"%");
 
+// progress
+var myDate=new Date();
+
+var temp1=document.getElementById("first");
+temp1.style.width=Math.floor(myDate.getHours()*100/24)+"%";
+temp1.attributes["data-percent"].nodeValue=Math.floor(myDate.getHours()*100/24);
+document.getElementById("Hour_Num").innerText="今天已过去"+myDate.getHours()+"小时";
+
+var temp2=document.getElementById("second");
+temp2.style.width=Math.floor(myDate.getDay()*100/7)+"%";
+temp2.attributes["data-percent"].nodeValue=Math.floor(myDate.getDay()*100/7);
+document.getElementById("Day_Num").innerText="这周已过去"+myDate.getDay()+"天";
+
+var temp3=document.getElementById("third");
+temp3.style.width=Math.floor(myDate.getDate()*100/31)+"%";
+temp3.attributes["data-percent"].nodeValue=Math.floor(myDate.getDate()*100/31);
+document.getElementById("Date_Num").innerText="本月已过去"+myDate.getDate()+"天";
+
+var temp4=document.getElementById("fourth");
+temp4.style.width=Math.floor(myDate.getMonth()*100/12)+"%";
+temp4.attributes["data-percent"].nodeValue=Math.floor(myDate.getMonth()*100/12);
+document.getElementById("Month_Num").innerText="今年已过去"+myDate.getMonth()+"个月";
+
+// var temp5=document.getElementById("fifth");
+// temp5.style.width=54+"%";
+
 /*mobile auto hide aside*/
 // var mobile_sidebar_menus = document.getElementById("mobile-sidebar-menus");
 // var menus_item_child = mobile_sidebar_menus.getElementsByClassName(
