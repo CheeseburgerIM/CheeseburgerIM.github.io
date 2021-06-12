@@ -72,4 +72,4 @@ setInterval(function () {
     temp5.style.width = Math.floor(myDate.getMinutes() * 100 / 60) + "%";
     temp5.attributes["data-percent"].nodeValue = Math.floor(myDate.getMinutes() * 100 / 60);
     document.getElementById("Minute_Num").innerText = "这小时已过去" + myDate.getMinutes() + "分钟";
-}, 1000);
+}, 10000);
