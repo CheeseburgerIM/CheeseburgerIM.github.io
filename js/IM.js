@@ -21,15 +21,20 @@ console.log("⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️�
 
 var myDate = new Date();
 
+function west2chinese(day) {
+    if(day==0) return 6;
+    else return day-2;
+}
+
 var temp1 = document.getElementById("first");
 temp1.style.width = Math.floor(myDate.getHours() * 100 / 24) + "%";
 temp1.attributes["data-percent"].nodeValue = Math.floor(myDate.getHours() * 100 / 24);
 document.getElementById("Hour_Num").innerText = "今天已过去" + myDate.getHours() + "小时";
 
 var temp2 = document.getElementById("second");
-temp2.style.width = Math.floor(myDate.getDay() * 100 / 7) + "%";
-temp2.attributes["data-percent"].nodeValue = Math.floor(myDate.getDay() * 100 / 7);
-document.getElementById("Day_Num").innerText = "这周已过去" + myDate.getDay() + "天";
+temp2.style.width = Math.floor(west2chinese(myDate.getDay()) * 100 / 7) + "%";
+temp2.attributes["data-percent"].nodeValue = Math.floor(west2chinese(myDate.getDay()) * 100 / 7);
+document.getElementById("Day_Num").innerText = "这周已过去" + west2chinese(myDate.getDay()) + "天";
 
 var temp3 = document.getElementById("third");
 temp3.style.width = Math.floor(myDate.getDate() * 100 / 31) + "%";
@@ -54,9 +59,9 @@ setInterval(function () {
     document.getElementById("Hour_Num").innerText = "今天已过去" + myDate.getHours() + "小时";
 
     var temp2 = document.getElementById("second");
-    temp2.style.width = Math.floor(myDate.getDay() * 100 / 7) + "%";
-    temp2.attributes["data-percent"].nodeValue = Math.floor(myDate.getDay() * 100 / 7);
-    document.getElementById("Day_Num").innerText = "这周已过去" + myDate.getDay() + "天";
+    temp2.style.width = Math.floor(west2chinese(myDate.getDay()) * 100 / 7) + "%";
+    temp2.attributes["data-percent"].nodeValue = Math.floor(west2chinese(myDate.getDay()) * 100 / 7);
+    document.getElementById("Day_Num").innerText = "这周已过去" + west2chinese(myDate.getDay()) + "天";
 
     var temp3 = document.getElementById("third");
     temp3.style.width = Math.floor(myDate.getDate() * 100 / 31) + "%";
