@@ -21,9 +21,24 @@ console.log("⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️⬆️�
 
 var myDate = new Date();
 
-function west2chinese(day) {
+function changeDayFormat(day) {
     if(day==0) return 6;
-    else return day-2;
+    else return day-1;
+}
+//                  0 1  2  3  4  5  6  7  8  9  10 11 12
+var month=new Array(0,31,28,31,30,31,30,31,31,30,31,30,31);
+function isLeapYear(year) {
+    if((year%4==0&&year%100!=0)||(year%400==0)) return true;
+    return false;
+}
+function changeMonthFormat(month) {
+    if(month==0) return 12;
+    else return month+1;
+}
+function getCntOfThisMonth() {
+    var temp=new Date();
+    if(isLeapYear(temp.getFullYear())) return month[changeMonthFormat(temp.getMonth())]+1;
+    return month[changeMonthFormat(temp.getMonth())];
 }
 
 var temp1 = document.getElementById("first");
@@ -32,13 +47,13 @@ temp1.attributes["data-percent"].nodeValue = Math.floor(myDate.getHours() * 100 
 document.getElementById("Hour_Num").innerText = "今天已过去" + myDate.getHours() + "小时";
 
 var temp2 = document.getElementById("second");
-temp2.style.width = Math.floor(west2chinese(myDate.getDay()) * 100 / 7) + "%";
-temp2.attributes["data-percent"].nodeValue = Math.floor(west2chinese(myDate.getDay()) * 100 / 7);
-document.getElementById("Day_Num").innerText = "这周已过去" + west2chinese(myDate.getDay()) + "天";
+temp2.style.width = Math.floor(changeDayFormat(myDate.getDay()) * 100 / 7) + "%";
+temp2.attributes["data-percent"].nodeValue = Math.floor(changeDayFormat(myDate.getDay()) * 100 / 7);
+document.getElementById("Day_Num").innerText = "这周已过去" + changeDayFormat(myDate.getDay()) + "天";
 
 var temp3 = document.getElementById("third");
-temp3.style.width = Math.floor(myDate.getDate() * 100 / 31) + "%";
-temp3.attributes["data-percent"].nodeValue = Math.floor(myDate.getDate() * 100 / 31);
+temp3.style.width = Math.floor(myDate.getDate() * 100 / getCntOfThisMonth()) + "%";
+temp3.attributes["data-percent"].nodeValue = Math.floor(myDate.getDate() * 100 / getCntOfThisMonth());
 document.getElementById("Date_Num").innerText = "本月已过去" + myDate.getDate() + "天";
 
 var temp4 = document.getElementById("fourth");
@@ -59,13 +74,13 @@ setInterval(function () {
     document.getElementById("Hour_Num").innerText = "今天已过去" + myDate.getHours() + "小时";
 
     var temp2 = document.getElementById("second");
-    temp2.style.width = Math.floor(west2chinese(myDate.getDay()) * 100 / 7) + "%";
-    temp2.attributes["data-percent"].nodeValue = Math.floor(west2chinese(myDate.getDay()) * 100 / 7);
-    document.getElementById("Day_Num").innerText = "这周已过去" + west2chinese(myDate.getDay()) + "天";
+    temp2.style.width = Math.floor(changeDayFormat(myDate.getDay()) * 100 / 7) + "%";
+    temp2.attributes["data-percent"].nodeValue = Math.floor(changeDayFormat(myDate.getDay()) * 100 / 7);
+    document.getElementById("Day_Num").innerText = "这周已过去" + changeDayFormat(myDate.getDay()) + "天";
 
     var temp3 = document.getElementById("third");
-    temp3.style.width = Math.floor(myDate.getDate() * 100 / 31) + "%";
-    temp3.attributes["data-percent"].nodeValue = Math.floor(myDate.getDate() * 100 / 31);
+    temp3.style.width = Math.floor(myDate.getDate() * 100 / getCntOfThisMonth()) + "%";
+    temp3.attributes["data-percent"].nodeValue = Math.floor(myDate.getDate() * 100 / getCntOfThisMonth());
     document.getElementById("Date_Num").innerText = "本月已过去" + myDate.getDate() + "天";
 
     var temp4 = document.getElementById("fourth");
