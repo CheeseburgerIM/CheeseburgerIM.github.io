@@ -1,9 +1,12 @@
 // alter title by JS
 var tempTitle=document.title;
-console.log(tempTitle);
+// console.log(tempTitle);
 window.onfocus=function(){
     // document.title="CheeseburgerIM - IM灬Tony Pan";
-    document.title=tempTitle;
+    document.title="Welcome Back Sir-Jarvis"
+    setTimeout(function(){
+        document.title=tempTitle;
+    },2000);
 }
 window.onblur=function(){
     document.title="Waiting For You ^_^";
