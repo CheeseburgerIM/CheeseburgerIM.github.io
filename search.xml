@@ -1369,8 +1369,6 @@
             
             <tag> Introduction </tag>
             
-            <tag> css </tag>
-            
             <tag> Code </tag>
             
             <tag> Study </tag>
@@ -1378,6 +1376,8 @@
             <tag> Website </tag>
             
             <tag> Design </tag>
+            
+            <tag> css </tag>
             
         </tags>
       
@@ -1470,6 +1470,8 @@
             
             <tag> Introduction </tag>
             
+            <tag> html </tag>
+            
             <tag> Code </tag>
             
             <tag> Study </tag>
@@ -1477,8 +1479,6 @@
             <tag> Website </tag>
             
             <tag> Design </tag>
-            
-            <tag> html </tag>
             
         </tags>
       
