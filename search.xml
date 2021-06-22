@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>数字逻辑与数字系统-Lab5</title>
+      <link href="2021/06/22/MLAMS/MLAMS-Lab5/"/>
+      <url>2021/06/22/MLAMS/MLAMS-Lab5/</url>
+      
+        <content type="html"><![CDATA[<center><font size=6>实验五  单周期MIPS处理器设计与实现</font></center><a class="btn-beautify button--animated blue larger" href="https://gitee.com/CheeseburgerIM/files/tree/master/Study/Lab/MLAMS/Lab5"   title="实验资料"><i class="far fa-hand-point-right fa-fw"></i><span>实验资料</span></a><a class="btn-beautify button--animated red larger" href="https://gitee.com/CheeseburgerIM/VscodeOnPC/tree/main/SystemVerilog/LAB/LAB5"   title="实验源码"><i class="far fa-hand-point-right fa-fw"></i><span>实验源码</span></a>]]></content>
+      
+      
+      <categories>
+          
+          <category> Lab </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Study </tag>
+            
+            <tag> SophomoreSecondSemester </tag>
+            
+            <tag> Lab </tag>
+            
+            <tag> MLAMS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>形式化方法-笔记</title>
       <link href="2021/06/12/FSUZ/"/>
       <url>2021/06/12/FSUZ/</url>
