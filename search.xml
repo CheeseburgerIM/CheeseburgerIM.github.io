@@ -51,9 +51,9 @@
             
             <tag> Study </tag>
             
-            <tag> Lab </tag>
-            
             <tag> SophomoreSecondSemester </tag>
+            
+            <tag> Lab </tag>
             
             <tag> MLAMS </tag>
             
@@ -113,9 +113,9 @@
             
             <tag> Study </tag>
             
-            <tag> Lab </tag>
-            
             <tag> SophomoreSecondSemester </tag>
+            
+            <tag> Lab </tag>
             
             <tag> DataBase </tag>
             
@@ -148,9 +148,9 @@
             
             <tag> Study </tag>
             
-            <tag> Lab </tag>
-            
             <tag> SophomoreSecondSemester </tag>
+            
+            <tag> Lab </tag>
             
             <tag> ComputerNetwork </tag>
             
@@ -210,9 +210,9 @@
             
             <tag> Study </tag>
             
-            <tag> Lab </tag>
-            
             <tag> SophomoreSecondSemester </tag>
+            
+            <tag> Lab </tag>
             
             <tag> DataBase </tag>
             
@@ -245,9 +245,9 @@
             
             <tag> Study </tag>
             
-            <tag> Lab </tag>
-            
             <tag> SophomoreSecondSemester </tag>
+            
+            <tag> Lab </tag>
             
             <tag> DataBase </tag>
             
@@ -278,9 +278,9 @@
             
             <tag> Study </tag>
             
-            <tag> Lab </tag>
-            
             <tag> SophomoreSecondSemester </tag>
+            
+            <tag> Lab </tag>
             
             <tag> MLAMS </tag>
             
@@ -342,9 +342,9 @@
             
             <tag> Study </tag>
             
-            <tag> Lab </tag>
-            
             <tag> SophomoreSecondSemester </tag>
+            
+            <tag> Lab </tag>
             
             <tag> MLAMS </tag>
             
@@ -371,13 +371,13 @@
       
         <tags>
             
+            <tag> Introduction </tag>
+            
             <tag> Develop </tag>
             
             <tag> Android </tag>
             
             <tag> Course </tag>
-            
-            <tag> Introduction </tag>
             
             <tag> Language </tag>
             
@@ -472,9 +472,9 @@
             
             <tag> Study </tag>
             
-            <tag> Lab </tag>
-            
             <tag> SophomoreSecondSemester </tag>
+            
+            <tag> Lab </tag>
             
             <tag> MLAMS </tag>
             
@@ -505,9 +505,9 @@
             
             <tag> Study </tag>
             
-            <tag> Lab </tag>
-            
             <tag> SophomoreSecondSemester </tag>
+            
+            <tag> Lab </tag>
             
             <tag> DataBase </tag>
             
@@ -538,9 +538,9 @@
             
             <tag> Study </tag>
             
-            <tag> Lab </tag>
-            
             <tag> SophomoreSecondSemester </tag>
+            
+            <tag> Lab </tag>
             
             <tag> MLAMS </tag>
             
@@ -666,9 +666,9 @@
       
         <tags>
             
-            <tag> Course </tag>
-            
             <tag> Hexo </tag>
+            
+            <tag> Course </tag>
             
             <tag> Blog </tag>
             
@@ -1289,9 +1289,11 @@
       
         <tags>
             
+            <tag> Introduction </tag>
+            
             <tag> Course </tag>
             
-            <tag> Introduction </tag>
+            <tag> js </tag>
             
             <tag> Code </tag>
             
@@ -1300,8 +1302,6 @@
             <tag> Website </tag>
             
             <tag> Design </tag>
-            
-            <tag> js </tag>
             
         </tags>
       
@@ -1394,11 +1394,9 @@
       
         <tags>
             
-            <tag> Course </tag>
-            
             <tag> Introduction </tag>
             
-            <tag> css </tag>
+            <tag> Course </tag>
             
             <tag> Code </tag>
             
@@ -1407,6 +1405,8 @@
             <tag> Website </tag>
             
             <tag> Design </tag>
+            
+            <tag> css </tag>
             
         </tags>
       
@@ -1431,9 +1431,9 @@
       
         <tags>
             
-            <tag> Course </tag>
-            
             <tag> Hexo </tag>
+            
+            <tag> Course </tag>
             
             <tag> Code </tag>
             
@@ -1495,9 +1495,9 @@
       
         <tags>
             
-            <tag> Course </tag>
-            
             <tag> Introduction </tag>
+            
+            <tag> Course </tag>
             
             <tag> Code </tag>
             
@@ -1561,9 +1561,9 @@
       
         <tags>
             
-            <tag> Introduction </tag>
-            
             <tag> Hexo </tag>
+            
+            <tag> Introduction </tag>
             
             <tag> Guidance </tag>
             
