@@ -64,10 +64,10 @@ temp4.style.width = Math.floor(myDate.getMonth() * 100 / 12) + "%";
 temp4.attributes["data-percent"].nodeValue = Math.floor(myDate.getMonth() * 100 / 12);
 document.getElementById("Month_Num").innerText = "今年已过去" + myDate.getMonth() + "个月";
 
-var temp5 = document.getElementById("fifth");
-temp5.style.width = Math.floor(myDate.getMinutes() * 100 / 60) + "%";
-temp5.attributes["data-percent"].nodeValue = Math.floor(myDate.getMinutes() * 100 / 60);
-document.getElementById("Minute_Num").innerText = "这小时已过去" + myDate.getMinutes() + "分钟";
+// var temp5 = document.getElementById("fifth");
+// temp5.style.width = Math.floor(myDate.getMinutes() * 100 / 60) + "%";
+// temp5.attributes["data-percent"].nodeValue = Math.floor(myDate.getMinutes() * 100 / 60);
+// document.getElementById("Minute_Num").innerText = "这小时已过去" + myDate.getMinutes() + "分钟";
 setInterval(function () {
     var myDate = new Date();
 
@@ -91,8 +91,8 @@ setInterval(function () {
     temp4.attributes["data-percent"].nodeValue = Math.floor(myDate.getMonth() * 100 / 12);
     document.getElementById("Month_Num").innerText = "今年已过去" + myDate.getMonth() + "个月";
 
-    var temp5 = document.getElementById("fifth");
-    temp5.style.width = Math.floor(myDate.getMinutes() * 100 / 60) + "%";
-    temp5.attributes["data-percent"].nodeValue = Math.floor(myDate.getMinutes() * 100 / 60);
-    document.getElementById("Minute_Num").innerText = "这小时已过去" + myDate.getMinutes() + "分钟";
+    // var temp5 = document.getElementById("fifth");
+    // temp5.style.width = Math.floor(myDate.getMinutes() * 100 / 60) + "%";
+    // temp5.attributes["data-percent"].nodeValue = Math.floor(myDate.getMinutes() * 100 / 60);
+    // document.getElementById("Minute_Num").innerText = "这小时已过去" + myDate.getMinutes() + "分钟";
 }, 10000);
