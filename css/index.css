@@ -3678,7 +3678,7 @@ _:future,
 #nav #site-name {
   text-shadow: 0.1rem 0.1rem 0.2rem rgba(0,0,0,0.15);
   font-weight: bold;
-  cursor: pointer;
+  font-family: 'Dancing Script';
 }
 #nav .menus_items {
   display: inline;

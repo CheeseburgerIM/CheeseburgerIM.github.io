@@ -50,7 +50,11 @@ img,
 #sidebar-menus .menus_items .menus_item .site-page:hover,
 #sidebar-menus .menus_items .menus_item a:hover,
 #sidebar-menus .menus_items .menus_item span:hover,
-#chunk input {
+#chunk input,
+#blog_name,
+#blog_name span:hover,
+#site-name,
+#site-name a:hover {
     /* cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/pointer.cur), */
     cursor: url(unavailable.cur),
         auto;
