@@ -11,7 +11,7 @@ html,
 #sidebar-menus .menus_items .menus_item ul:hover {
     /* cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/default.cur), */
     cursor: url(normal.cur),
-        auto;
+        auto!important;
 }
 a,
 a:hover,
@@ -57,7 +57,7 @@ img,
 #site-name a:hover {
     /* cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/pointer.cur), */
     cursor: url(unavailable.cur),
-        auto;
+        auto!important;
 }
 canvas,
 textarea,
@@ -66,7 +66,7 @@ textarea,
 .expand:hover,
 .copy-button:hover {
   cursor: url(link.cur),
-        auto;
+        auto!important;
 }
 
 /*roll*/
