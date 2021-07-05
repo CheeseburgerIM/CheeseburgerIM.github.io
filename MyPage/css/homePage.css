@@ -1,0 +1,8 @@
+body {
+    background: url("https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Home/HomePage_Background2.png");
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+}
