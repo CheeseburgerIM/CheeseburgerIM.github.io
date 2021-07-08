@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RO-idleTime</title>
+    <link rel="icon" type="image/png"
+        href="https://gitee.com/CheeseburgerIM/imagehosting/raw/master/Image/Home/Web_icon.jpg" />
+</head>
+<style>
+    body {
+        background-color: bisque;
+    }
+
+    .curTime .idleTime {
+        width: 200px auto;
+        height: 50px;
+    }
+</style>
+
+<body>
+    <div id="curTime"></div>
+    <div id="idleTime"></div>
+</body>
+<script>
+    var myDate = new Date();
+    console.log("Current Time:", myDate.getHours(), ":", myDate.getMinutes(), ":", myDate.getSeconds());
+
+    var tempHour = myDate.getHours();
+    var tempMinute = myDate.getMinutes();
+
+    var idleHour = 5;
+    if (idleHour < 5) {
+        idleHour = idleHour - tempHour - 1;
+    }
+    else {
+        idleHour = idleHour + 24 - tempHour - 1;
+    }
+    var idleMinute = 60 - tempMinute;
+    idleMinute = idleHour * 60 + idleMinute;
+    console.log("Idle Minute:", idleMinute);
+
+    document.getElementById("curTime").innerText = "Current Time:" + myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds();
+    document.getElementById("idleTime").innerText = "Idle Minute:" + idleMinute;
+</script>
+
+</html>
