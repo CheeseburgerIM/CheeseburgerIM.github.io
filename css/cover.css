@@ -151,6 +151,10 @@
 	.cover-wrapper.focus .menu .list-h a{margin:2px}
 	.cover-wrapper.focus .menu .list-h a:hover{opacity:1;background:#fff}
 
+.list-h a img:hover {
+	transform: scale(1.2);
+}
+
 /* font awesome color at nav */
 .fa-search{
 	color: #09C7F7;
