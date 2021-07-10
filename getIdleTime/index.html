@@ -20,6 +20,7 @@
 <body>
     <div id="curTime"></div>
     <div id="idleTime"></div>
+    <a href="http://mp.weixin.qq.com/mp/homepage?__biz=Mzg2OTI0MTM5MQ==&hid=4&sn=feecf7367ab3bbd433cc5e52f4195f4f&scene=18#wechat_redirect">COC</a>
 </body>
 <script>
     var myDate = new Date();
@@ -29,7 +30,7 @@
     var tempMinute = myDate.getMinutes();
 
     var idleHour = 5;
-    if (idleHour < 5) {
+    if (tempHour < 5) {
         idleHour = idleHour - tempHour - 1;
     }
     else {
