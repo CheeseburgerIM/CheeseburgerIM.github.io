@@ -1,0 +1,103 @@
+.link-fx-1 {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    height: auto;
+    right: 10px;
+    padding: 0 6px;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.link-fx-1 .icon {
+    width: 1.5rem;
+    position: absolute;
+    right: 0;
+    bottom: 1.5px;
+    -webkit-transform: translateX(100%) rotate(90deg);
+    transform: translateX(100%) rotate(90deg);
+}
+
+.link-fx-1 .icon circle {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 0.2s;
+}
+
+.link-fx-1 .icon line {
+    transition: -webkit-transform 0.4s;
+    transition: transform 0.4s;
+    transition: transform 0.4s, -webkit-transform 0.4s;
+    -webkit-transform-origin: 13px 15px;
+    transform-origin: 13px 15px;
+}
+
+.link-fx-1 .icon line:last-child {
+    -webkit-transform-origin: 19px 15px;
+    transform-origin: 19px 15px;
+}
+
+.link-fx-1::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    -webkit-transform-origin: right center;
+    transform-origin: right center;
+    transition: -webkit-transform 0.2s 0.1s;
+    transition: transform 0.2s 0.1s;
+    transition: transform 0.2s 0.1s, -webkit-transform 0.2s 0.1s;
+}
+
+.link-fx-1:hover .icon circle {
+    stroke-dashoffset: 200;
+    transition: stroke-dashoffset 0.2s 0.1s;
+}
+
+.link-fx-1:hover .icon line {
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+}
+
+.link-fx-1:hover .icon line:last-child {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.link-fx-1:hover::before {
+    -webkit-transform: translateX(17px) scaleX(0);
+    transform: translateX(17px) scaleX(0);
+    transition: -webkit-transform 0.2s;
+    transition: transform 0.2s;
+    transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.fa-rocket {
+    font-weight: 900;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+.post-icon a {
+    font-family: "Font Awesome 5 Free";
+    font-size: 0.8rem;
+    color: #2196f3;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.28s ease;
+    -moz-transition: all 0.28s ease;
+    -webkit-transition: all 0.28s ease;
+    -o-transition: all 0.28s ease;
+}
+
+.post-icon a:hover {
+    color: #ff5722;
+}
