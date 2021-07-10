@@ -3678,7 +3678,6 @@ _:future,
 #nav #site-name {
   text-shadow: 0.1rem 0.1rem 0.2rem rgba(0,0,0,0.15);
   font-weight: bold;
-  font-family: 'Dancing Script';
 }
 #nav .menus_items {
   display: inline;
@@ -3761,13 +3760,23 @@ _:future,
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
+  text-shadow: none;
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
 }
 #nav .menus_items .menus_item .menus_item_child li a {
   display: inline-block;
   padding: 0.3rem 0.7rem;
   width: 100%;
   color: var(--font-color);
-  text-shadow: none;
 }
 #nav.hide-menu #toggle-menu {
   display: inline-block !important;
